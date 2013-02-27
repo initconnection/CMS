@@ -2,14 +2,14 @@
 
 	define("MYSQLSERVER", "localhost");
 	define("MYSQLUSER", "root");
-	define("MYSQLPASSWORD", "");
-	define("MYSQLDATABASE", "root_site");
+	define("MYSQLPASSWORD", "pass");
+	define("MYSQLDATABASE", "cms");
 
 	class DatabaseClass {
 		
-		/* 
-		*	Initialize connection to the database
-		*/
+		/*
+		 * Initialize connection to the database
+		 */
 		private static function initConnection() {
 		
 			try {
@@ -23,8 +23,8 @@
 		}
 		
 		/*
-		* Insert one element into the table
-		*/
+		 * Insert one element into the table
+		 */
 		public static function insertElement($table, array $elementData) {
 			
 			$dbh = self::initConnection();
@@ -59,8 +59,8 @@
 		}
 		
 		/*
-		* Select all elements from the table
-		*/
+		 * Select all elements from the table
+		 */
 		public static function selectAllElements($table) {
 		
 			$dbh = self::initConnection();
@@ -74,8 +74,8 @@
 		}
 		
 		/*
-		* Select elements from the table which meet specified conditions
-		*/
+		 * Select elements from the table which meet specified conditions
+		 */
 		
 		public static function selectElements($table, array $conditions) {
 			
@@ -105,8 +105,8 @@
 		}
 		
 		/*
-		* Updates elements which meet specified conditions with the new data
-		*/
+		 * Updates elements which meet specified conditions with the new data
+		 */
 		public static function updateElements($table, array $conditions, array $elementData) {
 		
 			$dbh = self::initConnection();
@@ -118,20 +118,19 @@
 			$lastConditionsKey = end($conditionsKeys);
 		
 			$query = "UPDATE " . $table . " SET ";
-			foreach($elementDataKeys as $key => $value) {
+			foreach($elementDataKeys as $key) {
 				$query .= $key . " = :" . $key;
 				if($key != $lastElementDataKey) {
 					$query .= ", ";
 				}
 			}
 			$query .= " WHERE ";
-			foreach($conditions as $key => $value) {
+			foreach($conditionsKeys as $key) {
 				$query .= $key . " = :" . $key . "_condition";
 				if($key != $lastConditionsKey) {
 					$query .= " AND ";
 				}
 			}
-			
 			$sth = $dbh->prepare($query);
 			
 			foreach($elementDataKeys as $key) {
@@ -145,6 +144,34 @@
 			
 			return $sth->rowCount();
 		}
+        
+        /*
+         * Deletes element which meets specified conditions from a table
+         */
+        public static function deleteElement($table, $conditions) {
+            
+            $dbh = self::initConnection();
+            
+            $conditionsKeys = array_keys($conditions);
+            $lastConditionsKey = end($conditionsKeys);
+            
+            $query = "DELETE FROM " . $table . " WHERE ";
+            foreach($conditionsKeys as $key) {
+				$query .= $key . " = :" . $key;
+				if($key != $lastConditionsKey) {
+					$query .= " AND ";
+				}
+			}
+            $sth = $dbh->prepare($query);
+			
+			foreach($conditionsKeys as $key) {
+				$sth->bindParam(":" . $key, $conditions[$key]);
+			}
+            
+            $sth->execute();
+            
+            return $sth->rowCount();
+        }
 	}	
 
 ?>
