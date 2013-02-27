@@ -1,6 +1,6 @@
 <?php
 	//I add something.
-	//AAAAAAAA
+
 	require_once("includes/database.class.php");
 	
 	$conditions = array("username" => "Donatas");
