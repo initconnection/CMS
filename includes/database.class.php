@@ -2,14 +2,14 @@
 
 	define("MYSQLSERVER", "localhost");
 	define("MYSQLUSER", "root");
-	define("MYSQLPASSWORD", "pass");
-	define("MYSQLDATABASE", "cms");
+	define("MYSQLPASSWORD", "");
+	define("MYSQLDATABASE", "root_site");
 
 	class DatabaseClass {
 		
 		/*
-		 * Initialize connection to the database
-		 */
+		** Initialize connection to the database
+		*/
 		private static function initConnection() {
 		
 			try {
@@ -23,12 +23,10 @@
 		}
 		
 		/*
-		 * Insert one element into the table
-		 */
+		** Insert one element into the table
+		*/
 		public static function insertElement($table, array $elementData) {
-			
-			$dbh = self::initConnection();
-			
+		
 			$elementDataKeys = array_keys($elementData);
 			$lastElementDataKey = end($elementDataKeys);
 			
@@ -48,70 +46,50 @@
 			}
 			$query .= ")";
 			
-			$sth = $dbh->prepare($query);
-			foreach ($elementDataKeys as $key) {
-				$sth->bindParam(":" . $key, $elementData[$key]);
-			}
+			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
 			
-			$sth->execute();
-			
-			return ($sth->rowCount > 0) ? true : false; 
+			return ($sth->rowCount() > 0) ? true : false; 
 		}
 		
 		/*
-		 * Select all elements from the table
-		 */
+		** Select all elements from the table
+		*/
 		public static function selectAllElements($table) {
-		
-			$dbh = self::initConnection();
 			
 			$query = "SELECT * FROM " . $table;
-			$sth = $dbh->prepare($query);
-			$sth->execute();
-			$result = $sth->fetchAll(PDO::FETCH_ASSOC);
 			
-			return $result;
+			$sth = self::bindQueryParams($query, self::formParametersArray());
+			
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
 		}
 		
 		/*
-		 * Select elements from the table which meet specified conditions
-		 */
-		
+		** Select elements from the table which meet specified conditions
+		*/
 		public static function selectElements($table, array $conditions) {
-			
-			$dbh = self::initConnection();
 			
 			$conditionsKeys = array_keys($conditions);
 			$lastConditionsKey = end($conditionsKeys);
 			
 			$query = "SELECT * FROM " . $table . " WHERE ";
 			foreach ($conditionsKeys as $key) {
-				$query .= $key . "=:" . $key;
+				$query .= $key . "=:" . $key . "_condition";
 				if ($key != $lastConditionsKey) {
 					$query .= " AND ";
 				}
 			}
 			
-			$sth = $dbh->prepare($query);
+			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
 			
-			foreach ($conditionsKeys as $key) {
-				$sth->bindParam(":" . $key, $conditions[$key]);
-			}
-			
-			$sth->execute();
-			$result = $sth->fetchAll(PDO::FETCH_ASSOC);
-			
-			return $result;
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
 		}
 		
 		/*
-		 * Updates elements which meet specified conditions with the new data
-		 */
+		** Updates elements which meet specified conditions with the new data
+		*/
 		public static function updateElements($table, array $conditions, array $elementData) {
-		
-			$dbh = self::initConnection();
 			
-			$elementDataKeys = array_keys($elementDataKeys);
+			$elementDataKeys = array_keys($elementData);
 			$conditionsKeys = array_keys($conditions);
 			
 			$lastElementDataKey = end($elementDataKeys);
@@ -131,47 +109,78 @@
 					$query .= " AND ";
 				}
 			}
-			$sth = $dbh->prepare($query);
 			
-			foreach($elementDataKeys as $key) {
-				$sth->bindParam(":" . $key, $elementData[$key]);
-			}
-			foreach($conditionsKeys as $key) {
-				$sth->bindParam(":" . $key . "_condition", $conditions[$key]);
-			}
-			
-			$sth->execute();
+			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
 			
 			return $sth->rowCount();
 		}
         
         /*
-         * Deletes element which meets specified conditions from a table
-         */
+        ** Deletes element which meets specified conditions from a table
+        */
         public static function deleteElement($table, $conditions) {
-            
-            $dbh = self::initConnection();
             
             $conditionsKeys = array_keys($conditions);
             $lastConditionsKey = end($conditionsKeys);
             
             $query = "DELETE FROM " . $table . " WHERE ";
             foreach($conditionsKeys as $key) {
-				$query .= $key . " = :" . $key;
+				$query .= $key . " = :" . $key . "_condition";
 				if($key != $lastConditionsKey) {
 					$query .= " AND ";
 				}
 			}
-            $sth = $dbh->prepare($query);
 			
-			foreach($conditionsKeys as $key) {
-				$sth->bindParam(":" . $key, $conditions[$key]);
-			}
-            
-            $sth->execute();
+			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
             
             return $sth->rowCount();
         }
+		
+		/*
+		** Function that binds specified parameters to the main query
+		*/
+		private static function bindQueryParams($query, $parameters) {
+		
+			$dbh = self::initConnection();
+			
+			$parametersKeys = array_keys($parameters);
+			
+			$sth = $dbh->prepare($query);
+			
+			foreach($parameters as $key => $value) {
+				$sth->bindParam(":" . $key, $parameters[$key]);
+			}
+			
+			$sth->execute();
+			
+            return $sth;
+		}
+		
+		/*
+		**	Function that forms one array that consists of any specified 
+		**	key and value
+		*/
+		private static function formParametersArray($conditions = array(), $elementData = array()) {
+		
+			(!empty($elementData)) ? $elementDataKeys = array_keys($elementData) : NULL;
+			(!empty($conditions)) ? $conditionsKeys = array_keys($conditions) : NULL;
+		
+			(array)$allParameters = array();
+			
+			if(!empty($elementData)) {
+				foreach($elementDataKeys as $key) {
+					$allParameters += array($key => $elementData[$key]);
+				}
+			}
+			if(!empty($conditions)) {
+				foreach($conditionsKeys as $key) {
+					$allParameters += array($key . "_condition" => $conditions[$key]);
+				}
+			}
+			
+			return $allParameters;
+		}
+		
 	}	
 
 ?>
