@@ -3,7 +3,7 @@
 	define("MYSQLSERVER", "localhost");
 	define("MYSQLUSER", "root");
 	define("MYSQLPASSWORD", "");
-	define("MYSQLDATABASE", "root_site");
+	define("MYSQLDATABASE", "cms");
 
 	class DatabaseClass {
 		
@@ -18,7 +18,7 @@
 			} catch(PDOException $e) {
 				echo $e->getMessage();
 			}
-			
+
 			return $dbh;
 		}
 		
@@ -26,29 +26,16 @@
 		** Insert one element into the table
 		*/
 		public static function insertElement($table, array $elementData) {
-		
-			$elementDataKeys = array_keys($elementData);
-			$lastElementDataKey = end($elementDataKeys);
-			
+				
 			$query = "INSERT INTO " . $table . " (";
-			foreach ($elementDataKeys as $key) {
-				$query .= $key;
-				if ($key != $lastElementDataKey) {
-					$query .= ", ";
-				}
-			}
+			$query .= self::keysToString($elementData);
 			$query .= ") VALUES (";
-			foreach ($elementDataKeys as $key) {
-				$query .= ":" . $key;
-				if ($key != $lastElementDataKey) {
-					$query .= ", ";
-				}
-			}
+			$query .= self::parametersToString($elementData);
 			$query .= ")";
 			
-			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
+			$result = self::executeQuery($query, self::createParametersArray($elementData));
 			
-			return ($sth->rowCount() > 0) ? true : false; 
+			return ($result->rowCount() > 0) ? true : false; 
 		}
 		
 		/*
@@ -58,9 +45,9 @@
 			
 			$query = "SELECT * FROM " . $table;
 			
-			$sth = self::bindQueryParams($query, self::formParametersArray());
+			$result = self::executeQuery($query);
 			
-			return $sth->fetchAll(PDO::FETCH_ASSOC);
+			return $result->fetchAll(PDO::FETCH_ASSOC);
 		}
 		
 		/*
@@ -68,119 +55,153 @@
 		*/
 		public static function selectElements($table, array $conditions) {
 			
-			$conditionsKeys = array_keys($conditions);
-			$lastConditionsKey = end($conditionsKeys);
-			
 			$query = "SELECT * FROM " . $table . " WHERE ";
-			foreach ($conditionsKeys as $key) {
-				$query .= $key . "=:" . $key . "_condition";
-				if ($key != $lastConditionsKey) {
-					$query .= " AND ";
-				}
-			}
+			$query .= self::conditionsToString($conditions);
+									
+			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
-			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
-			
-			return $sth->fetchAll(PDO::FETCH_ASSOC);
+			return $result->fetchAll(PDO::FETCH_ASSOC);
 		}
 		
 		/*
 		** Updates elements which meet specified conditions with the new data
 		*/
 		public static function updateElements($table, array $conditions, array $elementData) {
-			
-			$elementDataKeys = array_keys($elementData);
-			$conditionsKeys = array_keys($conditions);
-			
-			$lastElementDataKey = end($elementDataKeys);
-			$lastConditionsKey = end($conditionsKeys);
-		
+					
 			$query = "UPDATE " . $table . " SET ";
-			foreach($elementDataKeys as $key) {
-				$query .= $key . " = :" . $key;
-				if($key != $lastElementDataKey) {
-					$query .= ", ";
-				}
-			}
+			$query .= self::dataToString($elementData);			
 			$query .= " WHERE ";
-			foreach($conditionsKeys as $key) {
-				$query .= $key . " = :" . $key . "_condition";
-				if($key != $lastConditionsKey) {
-					$query .= " AND ";
-				}
-			}
+			$query .= self::conditionsToString($conditions);
 			
-			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
+			$result = self::executeQuery($query, self::createParametersArray($elementData, $conditions));
 			
-			return $sth->rowCount();
+			return $result->rowCount();
 		}
         
-        /*
-        ** Deletes element which meets specified conditions from a table
-        */
-        public static function deleteElement($table, $conditions) {
-            
-            $conditionsKeys = array_keys($conditions);
-            $lastConditionsKey = end($conditionsKeys);
-            
-            $query = "DELETE FROM " . $table . " WHERE ";
-            foreach($conditionsKeys as $key) {
-				$query .= $key . " = :" . $key . "_condition";
-				if($key != $lastConditionsKey) {
-					$query .= " AND ";
-				}
-			}
-			
-			$sth = self::bindQueryParams($query, self::formParametersArray($conditions, $elementData));
-            
-            return $sth->rowCount();
-        }
-		
 		/*
-		** Function that binds specified parameters to the main query
+		** Deletes element which meets specified conditions from a table
 		*/
-		private static function bindQueryParams($query, $parameters) {
-		
-			$dbh = self::initConnection();
+		public static function deleteElement($table, $conditions) {
+
+			$query = "DELETE FROM " . $table . " WHERE ";
+			$query .= self::conditionsToString($conditions);
+
+			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
-			$parametersKeys = array_keys($parameters);
-			
-			$sth = $dbh->prepare($query);
-			
-			foreach($parameters as $key => $value) {
-				$sth->bindParam(":" . $key, $parameters[$key]);
-			}
-			
-			$sth->execute();
-			
-            return $sth;
+			return $result->rowCount();
 		}
 		
 		/*
 		**	Function that forms one array that consists of any specified 
 		**	key and value
 		*/
-		private static function formParametersArray($conditions = array(), $elementData = array()) {
-		
-			(!empty($elementData)) ? $elementDataKeys = array_keys($elementData) : NULL;
-			(!empty($conditions)) ? $conditionsKeys = array_keys($conditions) : NULL;
-		
-			(array)$allParameters = array();
+		private static function createParametersArray($elementData, $conditions = null) {
 			
-			if(!empty($elementData)) {
-				foreach($elementDataKeys as $key) {
-					$allParameters += array($key => $elementData[$key]);
+			$parameters = array();
+			
+			if($elementData) {
+				foreach($elementData as $key => $value) {
+					$parameters[$key] = $value;
 				}
 			}
-			if(!empty($conditions)) {
-				foreach($conditionsKeys as $key) {
-					$allParameters += array($key . "_condition" => $conditions[$key]);
+				
+			if($conditions) {
+				foreach($conditions as $key => $value) {
+					$parameters[$key . "_condition"] = $value;
 				}
 			}
 			
-			return $allParameters;
+			return $parameters;
 		}
 		
+		/*
+		** Function that binds specified parameters to the main query and executes it
+		*/
+		private static function executeQuery($query, $parameters = null) {
+		
+			$dbh = self::initConnection();
+			
+			$sth = $dbh->prepare($query);
+			
+			if($parameters) {
+				$parametersKeys = array_keys($parameters);
+			
+				foreach($parametersKeys as $key) {
+					$sth->bindParam(":" . $key, $parameters[$key]);
+				}
+			}
+			
+			$sth->execute();
+			
+			return $sth;
+		}
+		
+	
+		// Helpers
+		
+		/*
+		 * Convert array to string: prefix.key, prefix.key
+		 */
+		private static function keysToString($array, $prefix = "") {
+			$arrayKeys = array_keys($array);
+			$lastArrayKey = end($arrayKeys);
+			
+			$string = "";
+			foreach ($arrayKeys as $key) {
+				$string .= $prefix . $key;
+				if ($key != $lastArrayKey) {
+					$string .= ", ";
+				}
+			}
+			
+			return $string;
+		}
+				
+		/*
+		 * Convert array to string: :key, :key
+		 */
+		private static function parametersToString($parameters) {
+			
+			$string = self::keysToString($parameters, ":");
+			
+			return $string;
+		}
+		
+		/*
+		 * Convert array to string: key = :key, key = :key
+		 */	
+		private static function dataToString(array $data) {
+			$dataKeys = array_keys($data);
+			$lastDataKey = end($dataKeys);
+			
+			$string = "";
+			foreach($dataKeys as $key) {
+				$string .= $key . " = :" . $key;
+				if($key != $lastDataKey) {
+					$string .= ", ";
+				}
+			}			
+			
+			return $string;
+		}
+		
+		/*
+		 * Convert array to string: key = :key_condition AND key = :key_condition
+		 */
+		private static function conditionsToString(array $conditions) {
+			$conditionsKeys = array_keys($conditions);
+			$lastConditionsKey = end($conditionsKeys);
+			
+			$string = "";
+			foreach($conditionsKeys as $key) {
+				$string .= $key . " = :" . $key . "_condition";
+				if($key != $lastConditionsKey) {
+					$string .= " AND ";
+				}
+			}
+			
+			return $string;
+		}
 	}	
 
 ?>
