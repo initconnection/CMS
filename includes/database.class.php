@@ -77,6 +77,7 @@
 			
 			return $result->rowCount();
 		}
+	  Test2
         
 		/*
 		** Deletes element which meets specified conditions from a table
