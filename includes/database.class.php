@@ -86,8 +86,6 @@
 
 			$query = "DELETE FROM " . $table . " WHERE ";
 			$query .= self::keysToString($conditions, " AND ", " = :", "_condition", true);
-
-			echo $query . "<br />";	
 			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
