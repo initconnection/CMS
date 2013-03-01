@@ -1,8 +1,8 @@
 <?php
 	require_once("includes/database.class.php");
 	
-	$conditions = array("username" => "iNfas");
-	$elementData = array("username" => "Donatas", "password" => "grazus");
+	$conditions = array("id" => 1, "username" => "infas");
+	$elementData = array("username" => "Donce");
 	
-    echo "<pre>" . var_export(DatabaseClass::insertElement("user", $elementData), true) . "</pre>";
+    echo "<pre>" . var_export(DatabaseClass::deleteElement("user", $conditions), true) . "</pre>";
 ?>
