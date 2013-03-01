@@ -8,7 +8,7 @@
 	class DatabaseClass {
 		
 		/*
-		** Initialize connection to the database
+		**Initialize connection to the database
 		*/
 		private static function initConnection() {
 		
@@ -93,8 +93,8 @@
 		}
 		
 		/*
-		**	Function that forms one array that consists of any specified 
-		**	key and value
+		** Function that forms one array that consists of any specified 
+		** key and value
 		*/
 		private static function createParametersArray($elementData, $conditions = null) {
 			
@@ -116,7 +116,7 @@
 		}
 		
 		/*
-		** 	Function that binds specified parameters to the main query and executes it
+		** Function that binds specified parameters to the main query and executes it
 		*/
 		private static function executeQuery($query, $parameters = null) {
 		
@@ -138,11 +138,11 @@
 		}
 		
 		/*
-		** 	Converts an array to string 
-		** 	@param $aditionord - (", " or " AND ")
-		** 	@param $prefix - (":" or " = :")
-		** 	@param $suffix - (empty or "_condition ")
-		** 	@param $keyInFront - (true if we are not doing INSERT query)
+		** Converts an array to string 
+		** @param $aditionord - (", " or " AND ")
+		** @param $prefix - (":" or " = :")
+		** @param $suffix - (empty or "_condition ")
+		** @param $keyInFront - (true if we are not doing INSERT query)
 		*/	
 		private static function keysToString($array,  $additionWord = "",
 								$prefix = "",$suffix = "", $keyInFront = false) {
