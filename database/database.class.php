@@ -8,7 +8,7 @@
 	class Database {
 		
 		/*
-		** Initialize connection to the database
+		**Initialize connection to the database
 		*/
 		private static function initConnection() {
 		
@@ -28,9 +28,9 @@
 		public static function insertElement($table, array $elementData) {
 				
 			$query = "INSERT INTO " . $table . " (";
-			$query .= self::keysToString($elementData);
+			$query .= self::keysToString($elementData, ", ");
 			$query .= ") VALUES (";
-			$query .= self::parametersToString($elementData);
+			$query .= self::keysToString($elementData, ", ", ":");
 			$query .= ")";
 			
 			$result = self::executeQuery($query, self::createParametersArray($elementData));
@@ -56,9 +56,12 @@
 		public static function selectElements($table, array $conditions) {
 			
 			$query = "SELECT * FROM " . $table . " WHERE ";
-			$query .= self::conditionsToString($conditions);
-									
+			
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);																						
+			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+			
+			echo $query . "<br />";
 			
 			return $result->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -69,9 +72,9 @@
 		public static function updateElements($table, array $conditions, array $elementData) {
 					
 			$query = "UPDATE " . $table . " SET ";
-			$query .= self::dataToString($elementData);			
+			$query .= self::keysToString($elementData, ", ", "= :", "", true);		
 			$query .= " WHERE ";
-			$query .= self::conditionsToString($conditions);
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition", true);
 			
 			$result = self::executeQuery($query, self::createParametersArray($elementData, $conditions));
 			
@@ -84,16 +87,16 @@
 		public static function deleteElement($table, $conditions) {
 
 			$query = "DELETE FROM " . $table . " WHERE ";
-			$query .= self::conditionsToString($conditions);
-
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition", true);
+			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
 			return $result->rowCount();
 		}
 		
 		/*
-		**	Function that forms one array that consists of any specified 
-		**	key and value
+		** Function that forms one array that consists of any specified 
+		** key and value
 		*/
 		private static function createParametersArray($elementData, $conditions = null) {
 			
@@ -107,6 +110,9 @@
 				
 			if($conditions) {
 				foreach($conditions as $key => $value) {
+				
+					$value = preg_replace("/^!/", "", $value);
+					
 					$parameters[$key . "_condition"] = $value;
 				}
 			}
@@ -136,67 +142,31 @@
 			return $sth;
 		}
 		
-	
-		// Helpers
-		
 		/*
-		 * Convert array to string: prefix.key, prefix.key
-		 */
-		private static function keysToString($array, $prefix = "") {
+		** Converts an array to string 
+		** @param $aditionord - (", " or " AND ")
+		** @param $prefix - (":" or " = :")
+		** @param $suffix - (empty or "_condition ")
+		** @param $keyInFront - (true if we are not doing INSERT query)
+		*/	
+		private static function keysToString($array,  $additionWord = "",
+								$prefix = "", $suffix = "", $keyInFront = false) {
+			
 			$arrayKeys = array_keys($array);
 			$lastArrayKey = end($arrayKeys);
 			
 			$string = "";
 			foreach ($arrayKeys as $key) {
-				$string .= $prefix . $key;
-				if ($key != $lastArrayKey) {
-					$string .= ", ";
+				if($keyInFront) {
+					$string .= $key;
 				}
-			}
-			
-			return $string;
-		}
 				
-		/*
-		 * Convert array to string: :key, :key
-		 */
-		private static function parametersToString($parameters) {
-			
-			$string = self::keysToString($parameters, ":");
-			
-			return $string;
-		}
-		
-		/*
-		 * Convert array to string: key = :key, key = :key
-		 */	
-		private static function dataToString(array $data) {
-			$dataKeys = array_keys($data);
-			$lastDataKey = end($dataKeys);
-			
-			$string = "";
-			foreach($dataKeys as $key) {
-				$string .= $key . " = :" . $key;
-				if($key != $lastDataKey) {
-					$string .= ", ";
-				}
-			}			
-			
-			return $string;
-		}
-		
-		/*
-		 * Convert array to string: key = :key_condition AND key = :key_condition
-		 */
-		private static function conditionsToString(array $conditions) {
-			$conditionsKeys = array_keys($conditions);
-			$lastConditionsKey = end($conditionsKeys);
-			
-			$string = "";
-			foreach($conditionsKeys as $key) {
-				$string .= $key . " = :" . $key . "_condition";
-				if($key != $lastConditionsKey) {
-					$string .= " AND ";
+				(preg_match("/^!/", $array[$key])) ? $prefix = "!" . $prefix : NULL;
+				
+				$string .= " " . $prefix . $key . $suffix;
+				
+				if ($key != $lastArrayKey) {
+					$string .= $additionWord;
 				}
 			}
 			
