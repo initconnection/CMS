@@ -5,7 +5,7 @@
 	define("MYSQLPASSWORD", "");
 	define("MYSQLDATABASE", "cms");
 
-	class DatabaseClass {
+	class Database {
 		
 		/*
 		** Initialize connection to the database
