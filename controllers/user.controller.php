@@ -1,5 +1,5 @@
 <?php
-	require_once("core/config.php");
+	require_once("../core/config.php");
 	require_once(ROOT_PATH . "controllers/base.controller.php");	
 	require_once(ROOT_PATH . "models/user.model.php");
 
