@@ -57,9 +57,11 @@
 			
 			$query = "SELECT * FROM " . $table . " WHERE ";
 			
-			$query .= self::keysToString($conditions, " AND ", " = :", "_condition ", true);																						
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);																						
 			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+			
+			echo $query . "<br />";
 			
 			return $result->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -70,9 +72,9 @@
 		public static function updateElements($table, array $conditions, array $elementData) {
 					
 			$query = "UPDATE " . $table . " SET ";
-			$query .= self::keysToString($elementData, ", ", " = :", "", true);		
+			$query .= self::keysToString($elementData, ", ", "= :", "", true);		
 			$query .= " WHERE ";
-			$query .= self::keysToString($conditions, " AND ", " = :", "_condition", true);
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition", true);
 			
 			$result = self::executeQuery($query, self::createParametersArray($elementData, $conditions));
 			
@@ -85,7 +87,7 @@
 		public static function deleteElement($table, $conditions) {
 
 			$query = "DELETE FROM " . $table . " WHERE ";
-			$query .= self::keysToString($conditions, " AND ", " = :", "_condition", true);
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition", true);
 			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
@@ -108,6 +110,9 @@
 				
 			if($conditions) {
 				foreach($conditions as $key => $value) {
+				
+					$value = preg_replace("/^!/", "", $value);
+					
 					$parameters[$key . "_condition"] = $value;
 				}
 			}
@@ -145,7 +150,7 @@
 		** @param $keyInFront - (true if we are not doing INSERT query)
 		*/	
 		private static function keysToString($array,  $additionWord = "",
-								$prefix = "",$suffix = "", $keyInFront = false) {
+								$prefix = "", $suffix = "", $keyInFront = false) {
 			
 			$arrayKeys = array_keys($array);
 			$lastArrayKey = end($arrayKeys);
@@ -156,7 +161,9 @@
 					$string .= $key;
 				}
 				
-				$string .= $prefix . $key . $suffix;
+				(preg_match("/^!/", $array[$key])) ? $prefix = "!" . $prefix : NULL;
+				
+				$string .= " " . $prefix . $key . $suffix;
 				
 				if ($key != $lastArrayKey) {
 					$string .= $additionWord;
