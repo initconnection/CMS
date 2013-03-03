@@ -1,14 +1,8 @@
 <?php
 	require_once("core/config.php");
-	require_file("models/user.model.php");
+	require_file("controllers/user.controller.php");
 	
-	$user = new UserModel("user");
+	$controller = new UserController();
+	$controller->showAllUsers();
 	
-	$user_data = array("username" => "Krutas", "password" => "2412412");
-	
-	if ($user->insert($user_data)) {
-		echo "Success!";
-	} else {
-		echo "Failure!";
-	}
 ?>

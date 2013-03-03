@@ -13,5 +13,9 @@
 			return Database::insertElement($this->table, $data);
 		}
 		
+		public function selectAll() {
+			return Database::selectAllElements($this->table);
+		}
+		
 	}
 ?>

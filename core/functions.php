@@ -1,6 +1,6 @@
 <?php
 
 	function require_file($filePath) {
-		@require_once(ROOT_PATH . $filePath);
+		include(ROOT_PATH . $filePath);
 	}
 ?>
