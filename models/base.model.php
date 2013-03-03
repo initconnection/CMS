@@ -1,5 +1,5 @@
 <?php
-	require_file("database/database.class.php");
+	require_once(ROOT_PATH . "database/database.class.php");
 
 	class BaseModel {
 		

@@ -1,6 +1,6 @@
 <?php
 
-	require_file("models/base.model.php");
+	require_once(ROOT_PATH . "models/base.model.php");
 
 	class UserModel extends BaseModel {
 		private $table;
