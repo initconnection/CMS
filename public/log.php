@@ -7,7 +7,7 @@
     <body>
         <form action="" method="POST">
             Enter your username:<br />
-            <input name="username" type="text"/>
+            <input name="username" type="text"/><br />
             Enter your password:<br />
             <input name="passowrd" type="text"/><br />
             <input type="submit" value="Continue" />
