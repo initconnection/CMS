@@ -61,8 +61,6 @@
 			
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
-			echo $query . "<br />";
-			
 			return $result->fetchAll(PDO::FETCH_ASSOC);
 		}
 		

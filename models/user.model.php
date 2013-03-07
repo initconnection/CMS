@@ -12,5 +12,17 @@
         public static function selectAll() {
                 return Database::selectAllElements(self::$table);
         }
+        
+        public static function select($conditions) {
+            return Database::selectElements(self::$table, $conditions);
+        }
+        
+        public static function checkUser($username, $password) {
+             $credentials = array("username" => $username, "password" => $password);
+             $user = self::select($credentials);
+             if ($user) {
+                 return true;
+             }
+        }
     }
 ?>

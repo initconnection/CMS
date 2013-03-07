@@ -4,15 +4,19 @@
     
     class BaseController {
 
-        private $action = "";
+        private $_action = "";
         public $urlValues = "";
         public function __construct($action, $urlValues) {
-            $this->action = $action;
+            $this->_action = $action;
             $this->urlValues = $urlValues;
         }
-
+        
         public function executeAction() {
-            return $this->{$this->action}();
+            return $this->{$this->_action}();
+        }
+        
+        public function checkAction($action) {
+            return (($this->_action == $action) ? true : false);
         }
     }
 ?>

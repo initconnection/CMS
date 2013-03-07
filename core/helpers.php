@@ -1,0 +1,26 @@
+<?php
+
+    function authorize($username, $password) {
+        if(UserModel::checkUser($username, $password)) {
+            $_SESSION["logged_in"] = true;
+            return true;
+        }
+    }
+    
+    function isAuthorized() {
+        if ($_SESSION["logged_in"] == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    function redirect($location) {
+        
+         $view = new BaseView();
+         $view->location = ABSOLUTE_PATH . $location;
+         $view->render_view("redirect.php");
+    }
+
+?>
