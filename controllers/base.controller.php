@@ -12,7 +12,7 @@
         }
 
         public function executeAction() {
-                return $this->{$this->action}();
+            return $this->{$this->action}();
         }
     }
 ?>
