@@ -4,6 +4,7 @@
 	</head>
 	
 	<body>
-		<?= $content ?>
+		<h1><?=$this->title?></h1>
+		<?php $this->render_view("user/users.php") ?>
 	</body>
 </html>
