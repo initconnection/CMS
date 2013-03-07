@@ -4,9 +4,8 @@
 
         public function index()
         {
-            $template = new BaseView();
-            $template->title = "Pavadinimas";
-            $template->render("home/index.php");
+            $view = new BaseView();
+            $view->render("home/index.php");
         }
     }
 

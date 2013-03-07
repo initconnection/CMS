@@ -14,16 +14,5 @@
         public function executeAction() {
                 return $this->{$this->action}();
         }
-
-        /* Functions that performs redirection
-        ** to the specific page
-        */
-        public static function makeRedirect($location) {
-
-            $template = new BaseView();
-            $template->title = "Redirection";
-            $template->location = "http://" . $location;
-            $template->render("redirect.php");
-        }
     }
 ?>

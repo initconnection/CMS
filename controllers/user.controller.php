@@ -11,12 +11,10 @@
         }
 
         public function showAll() {
-
-            $userModel = new UserModel("user");
-            $template = new BaseView();
-            $template->title = "Users";
-            $template->users = $userModel->selectAll();
-            $template->render("user/users.php");
+            $view = new BaseView();
+            $view->title = "Users";
+            $view->users = UserModel::selectAll();
+            $view->render("user/users.php");
         }
     }
 

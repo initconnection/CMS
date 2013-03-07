@@ -3,18 +3,14 @@
     require_once(ROOT_PATH . "models/base.model.php");
 
     class UserModel extends BaseModel {
-        private $table;
+        private static $table = "user";
 
-        public function __construct($table) {
-                $this->table = $table;
+        public static function insert($data) {
+                return Database::insertElement(self::$table, $data);
         }
 
-        public function insert($data) {
-                return Database::insertElement($this->table, $data);
-        }
-
-        public function selectAll() {
-                return Database::selectAllElements($this->table);
+        public static function selectAll() {
+                return Database::selectAllElements(self::$table);
         }
     }
 ?>

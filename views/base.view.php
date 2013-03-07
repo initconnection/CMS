@@ -2,7 +2,7 @@
 
     class BaseView {
         
-        protected $template_dir = "templates/";
+        protected $template_dir = "views/";
         protected $vars = array();
 
         public function render($template_file) {
