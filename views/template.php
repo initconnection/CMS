@@ -5,6 +5,6 @@
 	
 	<body>
 		<h1><?=$this->title?></h1>
-		<?php $this->render_view("user/users.php") ?>
+		<?php $this->render_view($this->view_file) ?>
 	</body>
 </html>

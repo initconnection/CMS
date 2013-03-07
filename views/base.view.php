@@ -5,9 +5,10 @@
         protected $template_dir = "views/";
         protected $vars = array();
 	   
-	public function render()
+	public function render($view_file)
 	{
-		 self::render_view("template.php");
+		$this->view_file = $view_file;
+		self::render_view("template.php");
 	}
 
         public function render_view($view_file) {

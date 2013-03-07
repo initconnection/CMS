@@ -14,7 +14,7 @@
             $view = new BaseView();
             $view->title = "Users";
             $view->users = UserModel::selectAll();
-            $view->render();
+            $view->render("user/users.php");
         }
     }
 
