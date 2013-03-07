@@ -33,16 +33,14 @@
                         return true;
                     } else {
                         echo "Bad action name";
-                        return false;
                     }
                 } else {
                     echo "Bad Controller :(";
-                    return false;
                 }
             } else {
                 echo "Bad URL :(";
-                return false;
             }
+            return false;
         }
     }
 ?>
