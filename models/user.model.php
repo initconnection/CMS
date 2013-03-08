@@ -12,7 +12,7 @@
         public static function selectAll() {
                 return Database::selectAllElements(self::$table);
         }
-        
+
         public static function select($conditions) {
             return Database::selectElements(self::$table, $conditions);
         }

@@ -1,10 +1,17 @@
-<html>
-	<head>
-		<title>CMS</title>
-	</head>
-	
-	<body>
-		<h1><?=$this->title?></h1>
-		<?php $this->render_view($this->view_file) ?>
-	</body>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>CMS</title>
+</head>
+
+<body>
+    <?php $this->render_view($this->view_file) ?>
+</body>
+
 </html>
+
+
+

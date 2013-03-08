@@ -8,7 +8,7 @@
     }
     
     function isAuthorized() {
-        if ($_SESSION["logged_in"] == true) {
+        if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true) {
             return true;
         }
         else {
@@ -17,10 +17,5 @@
     }
     
     function redirect($location) {
-        
-         $view = new BaseView();
-         $view->location = ABSOLUTE_PATH . $location;
-         $view->render_view("redirect.php");
+         header("Location: " .  ABSOLUTE_PATH . $location);
     }
-
-?>

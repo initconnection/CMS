@@ -56,9 +56,8 @@
 		public static function selectElements($table, array $conditions) {
 			
 			$query = "SELECT * FROM " . $table . " WHERE ";
-			
-			$query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);																						
-			
+			$query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+
 			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 			
 			return $result->fetchAll(PDO::FETCH_ASSOC);

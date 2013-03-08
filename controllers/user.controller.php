@@ -6,10 +6,6 @@
 
     class UserController extends BaseController {
 
-        public function __construct($action, $urlvalues) {
-            parent::__construct($action, $urlvalues);
-        }
-
         public function showAll() {
             $view = new BaseView();
             $view->title = "Users";
