@@ -13,5 +13,3 @@
             $view->render("user/users.php");
         }
     }
-
-?>

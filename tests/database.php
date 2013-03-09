@@ -17,5 +17,3 @@
 	
 //	$conditions = array("username" => "Dalius");
 //	echo "<pre>" . var_export(DatabaseClass::deleteElement("user", $conditions), true) . "</pre>";
-	
-?>

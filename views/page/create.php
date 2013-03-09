@@ -2,6 +2,6 @@
     <label for="title">Title</label> <br/>
     <input type="text" id="title" name="title"/> <br/>
     <label for="title">Content</label> <br/>
-    <textarea name="content"/></textarea><br/>
+    <textarea class="ckeditor" name="content"></textarea><br/>
     <input type="submit" value="Submit"/>
 </form>

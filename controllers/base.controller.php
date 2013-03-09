@@ -19,4 +19,3 @@
             return (($this->_action == $action) ? true : false);
         }
     }
-?>

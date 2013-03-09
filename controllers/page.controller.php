@@ -36,5 +36,3 @@ class PageController extends BaseController {
         $view->render("page/show.php");
     }
 }
-
-?>
