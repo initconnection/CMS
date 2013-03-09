@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13f810db-f742-49c9-94ad-b98dfd981d4e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/test/test.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/base.controller.php" afterPath="$PROJECT_DIR$/controllers/base.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/base.model.php" afterPath="$PROJECT_DIR$/models/base.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/base.view.php" afterPath="$PROJECT_DIR$/views/base.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/config.php" afterPath="$PROJECT_DIR$/core/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/page/create.php" afterPath="$PROJECT_DIR$/views/page/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/database.class.php" afterPath="$PROJECT_DIR$/database/database.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/database.php" afterPath="$PROJECT_DIR$/tests/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/home.controller.php" afterPath="$PROJECT_DIR$/controllers/home.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/page/index.php" afterPath="$PROJECT_DIR$/views/page/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/loader.php" afterPath="$PROJECT_DIR$/core/loader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/page.controller.php" afterPath="$PROJECT_DIR$/controllers/page.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/template.php" afterPath="$PROJECT_DIR$/views/template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/user.controller.php" afterPath="$PROJECT_DIR$/controllers/user.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.model.php" afterPath="$PROJECT_DIR$/models/user.model.php" />
+    <list default="true" id="13f810db-f742-49c9-94ad-b98dfd981d4e" name="Default" comment="Added CKEditor, removed ?&gt; tags">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CMS.iws" />
@@ -31,7 +16,7 @@
     <file path="/create.php" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362710667453" ignored="false" />
     <file path="/base.controller.php" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362711629120" ignored="false" />
     <file path="/show.php" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362712196389" ignored="false" />
-    <file path="/Dummy.txt" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362849720246" ignored="false" />
+    <file path="/Dummy.txt" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362850348992" ignored="false" />
     <file path="/notes.txt" changelist="13f810db-f742-49c9-94ad-b98dfd981d4e" time="1362741268950" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -380,11 +365,15 @@
       <created>1362741393477</created>
       <updated>1362741393477</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added CKEditor, removed ?&gt; tags">
+      <created>1362849851068</created>
+      <updated>1362849851068</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="0" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -417,7 +406,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="true" />
     <option name="myTodoPanelSettings">
       <value>
