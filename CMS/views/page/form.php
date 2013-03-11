@@ -1,0 +1,26 @@
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="<?=$this->title?>" /> <br/>
+    <label for="title">Content</label>
+    <textarea class="ckeditor" name="content"><?=$this->content?></textarea>
+    <button id="showOptional" class="btn">Optional</button>
+    <div id="pageOptions">
+        <h2>Page setup</h2>
+        <p>
+            Page description:<br />
+            <textarea name="description" cols="50" rows="2"><?=$this->description?></textarea><br />
+            Page keywords:<br />
+            <input name="keywords" value="<?=$this->keywords?>" /><br />
+            Page module:<br />
+            <select name="module">
+                <option value="1">Module 1</option>
+            </select><br />
+            Page category:<br />
+            <select name="category">
+                <?php foreach($this->categories as $category): ?>
+                <option value="<?=$category["id"]?>"
+                    <?=($category["id"] == $this->category) ? "selected" : NULL?>>
+                    <?=$category["title"]?></option>
+                <?php endforeach; ?>
+            </select>
+        </p>
+    </div>

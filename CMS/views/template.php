@@ -17,6 +17,7 @@
         <div class="navbar-inner">
             <ul class="nav">
                 <li><a href="<?=ABSOLUTE_PATH?>page/index">Pages</a></li>
+                <li><a href="<?=ABSOLUTE_PATH?>user/index">Users</a></li>
             </ul>
         </div>
     </div>

@@ -20,9 +20,9 @@
             return $result[0];
         }
         
-         public static function selectByCategory($category) {
+         public static function selectWithCategory($category) {
             $conditions = array("category" => $category);
-            $result = Database::selectElements(self::$table, $conditions);
+            $result = Database::selectElements(self::$table, $conditions, "position");
             return $result;
         }
 

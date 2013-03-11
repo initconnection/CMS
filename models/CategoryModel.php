@@ -17,7 +17,7 @@
             $categories = array();
             foreach ($categoriesTemp as $category) {
                 $name = $category["name"];
-                $categories[$name] = PageModel::selectByCategory($category["id"]);
+                $categories[$name] = PageModel::selectWithCategory($category["id"]);
             }
             
             return $categories;

@@ -41,9 +41,12 @@
 		/*
 		** Select all elements from the table
 		*/
-		public static function selectAllElements($table) {
+		public static function selectAllElements($table, $order = null) {
 			
 			$query = "SELECT * FROM " . $table;
+            if ($order) {
+                $query .= " ORDER BY " . $order;
+            }
 			
 			$result = self::executeQuery($query);
 			
@@ -53,16 +56,28 @@
 		/*
 		** Select elements from the table which meet specified conditions
 		*/
-		public static function selectElements($table, array $conditions) {
-			
-			$query = "SELECT * FROM " . $table . " WHERE ";
-			$query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+        public static function selectElements($table, array $conditions, $order = null) {
 
-			$result = self::executeQuery($query, self::createParametersArray(null, $conditions));
-			
-			return $result->fetchAll(PDO::FETCH_ASSOC);
-		}
-		
+            $query = "SELECT * FROM " . $table . " WHERE ";
+            $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+            if ($order) {
+                $query .= " ORDER BY " . $order;
+            }
+
+            $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        /*
+		** Select first element from the table which meet specified conditions
+		*/
+        public static function selectElement($table, array $conditions) {
+
+            $result = self::selectElements($table, $conditions);
+            return $result[0];
+        }
+
 		/*
 		** Updates elements which meet specified conditions with the new data
 		*/
@@ -81,7 +96,7 @@
 		/*
 		** Deletes element which meets specified conditions from a table
 		*/
-		public static function deleteElement($table, $conditions) {
+		public static function deleteElements($table, $conditions) {
 
 			$query = "DELETE FROM " . $table . " WHERE ";
 			$query .= self::keysToString($conditions, " AND ", "= :", "_condition", true);
