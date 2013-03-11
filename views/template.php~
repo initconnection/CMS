@@ -16,7 +16,7 @@
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav">
-                <?php foreach($this->menu["top-menu"] as $menuItem) : ?>
+                <?php foreach($this->menu["naujas-kategorija"] as $menuItem) : ?>
                 <li><a href="<?=ABSOLUTE_PATH?>page/show/<?=$menuItem["id"]?>"><?=$menuItem["title"]?></a></li>
                 <?php endforeach; ?>
             </ul>

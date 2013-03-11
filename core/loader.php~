@@ -12,7 +12,7 @@
             if ($this->urlvalues["controller"] == "") {
                 $this->controller = "HomeController";
             } else {
-                $this->controller = ucfirst($this->urlvalues['controller']) . "Controller";
+                $this->controller = $this->urlvalues['controller'] . "Controller";
             }
 
             if ($this->urlvalues["action"] == "") {
