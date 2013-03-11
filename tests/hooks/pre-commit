@@ -1,4 +1,0 @@
-#!/bin/sh
-mysqldump -u root -ppass --skip-extended-insert cms > sql/cms.sql
-git add sql/cms.sql
-exit 0
