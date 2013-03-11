@@ -1,7 +1,5 @@
 <?php
 
-    require_once(ROOT_PATH . "models/base.model.php");
-
     class PageModel extends BaseModel {
         private static $table = "page";
 
@@ -20,6 +18,12 @@
             $conditions = array("id" => $id);
             $result = Database::selectElements(self::$table, $conditions);
             return $result[0];
+        }
+        
+         public static function selectPagesByCategory($category) {
+            $conditions = array("category" => $category);
+            $result = Database::selectElements(self::$table, $conditions);
+            return $result;
         }
 
     }

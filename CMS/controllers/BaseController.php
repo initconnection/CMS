@@ -1,10 +1,25 @@
 <?php
+    
+    class BaseController {
 
-    class BaseView {
-        
+        private $_action = "";
+        public $urlValues = "";
         protected $template_dir = "views/";
         protected $vars = array();
 	   
+        public function __construct($action, $urlValues) {
+            $this->_action = $action;
+            $this->urlValues = $urlValues;
+        }
+        
+        public function executeAction() {
+            return $this->{$this->_action}();
+        }
+        
+        public function checkAction($action) {
+            return (($this->_action == $action) ? true : false);
+        }
+        
 	public function render($view_file)
 	{
 		$this->view_file = $view_file;

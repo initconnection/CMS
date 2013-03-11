@@ -1,0 +1,13 @@
+ul#menu {
+    list-style-type: none;
+}
+
+ul#menu li {
+    margin-left: 10px;
+    float: left;
+}
+
+/*misc*/
+p.clear {
+    clear: both;
+}

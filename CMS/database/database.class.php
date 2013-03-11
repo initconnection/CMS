@@ -147,7 +147,7 @@
 		** @param $keyInFront - (true if we are not doing INSERT query)
 		*/	
 		private static function keysToString($array,  $additionWord = "",
-								$prefix = "", $suffix = "", $keyInFront = false) {
+                                $prefix = "", $suffix = "", $keyInFront = false) {
 			
 			$arrayKeys = array_keys($array);
 			$lastArrayKey = end($arrayKeys);
