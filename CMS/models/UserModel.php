@@ -15,7 +15,7 @@
             return Database::selectElements(self::$table, $conditions);
         }
         
-        public static function checkUser($username, $password) {
+        public static function checkLogin($username, $password) {
              $credentials = array("username" => $username, "password" => $password);
              $user = self::select($credentials);
              if ($user) {

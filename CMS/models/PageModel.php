@@ -7,7 +7,7 @@
             return Database::selectAllElements(self::$table);
         }
 
-        public static function insertPage($title, $content, $description, $keywords, 
+        public static function insert($title, $content, $description, $keywords,
                 $module, $category) {
             $page = array("title" => $title, "content" => $content,
                 "description" => $description, "keywords" => $keywords, 
@@ -15,13 +15,13 @@
             return Database::insertElement(self::$table, $page);
         }
 
-        public static function selectPage($id) {
+        public static function select($id) {
             $conditions = array("id" => $id);
             $result = Database::selectElements(self::$table, $conditions);
             return $result[0];
         }
         
-        public static function selectPagesByCategory($category) {
+        public static function selectByCategory($category) {
             $conditions = array("category" => $category);
             $result = Database::selectElements(self::$table, $conditions);
             return $result;

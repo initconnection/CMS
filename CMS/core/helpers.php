@@ -1,7 +1,7 @@
 <?php
 
     function authorize($username, $password) {
-        if(UserModel::checkUser($username, $password)) {
+        if(UserModel::checkLogin($username, $password)) {
             $_SESSION["logged_in"] = true;
             return true;
         }

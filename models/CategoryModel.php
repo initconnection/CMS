@@ -7,7 +7,7 @@
             return Database::selectAllElements(self::$table);
         }
 
-        public static function insertCategory($title) {
+        public static function insert($title) {
             $category = array("title" => $title);
             return Database::insertElement(self::$table, $category);
         }
@@ -17,7 +17,7 @@
             $categories = array();
             foreach ($categoriesTemp as $category) {
                 $name = $category["name"];
-                $categories[$name] = PageModel::selectPagesByCategory($category["id"]);
+                $categories[$name] = PageModel::selectByCategory($category["id"]);
             }
             
             return $categories;

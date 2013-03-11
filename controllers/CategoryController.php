@@ -13,7 +13,7 @@ class CategoryController extends BaseController {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $title = $_POST["title"];
-            CategoryModel::insertCategory($title);
+            CategoryModel::insert($title);
             redirect("category/index");
         }
         else {

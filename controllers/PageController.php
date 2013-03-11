@@ -18,7 +18,7 @@ class PageController extends BaseController {
             $keywords = $_POST["keywords"];
             $module = $_POST["module"];
             
-            PageModel::insertPage($title, $content, $description, $keywords,
+            PageModel::insert($title, $content, $description, $keywords,
                     $module);
             redirect("page/index");
         }
@@ -36,7 +36,7 @@ class PageController extends BaseController {
 
     public function show() {
         $id = $this->urlValues["id"];
-        $page = PageModel::selectPage($id);
+        $page = PageModel::select($id);
         $this->title = $page["title"];
         $this->content = $page["content"];
         $this->description = $page["description"];
@@ -47,7 +47,7 @@ class PageController extends BaseController {
     
     public function update() {
         $id = $this->urlValues["id"];
-        $page = PageModel::selectPage($id);
+        $page = PageModel::select($id);
         $this->title = $page["title"];
         $this->content = $page["content"];
         $this->description = $page["description"];
