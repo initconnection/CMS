@@ -8,6 +8,7 @@
     require_once(ROOT_PATH . "core/helpers.php");
 
     function autoLoader($class) {
+        echo $class;
         $matches = array();
         preg_match("/[A-Z][a-z]+$/", $class, $matches);
         $directory = strtolower($matches[0]) . "s";
