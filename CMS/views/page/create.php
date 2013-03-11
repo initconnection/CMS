@@ -14,10 +14,17 @@
             Page module:<br />
             <select name="module">
                 <option value="1">Module 1</option>
+            </select><br />
+            Page category:<br />
+            <select name="category">
+                <?php foreach($this->categories as $category): ?>
+                <option value="<?=$category["id"]?>"
+                    <?=($category["id"] == $this->category) ? "selected" : NULL?>>
+                    <?=$category["title"]?></option>
+                <?php endforeach; ?>
             </select>
         </p>
     </div>
-    <input type="hidden" name="category" value="<?=$this->category?>" />
     <input type="submit" value="Submit" class="btn"/>
 </form>
 

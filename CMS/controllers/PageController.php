@@ -30,6 +30,7 @@ class PageController extends BaseController {
             $this->description = "";
             $this->keywords = "";
             $this->module = "";
+            $this->categories = CategoryModel::selectAll();
             $this->category = $this->urlValues["id"];
 
             $this->render("page/create.php");
@@ -55,6 +56,8 @@ class PageController extends BaseController {
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
+        $this->category = $page["category"];
+        $this->categories = CategoryModel::selectAll();
         $this->render("page/create.php");
     }
 }
