@@ -33,9 +33,10 @@
 			$query .= self::keysToString($elementData, ", ", ":");
 			$query .= ")";
 			
-			$result = self::executeQuery($query, self::createParametersArray($elementData));
-			
-			return ($result->rowCount() > 0) ? true : false; 
+                        $dbh = null;
+			self::executeQuery($query, self::createParametersArray($elementData), $dbh);
+                        
+			return $dbh->lastInsertId(); 
 		}
 		
 		/*
@@ -105,6 +106,31 @@
 			
 			return $result->rowCount();
 		}
+                
+                public static function selectMaxValue($table, $column, array $conditions) {
+                    
+                        $query = "SELECT MAX(" . $column . ") AS " . $column . " FROM " . $table . " WHERE ";
+                        $query .= self::keysToString($conditions, " AND ", " = :", "_condition ", true);
+                        
+                        $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+                        $max = $result->fetch();
+
+                        return $max[$column];
+                }
+                
+                public static function selectElemetsWithJoin(array $tableLeft, array $tableRight, array $conditions, $order = NULL) {
+                        $query = "SELECT * FROM " . $tableLeft["table"] . " JOIN " . $tableRight["table"] . " ON ";
+                        $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
+                        $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+                        
+                        if ($order) {
+                            $query .= " ORDER BY " . $order;
+                        }
+                        
+                        $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+
+                        return $result->fetchAll(PDO::FETCH_ASSOC);
+                }
 		
 		/*
 		** Function that forms one array that consists of any specified 
@@ -135,7 +161,7 @@
 		/*
 		** Function that binds specified parameters to the main query and executes it
 		*/
-		private static function executeQuery($query, $parameters = null) {
+		private static function executeQuery($query, $parameters = null, &$dbh = NULL) {
 		
 			$dbh = self::initConnection();
 			

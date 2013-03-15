@@ -19,6 +19,7 @@ class PageController extends BaseController {
             
             PageModel::insert($title, $content, $description, $keywords,
                     $module, $category);
+            
             redirect("page/index");
         }
         else {

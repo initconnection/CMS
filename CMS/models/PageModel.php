@@ -15,8 +15,13 @@
                 $module, $category) {
             $page = array("title" => $title, "content" => $content,
                 "description" => $description, "keywords" => $keywords, 
-                "module" => $module, "category" => $category);
-            return Database::insertElement(self::$table, $page);
+                "module" => $module);
+            $id = Database::insertElement(self::$table, $page);
+            $conditions = array("category" => $category);
+            $maxPosition = Database::selectMaxValue("category_page", "position", $conditions);
+            $maxPosition++;
+            $category_page = array("category" => $category, "page" => $id, "position" => $maxPosition);
+            Database::insertElement("category_page", $category_page);
         }
 
         public static function select($id) {
@@ -27,7 +32,9 @@
         
         public static function selectWithCategory($category) {
             $conditions = array("category" => $category);
-            $result = Database::selectElements(self::$table, $conditions, "position");
+            $pageTable = array("table" => "page", "key" => "id");
+            $categoryPageTable = array("table" => "category_page", "key" => "page");
+            $result = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, $conditions, "position");
             return $result;
         }
 
@@ -37,36 +44,57 @@
             return $result;
         }
 
-        public static function moveUp($id) {
-            $conditions = array("id" => $id);
-            $page = Database::selectElement(self::$table, $conditions);
+        private static function move($id, $up = true) {
+            
+            $conditions = array("page" => $id);
+            $page = Database::selectElement("category_page", $conditions);
+            $position = $page["position"];
 
-            $pages = PageModel::selectAllByPosition();
-            $pageInFront =  self::findPageInFront($pages, $page["position"]);
+            $conditions = array("category" => $page["category"]);
+            $pages = Database::selectElements("category_page", $conditions, "position");
+            
+            if($up) {
+                $pageToSwap =  self::findPageAbove($pages, $page);
+            } else {
+                $pageToSwap =  self::findPageBellow($pages, $page);
+            }
+                            
+            //Update page's position to the position of the page in front
+            $conditions = array("page" => $page["page"]);
+            $data = array("position" => $pageToSwap["position"]);
+            Database::updateElements("category_page", $conditions, $data);
 
             //Update page's position to the position of the page in front
-            $conditions = array("id" => $page["id"]);
-            $data = array("position" => $pageInFront["position"]);
-            Database::updateElements(self::$table, $conditions, $data);
-
-            //Update page's position to the position of the page in front
-            $conditions = array("id" => $pageInFront["id"]);
+            $conditions = array("page" => $pageToSwap["page"]);
             $data = array("position" => $page["position"]);
-            Database::updateElements(self::$table, $conditions, $data);
-
-            return true;
+            Database::updateElements("category_page", $conditions, $data);
         }
-
-        private static function findPageInFront(array $pages, $position) {
-            $pageInFront = $pages[0];
+        
+        public static function moveUp($id) {
+            self::move($id, true);
+        }
+        
+        public static function moveDown($id) {
+            self::move($id, false);
+        }
+        
+        private static function findPageAbove(array $pages, $thisPage) {
+            $pageAbove = $pages[0];
             foreach ($pages as $page) {
-                if ($page["position"] < $position) {
-                    $pageInFront = $page;
-                }
-                else {
-                    return $pageInFront;
+                if ($page["position"] < $thisPage["position"]) {
+                    $pageAbove = $page;
                 }
             }
+            return $pageAbove;
+        }
+        
+        private static function findPageBellow(array $pages, $thisPage) {
+            foreach ($pages as $page) {
+                if ($page["position"] > $thisPage["position"]) {
+                    return $page;
+                }
+            }
+            return $thisPage;
         }
 
         /*
