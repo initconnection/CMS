@@ -1,11 +1,12 @@
 <?php
 
     define("APP_NAME", "/CMS/");
-    define("ROOT_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME);
+    define("SITE_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME);
+    define("CMS_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME . "CMS/");
     define("ABSOLUTE_PATH", "http://" . $_SERVER["SERVER_NAME"] . APP_NAME);
 
-    require_once(ROOT_PATH . "CMS/database/database.class.php");
-    require_once(ROOT_PATH . "core/helpers.php");
+    require_once(SITE_PATH . "CMS/database/database.class.php");
+    require_once(SITE_PATH . "core/helpers.php");
 
     function autoLoader($class) {
         $matches = array();
@@ -14,7 +15,7 @@
         if($directory == "models") {
             $directory = "CMS/" . $directory;
         }
-        $filePath = ROOT_PATH . "/" . $directory . "/" . $class . ".php";
+        $filePath = SITE_PATH . "/" . $directory . "/" . $class . ".php";
         if (file_exists($filePath)) {
             require_once($filePath);
             return true;

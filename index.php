@@ -1,7 +1,7 @@
 <?php
 
     require_once("core/config.php");
-    require_once(ROOT_PATH . "core/loader.php");
+    require_once(SITE_PATH . "core/loader.php");
     
     session_start();
 

@@ -14,7 +14,7 @@
             return Database::insertElement(self::$table, $category);
         }
         
-        public static function selectPages() {
+        public static function selectCategoriesWithPages() {
             $categories = Database::selectAllElements(self::$table);
             for ($i = 0; $i < count($categories); $i++) {
                 $categories[$i]["pages"] = PageModel::selectWithCategory($categories[$i]["id"]);
