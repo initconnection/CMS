@@ -23,6 +23,20 @@
             $category_page = array("category" => $category, "page" => $id, "position" => $maxPosition);
             Database::insertElement("category_page", $category_page);
         }
+        
+        public static function update($id, $title, $content, $description, $keywords,
+                $module, $category) {
+            $page = array("title" => $title, "content" => $content,
+                "description" => $description, "keywords" => $keywords, 
+                "module" => $module);
+            Database::updateElements(self::$table, $page, array("id" => $id));
+            $category_page = Database::selectElements("category_page", array("page" => $id));
+            if ($category_page["category"] != $category) {
+                $maxPosition = Database::selectMaxValue("category_page", "position", array("category" => $category));
+                $categoryPage = array("category" => $category, "position" => ($maxPosition++));
+                Database::updateElements("category_page", array("page" => $id), $categoryPage);
+            }
+        }
 
         public static function select($id) {
             $conditions = array("id" => $id);
@@ -36,6 +50,11 @@
             $categoryPageTable = array("table" => "category_page", "key" => "page");
             $result = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, $conditions, "position");
             return $result;
+        }
+        
+        public static function selectCategory($id) {
+            $categoryPage = Database::selectElement("category_page", array("page" => $id));
+            return $categoryPage["category"];
         }
 
         public static function delete($id) {
@@ -96,27 +115,4 @@
             }
             return $thisPage;
         }
-
-        /*
-       public static function modeDown($id) {
-           $conditions = array("id" => $id);
-           $page = Database::selectElement(self::$table, $conditions);
-
-           $pages = PageModel::selectAllByPosition();
-           $pageInFront =  self::findPageAfter($pages, $page["position"]);
-
-           //Update page's position to the position of the page in front
-           $conditions = array("id" => $page["id"]);
-           $data = array("position" => $pageInFront["position"]);
-           Database::updateElements(self::$table, $conditions, $data);
-
-           //Update page's position to the position of the page in front
-           $conditions = array("id" => $pageInFront["id"]);
-           $data = array("position" => $page["position"]);
-           Database::updateElements(self::$table, $conditions, $data);
-
-           return true;
-       } */
-
-
     }

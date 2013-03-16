@@ -1,1 +1,1 @@
-<p>Hello world!</p>
+<p><?=_("Hello World!")?></p>

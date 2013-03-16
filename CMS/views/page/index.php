@@ -11,8 +11,8 @@
                 <a href="<?=ABSOLUTE_PATH?>page/delete/<?=$page["id"]?>"><i class="icon-remove"></i></a>
             </li>
             <?php endforeach; ?>
-            <li class="create"><i class="icon-plus"></i><a href="<?=ABSOLUTE_PATH?>page/create/<?=$category["id"]?>">Create a new page</a></li>
+            <li class="create"><i class="icon-plus"></i><a href="<?=ABSOLUTE_PATH?>page/create/<?=$category["id"]?>"><?=_("New page")?></a></li>
         </ul>
     <?php endforeach; ?>    
-    <li class="create"><i class="icon-plus"></i><a href="<?=ABSOLUTE_PATH?>category/create">Create a new category</a></li>
+    <li class="create"><i class="icon-plus"></i><a href="<?=ABSOLUTE_PATH?>category/create"><?=_("New category")?></a></li>
 </ul>

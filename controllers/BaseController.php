@@ -21,11 +21,11 @@
             return (($this->_action == $action) ? true : false);
         }
         
-	public function render($view_file) {
+        public function render($view_file) {
             $this->menu = CategoryModel::selectMenu();
             $this->view_file = $view_file;
             self::render_view("template.php");
-	}
+        }
 
         public function render_view($view_file) {
             require_once(ROOT_PATH . $this->template_dir . $view_file);

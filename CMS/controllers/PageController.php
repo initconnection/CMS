@@ -46,9 +46,9 @@ class PageController extends BaseController {
         $this->render("page/show.php");
     }
 
-    //!!!!!!!!!Pataisyti
     public function update() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $_POST["id"];
             $title = $_POST["title"];
             $content = $_POST["content"];
             $description = $_POST["description"];
@@ -63,12 +63,13 @@ class PageController extends BaseController {
         else {
             $id = $this->urlValues["id"];
             $page = PageModel::select($id);
+            $this->id = $page["id"];
             $this->title = $page["title"];
             $this->content = $page["content"];
             $this->description = $page["description"];
             $this->keywords = $page["keywords"];
             $this->module = $page["module"];
-            $this->category = $page["category"];
+            $this->category = PageModel::selectCategory($id);
             $this->categories = CategoryModel::selectAll();
             $this->render("page/update.php");
         }

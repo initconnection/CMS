@@ -11,6 +11,9 @@
         $matches = array();
         preg_match("/[A-Z][a-z]+$/", $class, $matches);
         $directory = strtolower($matches[0]) . "s";
+        if($directory == "models") {
+            $directory = "CMS/" . $directory;
+        }
         $filePath = ROOT_PATH . "/" . $directory . "/" . $class . ".php";
         if (file_exists($filePath)) {
             require_once($filePath);
