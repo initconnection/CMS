@@ -1,5 +1,5 @@
 <?php
-	require_once(ROOT_PATH . "CMS/database/database.class.php");
+	require_once(SITE_PATH . "CMS/database/database.class.php");
 
 	class BaseModel {
 

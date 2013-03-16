@@ -22,13 +22,13 @@
         }
         
         public function render($view_file) {
-            $this->menu = CategoryModel::selectMenu();
+            $this->menu = CategoryModel::selectCategoriesWithPages();
             $this->view_file = $view_file;
             self::render_view("template.php");
         }
 
         public function render_view($view_file) {
-            require_once(ROOT_PATH . $this->template_dir . $view_file);
+            require_once(SITE_PATH . $this->template_dir . $view_file);
         }
 
         public function __set($name, $value) {

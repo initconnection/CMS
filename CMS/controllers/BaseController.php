@@ -27,7 +27,7 @@
 	}
 
         public function render_view($view_file) {
-            require_once(ROOT_PATH . $this->template_dir . $view_file);
+            require_once(CMS_PATH . $this->template_dir . $view_file);
         }
 
         public function __set($name, $value) {
