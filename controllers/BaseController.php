@@ -22,7 +22,7 @@
         }
         
         public function render($view_file) {
-            $this->menu = CategoryModel::selectCategoriesWithPages();
+            $this->categories = CategoryModel::selectCategories();
             $this->view_file = $view_file;
             self::render_view("template.php");
         }

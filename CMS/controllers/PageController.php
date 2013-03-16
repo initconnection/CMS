@@ -4,7 +4,7 @@ class PageController extends BaseController {
     
     public function index() {
         $this->title = "Pages";
-        $this->categories = CategoryModel::selectCategoriesWithPages();
+        $this->categories = CategoryModel::selectPages();
         $this->render("page/index.php");
     }
 

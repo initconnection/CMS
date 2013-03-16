@@ -45,10 +45,10 @@
         }
         
         public static function selectWithCategory($category) {
-            $conditions = array("category" => $category);
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
-            $result = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, $conditions, "position");
+            $result = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, array("category" => $category), "position");
+
             return $result;
         }
         

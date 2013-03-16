@@ -14,11 +14,23 @@
             return Database::insertElement(self::$table, $category);
         }
         
-        public static function selectCategoriesWithPages() {
+        public static function selectPages() {
             $categories = Database::selectAllElements(self::$table);
             for ($i = 0; $i < count($categories); $i++) {
                 $categories[$i]["pages"] = PageModel::selectWithCategory($categories[$i]["id"]);
             }
             return $categories;
+        }
+
+        public static function selectCategories() {
+            $categories = Database::selectAllElements(self::$table);
+            $categoriesArray = array();
+            for ($i = 0; $i < count($categories); $i++) {
+                $name = $categories[$i]["name"];
+                $pages = PageModel::selectWithCategory($categories[$i]["id"]);
+                $categoriesArray[$name] = $pages;
+            }
+
+            return $categoriesArray;
         }
     }

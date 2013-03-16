@@ -7,14 +7,14 @@
     <file path="/PageController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363287117845" ignored="false" />
     <file path="/create.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363031226156" ignored="false" />
     <file path="/update.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363031675222" ignored="false" />
-    <file path="/PageModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363041139752" ignored="false" />
+    <file path="/PageModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363467831888" ignored="false" />
     <file path="/index.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363040626627" ignored="false" />
     <file path="/database.class.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363040189842" ignored="false" />
-    <file path="/CategoryModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363466074126" ignored="false" />
-    <file path="/template.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363041443721" ignored="false" />
+    <file path="/CategoryModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363467293731" ignored="false" />
+    <file path="/template.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363466812543" ignored="false" />
     <file path="$PROJECT_DIR$/models/BaseModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363465738167" ignored="false" />
     <file path="/config.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363465904774" ignored="false" />
-    <file path="/BaseController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363466053220" ignored="false" />
+    <file path="/BaseController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363466698432" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,10 +73,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BaseModel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMS/models/BaseModel.php">
+      <file leaf-file-name="BaseController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="26" selection-start="86" selection-end="86" vertical-scroll-proportion="-3.125">
+            <state line="24" column="63" selection-start="700" selection-end="700" vertical-scroll-proportion="-9.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="47" selection-start="571" selection-end="581" vertical-scroll-proportion="-11.25">
               <folding />
             </state>
           </provider>
@@ -85,16 +94,16 @@
       <file leaf-file-name="CategoryModel.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMS/models/CategoryModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="54" selection-start="532" selection-end="557" vertical-scroll-proportion="0.43956044">
+            <state line="32" column="0" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.85164833">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
+      <file leaf-file-name="PageModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS/models/PageModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="56" selection-start="693" selection-end="693" vertical-scroll-proportion="-11.25">
+            <state line="50" column="12" selection-start="2509" selection-end="2509" vertical-scroll-proportion="-14.0">
               <folding />
             </state>
           </provider>
@@ -117,12 +126,13 @@
         <option value="$PROJECT_DIR$/models/CategoryModel.php" />
         <option value="$PROJECT_DIR$/models/PageModel.php" />
         <option value="$PROJECT_DIR$/CMS/views/page/index.php" />
-        <option value="$PROJECT_DIR$/CMS/models/PageModel.php" />
         <option value="$PROJECT_DIR$/CMS/views/template.php" />
         <option value="$PROJECT_DIR$/CMS/controllers/PageController.php" />
         <option value="$PROJECT_DIR$/CMS/core/config.php" />
         <option value="$PROJECT_DIR$/core/config.php" />
+        <option value="$PROJECT_DIR$/views/template.php" />
         <option value="$PROJECT_DIR$/controllers/BaseController.php" />
+        <option value="$PROJECT_DIR$/CMS/models/PageModel.php" />
         <option value="$PROJECT_DIR$/CMS/models/CategoryModel.php" />
       </list>
     </option>
@@ -177,6 +187,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -458,21 +482,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS/models/BaseModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="26" selection-start="86" selection-end="86" vertical-scroll-proportion="-3.125">
+        <state line="5" column="26" selection-start="86" selection-end="86" vertical-scroll-proportion="0.13736264">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="47" selection-start="571" selection-end="581" vertical-scroll-proportion="-11.25">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="56" selection-start="693" selection-end="693" vertical-scroll-proportion="-11.25">
+        <state line="24" column="63" selection-start="700" selection-end="700" vertical-scroll-proportion="-9.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/models/PageModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="12" selection-start="2509" selection-end="2509" vertical-scroll-proportion="-14.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS/models/CategoryModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="54" selection-start="532" selection-end="557" vertical-scroll-proportion="0.43956044">
+        <state line="32" column="0" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.85164833">
           <folding />
         </state>
       </provider>
