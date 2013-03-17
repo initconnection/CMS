@@ -29,7 +29,7 @@
             $page = array("title" => $title, "content" => $content,
                 "description" => $description, "keywords" => $keywords, 
                 "module" => $module);
-            Database::updateElements(self::$table, $page, array("id" => $id));
+            Database::updateElements(self::$table, array("id" => $id), $page);
             $category_page = Database::selectElements("category_page", array("page" => $id));
             if ($category_page["category"] != $category) {
                 $maxPosition = Database::selectMaxValue("category_page", "position", array("category" => $category));
