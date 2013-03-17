@@ -11,36 +11,44 @@
             return Database::selectAllElements(self::$table, "position");
         }
 
-        public static function insert($title, $content, $description, $keywords,
-                $module, $category) {
+        public static function insert($title, $content, $description, $keywords, $module, $category) {
+
             $page = array("title" => $title, "content" => $content,
                 "description" => $description, "keywords" => $keywords, 
                 "module" => $module);
             $id = Database::insertElement(self::$table, $page);
-            $conditions = array("category" => $category);
-            $maxPosition = Database::selectMaxValue("category_page", "position", $conditions);
-            $maxPosition++;
-            $category_page = array("category" => $category, "page" => $id, "position" => $maxPosition);
-            Database::insertElement("category_page", $category_page);
+
+            $maxPosition = Database::selectMaxValue("category_page", "position", array("category" => $category));
+            $categoryPage = array("category" => $category, "page" => $id, "position" => (++$maxPosition));
+            Database::insertElement("category_page", $categoryPage);
+        }
+
+        public static function copyPageToHistory($id) {
+
+            $page = self::selectPage($id);
+            $version = Database::selectMaxValue("page_history", "version", array("id" => $id));
+            $version ? $page["version"] = ++$version : $page["version"] = 1;
+            Database::insertElement("page_history", $page);
         }
         
-        public static function update($id, $title, $content, $description, $keywords,
-                $module, $category) {
-            $page = array("title" => $title, "content" => $content,
-                "description" => $description, "keywords" => $keywords, 
-                "module" => $module);
+        public static function update($id, $title, $content, $description, $keywords, $module, $category) {
+
+            self::copyPageToHistory($id);
+
+            $page = array("title" => $title, "content" => $content, "description" => $description,
+                    "keywords" => $keywords, "module" => $module);
             Database::updateElements(self::$table, array("id" => $id), $page);
-            $category_page = Database::selectElements("category_page", array("page" => $id));
-            if ($category_page["category"] != $category) {
+
+            $categoryPage = Database::selectElement("category_page", array("page" => $id));
+            if ($categoryPage["category"] != $category) {
                 $maxPosition = Database::selectMaxValue("category_page", "position", array("category" => $category));
-                $categoryPage = array("category" => $category, "position" => ($maxPosition++));
+                $categoryPage = array("category" => $category, "position" => (++$maxPosition));
                 Database::updateElements("category_page", array("page" => $id), $categoryPage);
             }
         }
 
-        public static function select($id) {
-            $conditions = array("id" => $id);
-            $result = Database::selectElement(self::$table, $conditions);
+        public static function selectPage($id) {
+            $result = Database::selectElement(self::$table, array("id" => $id));
             return $result;
         }
         
