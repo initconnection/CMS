@@ -99,4 +99,19 @@ class PageController extends BaseController {
         $this->render("page/history.php");
     }
 
+    public function version() {
+        $id = $this->urlValues["id"];
+        $subId = $this->urlValues["subid"];
+        $page = PageModel::selectPageVersion($id, $subId);
+        $this->id = $page["id"];
+        $this->title = $page["title"];
+        $this->content = $page["content"];
+        $this->description = $page["description"];
+        $this->keywords = $page["keywords"];
+        $this->module = $page["module"];
+        $this->category = PageModel::selectCategory($id);
+        $this->categories = CategoryModel::selectAll();
+        $this->render("page/update.php");
+    }
+
 }

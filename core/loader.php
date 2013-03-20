@@ -3,22 +3,22 @@
     class Loader {
         private $controller;
         private $action;
-        private $urlvalues;
+        private $urlValues;
 
-        public function __construct($urlvalues) {
+        public function __construct($urlValues) {
             
-            $this->urlvalues = $urlvalues;
+            $this->urlValues = $urlValues;
 
-            if ($this->urlvalues["controller"] == "") {
+            if ($this->urlValues["controller"] == "") {
                 $this->controller = "HomeController";
             } else {
-                $this->controller = ucfirst($this->urlvalues['controller']) . "Controller";
+                $this->controller = ucfirst($this->urlValues['controller']) . "Controller";
             }
 
-            if ($this->urlvalues["action"] == "") {
+            if ($this->urlValues["action"] == "") {
                 $this->action = "index";
             } else {
-                $this->action = $this->urlvalues["action"];
+                $this->action = $this->urlValues["action"];
             }
         }
 
@@ -29,7 +29,7 @@
                 $parents = class_parents($this->controller);
                 if (in_array("BaseController", $parents)) {                 
                     if (method_exists($this->controller, $this->action)) {                
-                        return new $this->controller($this->action, $this->urlvalues);
+                        return new $this->controller($this->action, $this->urlValues);
                         return true;
                     } else {
                         echo "Bad action name";

@@ -128,4 +128,9 @@
             $versions = Database::selectElements("page_history", array("id" => $id), "date");
             return $versions;
         }
+
+        public static function selectPageVersion($id, $version) {
+            $result = Database::selectElement("page_history", array("id" => $id, "version" => $version));
+            return $result;
+        }
     }
