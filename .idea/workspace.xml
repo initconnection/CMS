@@ -4,10 +4,10 @@
     <list default="true" id="32d182af-e2bb-4a16-8f87-7b6dadabec8d" name="Default" comment="" />
     <ignored path="CMS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/PageController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363537161131" ignored="false" />
+    <file path="/PageController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363569109979" ignored="false" />
     <file path="/create.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363031226156" ignored="false" />
-    <file path="/update.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363031675222" ignored="false" />
-    <file path="/PageModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363539256521" ignored="false" />
+    <file path="/update.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363567939503" ignored="false" />
+    <file path="/PageModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363568303619" ignored="false" />
     <file path="/index.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363040626627" ignored="false" />
     <file path="/database.class.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363040189842" ignored="false" />
     <file path="/CategoryModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363467293731" ignored="false" />
@@ -15,6 +15,8 @@
     <file path="$PROJECT_DIR$/models/BaseModel.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363465738167" ignored="false" />
     <file path="/config.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363465904774" ignored="false" />
     <file path="/BaseController.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363466698432" ignored="false" />
+    <file path="/form.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363567881431" ignored="false" />
+    <file path="/history.php" changelist="32d182af-e2bb-4a16-8f87-7b6dadabec8d" time="1363568800549" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +31,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -63,7 +66,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -72,7 +74,26 @@
     <favorites_list name="CMS" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="PageController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS/controllers/PageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="24" selection-start="3158" selection-end="3158" vertical-scroll-proportion="-17.541666">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="history.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMS/views/page/history.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="74" selection-start="195" selection-end="195" vertical-scroll-proportion="0.10989011">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -82,9 +103,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/CMS/views/page/form.php" />
         <option value="$PROJECT_DIR$/CMS/views/page/create.php" />
-        <option value="$PROJECT_DIR$/CMS/views/page/update.php" />
         <option value="$PROJECT_DIR$/CMS/database/database.class.php" />
         <option value="$PROJECT_DIR$/models/CategoryModel.php" />
         <option value="$PROJECT_DIR$/models/PageModel.php" />
@@ -95,8 +114,11 @@
         <option value="$PROJECT_DIR$/views/template.php" />
         <option value="$PROJECT_DIR$/controllers/BaseController.php" />
         <option value="$PROJECT_DIR$/CMS/models/CategoryModel.php" />
-        <option value="$PROJECT_DIR$/CMS/controllers/PageController.php" />
+        <option value="$PROJECT_DIR$/CMS/views/page/form.php" />
+        <option value="$PROJECT_DIR$/CMS/views/page/update.php" />
         <option value="$PROJECT_DIR$/CMS/models/PageModel.php" />
+        <option value="$PROJECT_DIR$/CMS/views/page/history.php" />
+        <option value="$PROJECT_DIR$/CMS/controllers/PageController.php" />
       </list>
     </option>
   </component>
@@ -133,6 +155,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -221,6 +245,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -263,8 +327,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,14 +334,14 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -369,23 +431,23 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24261771" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24501197" sideWeight="0.67114097" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -447,42 +509,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="47" selection-start="571" selection-end="581" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMS/models/CategoryModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMS/models/PageModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="12" selection-start="2509" selection-end="2509" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/PageModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="29" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.4399586" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/CategoryModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="46" selection-start="687" selection-end="696" vertical-scroll-proportion="0.33436853" />
@@ -528,13 +554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMS/controllers/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="36" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.46703297">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMS/database/database.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="42" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.028142588">
@@ -542,9 +561,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMS/models/PageModel.php">
+    <entry file="file://$PROJECT_DIR$/CMS/views/page/show.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/views/page/form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="45" selection-start="174" selection-end="174" vertical-scroll-proportion="0.054945055">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/views/page/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="68" selection-start="273" selection-end="273" vertical-scroll-proportion="0.082417585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="39" selection-start="80" selection-end="80" vertical-scroll-proportion="0.05263158" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/views/page/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="25" selection-start="0" selection-end="1026" vertical-scroll-proportion="0.478424">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/models/PageModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="93" selection-start="5371" selection-end="5371" vertical-scroll-proportion="0.9005628">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/views/page/history.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="74" selection-start="195" selection-end="195" vertical-scroll-proportion="0.10989011">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/controllers/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="24" selection-start="3158" selection-end="3158" vertical-scroll-proportion="-17.541666">
           <folding />
         </state>
       </provider>

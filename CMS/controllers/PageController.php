@@ -93,4 +93,10 @@ class PageController extends BaseController {
         redirect("page/index");
     }
 
+    public function history() {
+        $id = $this->urlValues["id"];
+        $this->pages = PageModel::selectPageVersions($id);
+        $this->render("page/history.php");
+    }
+
 }

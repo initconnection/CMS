@@ -123,4 +123,9 @@
             }
             return $thisPage;
         }
+
+        public static function selectPageVersions($id) {
+            $versions = Database::selectElements("page_history", array("id" => $id), "date");
+            return $versions;
+        }
     }
