@@ -57,12 +57,12 @@
 		/*
 		** Select elements from the table which meet specified conditions
 		*/
-        public static function selectElements($table, array $conditions, $order = null) {
+        public static function selectElements($table, array $conditions, array $order = null) {
 
             $query = "SELECT * FROM " . $table . " WHERE ";
             $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
             if ($order) {
-                $query .= " ORDER BY " . $order;
+                $query .= " ORDER BY " . $order["by"] . " " . ($order["asc"] ? "ASC" : "DESC");
             }
 
             $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
@@ -76,7 +76,10 @@
         public static function selectElement($table, array $conditions) {
 
             $result = self::selectElements($table, $conditions);
-            return $result[0];
+            if ($result) {
+                return $result[0];
+            }
+            return null;
         }
 
 		/*
@@ -107,31 +110,45 @@
 			return $result->rowCount();
 		}
                 
-                public static function selectMaxValue($table, $column, array $conditions) {
-                    
-                        $query = "SELECT MAX(" . $column . ") AS " . $column . " FROM " . $table . " WHERE ";
-                        $query .= self::keysToString($conditions, " AND ", " = :", "_condition ", true);
-                        
-                        $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
-                        $max = $result->fetch();
+        public static function selectMaxValue($table, $column, array $conditions) {
 
-                        return $max[$column];
-                }
-                
-                public static function selectElemetsWithJoin(array $tableLeft, array $tableRight, array $conditions, $order = NULL) {
-                        $query = "SELECT * FROM " . $tableLeft["table"] . " JOIN " . $tableRight["table"] . " ON ";
-                        $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
-                        $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
-                        
-                        if ($order) {
-                            $query .= " ORDER BY " . $order;
-                        }
-                        
-                        $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+                $query = "SELECT MAX(" . $column . ") AS " . $column . " FROM " . $table . " WHERE ";
+                $query .= self::keysToString($conditions, " AND ", " = :", "_condition ", true);
 
-                        return $result->fetchAll(PDO::FETCH_ASSOC);
+                $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+                $max = $result->fetch();
+
+                return $max[$column];
+        }
+
+        public static function selectElemetsWithJoin(array $tableLeft, array $tableRight, array $conditions, $order = NULL) {
+                $query = "SELECT * FROM " . $tableLeft["table"] . " JOIN " . $tableRight["table"] . " ON ";
+                $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
+                $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+
+                if ($order) {
+                    $query .= " ORDER BY " . $order;
                 }
-		
+
+                $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
+
+                return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function selectElementsWithLeftJoin(array $tableLeft, array $tableRight, $order = NULL) {
+            $query = "SELECT * FROM " . $tableLeft["table"] . " LEFT JOIN " . $tableRight["table"] . " ON ";
+            $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
+            $query .= $tableRight["key"] . " IS NULL";
+
+            if ($order) {
+                $query .= " ORDER BY " . $order;
+            }
+
+            $result = self::executeQuery($query);
+
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
 		/*
 		** Function that forms one array that consists of any specified 
 		** key and value

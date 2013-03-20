@@ -4,7 +4,8 @@ class PageController extends BaseController {
     
     public function index() {
         $this->title = "Pages";
-        $this->categories = CategoryModel::selectPages();
+        $this->categories = CategoryModel::selectCategoriesAndPages();
+        $this->pages = PageModel::selectPagesWithoutCategory();
         $this->render("page/index.php");
     }
 
@@ -28,7 +29,7 @@ class PageController extends BaseController {
             $this->description = "";
             $this->keywords = "";
             $this->module = "";
-            $this->categories = CategoryModel::selectAll();
+            $this->categories = CategoryModel::selectCategories();
             $this->category = $this->urlValues["id"];
 
             $this->render("page/create.php");
@@ -70,7 +71,7 @@ class PageController extends BaseController {
             $this->keywords = $page["keywords"];
             $this->module = $page["module"];
             $this->category = PageModel::selectCategory($id);
-            $this->categories = CategoryModel::selectAll();
+            $this->categories = CategoryModel::selectCategories();
             $this->render("page/update.php");
         }
     }
@@ -95,7 +96,7 @@ class PageController extends BaseController {
 
     public function history() {
         $id = $this->urlValues["id"];
-        $this->pages = PageModel::selectPageVersions($id);
+        $this->pages = PageModel::selectPageHistory($id);
         $this->render("page/history.php");
     }
 
@@ -109,8 +110,8 @@ class PageController extends BaseController {
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
-        $this->category = PageModel::selectCategory($id);
-        $this->categories = CategoryModel::selectAll();
+        $this->category = $page["category"];
+        $this->categories = CategoryModel::selectCategories();
         $this->render("page/update.php");
     }
 

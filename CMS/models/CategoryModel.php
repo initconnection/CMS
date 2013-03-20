@@ -7,6 +7,13 @@
             return Database::selectAllElements(self::$table);
         }
         
+        public static function selectCategories() {
+           
+            $category[] = array("id" => 0, "title" => _("No category"), "name" => "none");
+            $categories = array_merge($category, self::selectAll());
+            return $categories;
+        }
+
         public static function insert($title) {
             $name = strtolower(str_replace(" ", "-", $title));
             
@@ -14,23 +21,20 @@
             return Database::insertElement(self::$table, $category);
         }
         
-        public static function selectPages() {
-            $categories = Database::selectAllElements(self::$table);
-            for ($i = 0; $i < count($categories); $i++) {
-                $categories[$i]["pages"] = PageModel::selectWithCategory($categories[$i]["id"]);
-            }
-            return $categories;
-        }
-
-        public static function selectCategories() {
-            $categories = Database::selectAllElements(self::$table);
+        public static function selectCategoriesAndPages() {
+            $categories = self::selectAll();
             $categoriesArray = array();
             for ($i = 0; $i < count($categories); $i++) {
                 $name = $categories[$i]["name"];
+                $categoriesArray[$name] = $categories[$i];
                 $pages = PageModel::selectWithCategory($categories[$i]["id"]);
-                $categoriesArray[$name] = $pages;
+                $categoriesArray[$name]["pages"] = $pages;
             }
-
             return $categoriesArray;
+        }
+        
+        public static function delete($id) {
+            $result = Database::deleteElements(self::$table, array("id" => $id));
+            return $result;
         }
     }

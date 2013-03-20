@@ -14,7 +14,7 @@ class CategoryController extends BaseController {
             
             $title = $_POST["title"];
             CategoryModel::insert($title);
-            redirect("category/index");
+            redirect("page/index");
         }
         else {
             
@@ -22,6 +22,12 @@ class CategoryController extends BaseController {
 
             $this->render("category/create.php");
         }
+    }
+    
+    public function delete() {
+        $id = $this->urlValues["id"];
+        CategoryModel::delete($id);
+        redirect("page/index");
     }
     
 }
