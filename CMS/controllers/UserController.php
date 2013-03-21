@@ -4,7 +4,8 @@
 
         public function showAll() {
             $this->title = "Users";
-            $this->users = UserModel::selectAll();
+            $this->users = UserModel::selectAllUsers();
+
             $this->render("user/users.php");
         }
     }

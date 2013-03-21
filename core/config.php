@@ -5,7 +5,7 @@
     define("CMS_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME . "CMS/");
     define("ABSOLUTE_PATH", "http://" . $_SERVER["SERVER_NAME"] . APP_NAME);
 
-    require_once(SITE_PATH . "CMS/database/database.class.php");
+    require_once(SITE_PATH . "CMS/database/Database.php");
     require_once(SITE_PATH . "core/helpers.php");
 
     function autoLoader($class) {
