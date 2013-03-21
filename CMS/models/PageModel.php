@@ -86,7 +86,7 @@
             $position = $page["position"];
 
             $conditions = array("category" => $page["category"]);
-            $pages = Database::selectElements("category_page", $conditions, "position");
+            $pages = Database::selectElements("category_page", $conditions, array("by" => "position", "asc" => 1));
             
             if($up) {
                 $pageToSwap =  self::findPageAbove($pages, $page);
