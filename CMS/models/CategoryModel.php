@@ -7,13 +7,8 @@
         public static function selectAllCategories() {
             return Database::selectAllElements(self::$table);
         }
-<<<<<<< HEAD
-        
-        public static function selectAllCategories() {
-=======
 
         public static function selectAllCategoriesAndNone() {
->>>>>>> 950c771eef86913b324bd8e429d807c9e32a5bd3
             $category[] = array("id" => 0, "title" => _("No category"), "name" => "none");
             $categories = array_merge($category, self::selectAllCategories());
             return $categories;
