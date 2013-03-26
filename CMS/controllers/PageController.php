@@ -29,7 +29,7 @@ class PageController extends BaseController {
             $this->description = "";
             $this->keywords = "";
             $this->module = "";
-            $this->categories = CategoryModel::selectCategories();
+            $this->categories = CategoryModel::selectAllCategories();
             $this->category = $this->urlValues["id"];
 
             $this->render("page/create.php");
@@ -70,8 +70,8 @@ class PageController extends BaseController {
             $this->description = $page["description"];
             $this->keywords = $page["keywords"];
             $this->module = $page["module"];
-            $this->category = PageModel::selectCategory($id);
-            $this->categories = CategoryModel::selectCategories();
+            $this->categories = PageModel::selectCategories($id);
+            $this->allCategories = CategoryModel::selectAllCategories();
             $this->render("page/update.php");
         }
     }
@@ -111,7 +111,7 @@ class PageController extends BaseController {
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
         $this->category = $page["category"];
-        $this->categories = CategoryModel::selectCategories();
+        $this->categories = CategoryModel::selectAllCategories();
         $this->render("page/update.php");
     }
 

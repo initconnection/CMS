@@ -7,8 +7,7 @@
             return Database::selectAllElements(self::$table);
         }
         
-        public static function selectCategories() {
-           
+        public static function selectAllCategories() {
             $category[] = array("id" => 0, "title" => _("No category"), "name" => "none");
             $categories = array_merge($category, self::selectAll());
             return $categories;
