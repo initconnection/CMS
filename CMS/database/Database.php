@@ -124,10 +124,12 @@
                 $query .= " LEFT JOIN " . $tableRight["table"] . " ON ";
                 $query .= $tableLeft["key"] . " = " . $tableRight["key"];
             }
-            $query .= " WHERE " . self::keysToString($conditions, " AND ", ":", "", true);
+            $query .= " WHERE " . self::keysToString($conditions, " AND ", ":", "_condition", true);
+            echo $query;
             if ($order) {
                 $query .= " ORDER BY " . $order;
             }
+
             $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -140,15 +142,13 @@
 			$parameters = array();
 			if($elementData) {
 				foreach($elementData as $key => $value) {
-					$parameters[$key] = $value;
+					$parameters[str_replace(".", "_", $key)] = $value;
 				}
 			}
 			if($conditions) {
 				foreach($conditions as $key => $value) {
-				
 					$value = preg_replace("/^!/", "", $value);
-					
-					$parameters[$key . "_condition"] = $value;
+					$parameters[str_replace(".", "_", $key) . "_condition"] = $value;
 				}
 			}
 			
@@ -161,6 +161,7 @@
 		private static function executeQuery($query, $parameters = null, &$dbh = NULL) {
 		    $dbh = self::initConnection();
 			$sth = $dbh->prepare($query);
+
 			if($parameters) {
 				$parametersKeys = array_keys($parameters);
 			
@@ -189,7 +190,7 @@
 					$string .= $key;
 				}
 				(preg_match("/^!/", $array[$key])) ? $prefix = "!" . $prefix : NULL;
-				$string .= " " . $prefix . $key . $suffix;
+				$string .= " " . $prefix . str_replace(".", "_", $key) . $suffix;
 				if ($key != $lastArrayKey) {
 					$string .= $additionWord;
 				}
