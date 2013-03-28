@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.10, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cms
 -- ------------------------------------------------------
--- Server version	5.6.10
+-- Server version	5.5.29-0ubuntu0.12.04.2-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `category` (
   `title` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,9 +67,10 @@ CREATE TABLE `category_page` (
 LOCK TABLES `category_page` WRITE;
 /*!40000 ALTER TABLE `category_page` DISABLE KEYS */;
 INSERT INTO `category_page` VALUES (7,55,1);
+INSERT INTO `category_page` VALUES (7,57,2);
 INSERT INTO `category_page` VALUES (8,56,1);
-INSERT INTO `category_page` VALUES (10,57,2);
-INSERT INTO `category_page` VALUES (10,58,1);
+INSERT INTO `category_page` VALUES (10,57,3);
+INSERT INTO `category_page` VALUES (10,58,2);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +91,7 @@ CREATE TABLE `page` (
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,6 +104,10 @@ INSERT INTO `page` VALUES (55,'Apie','apie','<p>kofeaf</p>\r\n','','',1,'2013-03
 INSERT INTO `page` VALUES (56,'Kazkas tu','kazkas-tu','<p>gegaegag</p>\r\n','','',1,'2013-03-27 21:12:15');
 INSERT INTO `page` VALUES (57,'fasf','fasf','<p>asfasf</p>\r\n','','',1,'2013-03-28 01:57:33');
 INSERT INTO `page` VALUES (58,'jfgj','jfgj','<p>trurtu</p>\r\n','','',1,'2013-03-28 01:57:38');
+INSERT INTO `page` VALUES (65,'geagaeg','geagaeg','<p>aegaegaeg</p>\r\n','','',1,'2013-03-28 20:18:44');
+INSERT INTO `page` VALUES (66,'geagaeg','geagaeg','<p>aegaege</p>\r\n','','',1,'2013-03-28 20:23:27');
+INSERT INTO `page` VALUES (67,'egegef','egegef','<p>efe</p>\r\n','','',1,'2013-03-28 20:23:39');
+INSERT INTO `page` VALUES (68,'be kategorijos','be-kategorijos','<p>aegaeg</p>\r\n','','',1,'2013-03-28 20:40:51');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +129,7 @@ CREATE TABLE `page_history` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +141,37 @@ LOCK TABLES `page_history` WRITE;
 INSERT INTO `page_history` VALUES (46,'Main page','','','','',1,'2013-03-26 21:51:47',1);
 INSERT INTO `page_history` VALUES (47,'Second oage','','','','',1,'2013-03-26 21:52:02',1);
 INSERT INTO `page_history` VALUES (47,'Second oage','','<p>gasgasgagasg</p>\r\n','','',1,'2013-03-26 22:51:27',2);
+INSERT INTO `page_history` VALUES (57,'fasf','fasf','<p>asfasf</p>\r\n','','',1,'2013-03-28 01:57:33',1);
 /*!40000 ALTER TABLE `page_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subpage`
+--
+
+DROP TABLE IF EXISTS `subpage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subpage` (
+  `parent` int(11) NOT NULL,
+  `page` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`parent`,`page`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subpage`
+--
+
+LOCK TABLES `subpage` WRITE;
+/*!40000 ALTER TABLE `subpage` DISABLE KEYS */;
+INSERT INTO `subpage` VALUES (55,65,1);
+INSERT INTO `subpage` VALUES (56,63,1);
+INSERT INTO `subpage` VALUES (56,64,2);
+INSERT INTO `subpage` VALUES (56,66,3);
+INSERT INTO `subpage` VALUES (56,67,4);
+/*!40000 ALTER TABLE `subpage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -174,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-28  4:31:27
+-- Dump completed on 2013-03-28 23:32:20
