@@ -3,8 +3,8 @@
 class PageController extends BaseController {
 
     public function show() {
-        $id = $this->urlValues["id"];
-        $page = PageModel::selectPage($id);
+        $name = $this->urlValues["page"];
+        $page = PageModel::selectPageByName($name);
         $this->title = $page["title"];
         $this->content = $page["content"];
         $this->description = $page["description"];

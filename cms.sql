@@ -27,7 +27,7 @@ CREATE TABLE `category` (
   `title` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,11 +66,10 @@ CREATE TABLE `category_page` (
 
 LOCK TABLES `category_page` WRITE;
 /*!40000 ALTER TABLE `category_page` DISABLE KEYS */;
-INSERT INTO `category_page` VALUES (7,46,1);
-INSERT INTO `category_page` VALUES (7,47,2);
-INSERT INTO `category_page` VALUES (8,47,1);
-INSERT INTO `category_page` VALUES (8,48,2);
-INSERT INTO `category_page` VALUES (10,48,1);
+INSERT INTO `category_page` VALUES (7,55,1);
+INSERT INTO `category_page` VALUES (8,56,1);
+INSERT INTO `category_page` VALUES (10,57,2);
+INSERT INTO `category_page` VALUES (10,58,1);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,13 +83,14 @@ DROP TABLE IF EXISTS `page`;
 CREATE TABLE `page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `description` varchar(200) NOT NULL,
   `keywords` varchar(200) NOT NULL,
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,9 +99,10 @@ CREATE TABLE `page` (
 
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
-INSERT INTO `page` VALUES (46,'Main page','','','',1,'2013-03-26 21:51:47');
-INSERT INTO `page` VALUES (47,'Second oage','<p>242452452452</p>\r\n','','',1,'2013-03-26 22:51:40');
-INSERT INTO `page` VALUES (48,'some page','<p>with some content</p>\r\n','','',1,'2013-03-26 21:57:37');
+INSERT INTO `page` VALUES (55,'Apie','apie','<p>kofeaf</p>\r\n','','',1,'2013-03-27 20:43:47');
+INSERT INTO `page` VALUES (56,'Kazkas tu','kazkas-tu','<p>gegaegag</p>\r\n','','',1,'2013-03-27 21:12:15');
+INSERT INTO `page` VALUES (57,'fasf','fasf','<p>asfasf</p>\r\n','','',1,'2013-03-28 01:57:33');
+INSERT INTO `page` VALUES (58,'jfgj','jfgj','<p>trurtu</p>\r\n','','',1,'2013-03-28 01:57:38');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +116,7 @@ DROP TABLE IF EXISTS `page_history`;
 CREATE TABLE `page_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `description` varchar(200) NOT NULL,
   `keywords` varchar(200) NOT NULL,
@@ -122,7 +124,7 @@ CREATE TABLE `page_history` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,8 +133,9 @@ CREATE TABLE `page_history` (
 
 LOCK TABLES `page_history` WRITE;
 /*!40000 ALTER TABLE `page_history` DISABLE KEYS */;
-INSERT INTO `page_history` VALUES (47,'Second oage','','','',1,'2013-03-26 21:52:02',1);
-INSERT INTO `page_history` VALUES (47,'Second oage','<p>gasgasgagasg</p>\r\n','','',1,'2013-03-26 22:51:27',2);
+INSERT INTO `page_history` VALUES (46,'Main page','','','','',1,'2013-03-26 21:51:47',1);
+INSERT INTO `page_history` VALUES (47,'Second oage','','','','',1,'2013-03-26 21:52:02',1);
+INSERT INTO `page_history` VALUES (47,'Second oage','','<p>gasgasgagasg</p>\r\n','','',1,'2013-03-26 22:51:27',2);
 /*!40000 ALTER TABLE `page_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,10 +148,10 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `username` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-27  0:56:18
+-- Dump completed on 2013-03-28  4:31:27

@@ -17,6 +17,11 @@
             return $result;
         }
 
+        public static function selectPageByName($name) {
+            $result = Database::selectElement(self::$table, array("name" => $name));
+            return $result;
+        }
+
         public static function selectPagesWithCategory($category) {
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
@@ -53,7 +58,8 @@
         }
 
         public static function insertPage($title, $content, $description, $keywords, $module, $categories) {
-            $page = array("title" => $title, "content" => $content, "description" => $description,
+            $name = strtolower(str_replace(" ", "-", $title));
+            $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                 "keywords" => $keywords, "module" => $module);
             $id = Database::insertElement(self::$table, $page);
 
@@ -73,7 +79,8 @@
         public static function updatePage($id, $title, $content, $description, $keywords, $module, array $categories) {
             self::insertPageToHistory($id);
 
-            $page = array("title" => $title, "content" => $content, "description" => $description,
+            $name = strtolower(str_replace(" ", "-", $title));
+            $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                     "keywords" => $keywords, "module" => $module);
             Database::updateElements(self::$table, $page, array("id" => $id));
 

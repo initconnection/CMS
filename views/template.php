@@ -30,7 +30,7 @@
             <?php foreach (array_chunk($this->categories["top-menu"]["pages"], 2) as $col): ?>
                 <ul>
                 <?php foreach($col as $menuItem): ?>
-                    <li><a href="<?=ABSOLUTE_PATH?>page/show/<?=$menuItem["id"]?>"><?=$menuItem["title"]?></a></li>
+                    <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"><?=$menuItem["title"]?></a></li>
                 <?php endforeach ?>
                 </ul>
             <?php endforeach ?>
@@ -66,7 +66,7 @@
                 <nav class="grid col-one-third ">
                     <ul>
                     <?php foreach ($this->categories["bottom-menu"]["pages"] as $menuItem): ?>
-                        <li><a href="<?=ABSOLUTE_PATH?>page/show/<?=$menuItem["id"]?>"><?=$menuItem["title"]?></a></li>
+                        <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"><?=$menuItem["title"]?></a></li>
                     <?php endforeach ?>
                     </ul>
                 </nav>

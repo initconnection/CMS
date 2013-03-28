@@ -20,8 +20,7 @@
             return (($this->_action == $action) ? true : false);
         }
         
-        public function render($view_file)
-        {
+        public function render($view_file) {
             $this->view_file = $view_file;
             self::render_view("template.php");
         }

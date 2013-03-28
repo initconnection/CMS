@@ -1,44 +1,40 @@
 <?php
 
     class Loader {
-        private $controller;
-        private $action;
-        private $urlvalues;
+        private $_controller;
+        private $_action;
+        private $_urlValues;
 
-        public function __construct($urlvalues) {
-            
-            $this->urlvalues = $urlvalues;
+        public function __construct($urlValues) {
+            $this->_urlValues = $urlValues;
 
-            if ($this->urlvalues["controller"] == "") {
-                $this->controller = "HomeController";
+            if ($this->_urlValues["controller"] == "") {
+                $this->_controller = "HomeController";
             } else {
-                $this->controller = ucfirst($this->urlvalues['controller']) . "Controller";
+                $this->_controller = ucfirst($this->_urlValues["controller"]) . "Controller";
             }
 
-            if ($this->urlvalues["action"] == "") {
-                $this->action = "index";
+            if ($this->_urlValues["action"] == "") {
+                $this->_action = "index";
             } else {
-                $this->action = $this->urlvalues["action"];
+                $this->_action = $this->_urlValues["action"];
             }
         }
 
         public function createController() {
-
-            if (class_exists($this->controller)) {
-                
-                $parents = class_parents($this->controller);
+            if (class_exists($this->_controller)) {
+                $parents = class_parents($this->_controller);
                 if (in_array("BaseController", $parents)) {                 
-                    if (method_exists($this->controller, $this->action)) {                
-                        return new $this->controller($this->action, $this->urlvalues);
-                        return true;
+                    if (method_exists($this->_controller, $this->_action)) {
+                        return new $this->_controller($this->_action, $this->_urlValues);
                     } else {
                         echo "Bad action name";
                     }
                 } else {
-                    echo "Bad Controller :(";
+                    echo "Bad controller";
                 }
             } else {
-                echo "Bad URL :(";
+                echo "Bad URL";
             }
             return false;
         }
