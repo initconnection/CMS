@@ -13,13 +13,27 @@
             <select name="module" id="module">
                 <option value="1">Module 1</option>
             </select><br />
-            <label for="category"><?=_("Category")?></label>
-            <select name="category" id="category">
-                <?php foreach($this->categories as $category): ?>
-                <option value="<?=$category["id"]?>"
-                    <?=($category["id"] == $this->category) ? "selected" : NULL?>>
-                    <?=$category["title"]?></option>
+            <label for="category0"><?=_("Categories")?></label>
+            <select name="category0" id="category0">
+                <?php foreach($this->allCategories as $category): ?>
+                    <option value="<?=$category["id"]?>"
+                    <?php if ($this->categories): ?>
+                        <?=($category["id"] == $this->categories[0]) ? "selected" : NULL?>
+                    <?php endif; ?> >
+                        <?=$category["title"]?>
+                    </option>
                 <?php endforeach; ?>
-            </select>
+            </select> <br />
+            <?php for ($i = 1; $i < count($this->categories); $i++): ?>
+            <select name="category<?=$i?>" id="category<?=$i?>">
+                <?php foreach($this->allCategories as $category): ?>
+                    <option value="<?=$category["id"]?>"
+                        <?=($category["id"] == $this->categories[$i]) ? "selected" : NULL?>>
+                        <?=$category["title"]?>
+                    </option>
+                <?php endforeach; ?>
+            </select> <br />
+            <?php endfor; ?>
+            <button id="addCategory" class="btn"><?=_("Add category")?></button>
         </p>
     </div>

@@ -33,7 +33,7 @@
 			$dbh = null;
 			self::executeQuery($query, self::createParametersArray($elementData), $dbh);
                         
-			return $dbh->lastInsertId(); 
+			return $dbh->lastInsertId();
 		}
 		
 		/*
@@ -52,8 +52,9 @@
 		/*
 		** Select elements from the table which meet specified conditions
 		*/
-        public static function selectElements($table, array $conditions, array $order = null) {
-            $query = "SELECT * FROM " . $table . " WHERE ";
+        public static function selectElements($table, array $conditions, array $fields = null, array $order = null) {
+            $query = "SELECT " . ($fields ? self::keysToString($fields, ", ") : "*");
+            $query .= " FROM " . $table . " WHERE ";
             $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
             if ($order) {
                 $query .= " ORDER BY " . $order["by"] . " " . ($order["asc"] ? "ASC" : "DESC");

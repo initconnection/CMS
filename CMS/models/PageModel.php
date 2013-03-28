@@ -17,6 +17,11 @@
             return $result;
         }
 
+        public static function selectPageByName($name) {
+            $result = Database::selectElement(self::$table, array("name" => $name));
+            return $result;
+        }
+
         public static function selectPagesWithCategory($category) {
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
@@ -25,14 +30,18 @@
             return $result;
         }
 
-        public static function selectPageCategory($id) {
-            $categoryPage = Database::selectElement("category_page", array("page" => $id));
-            return $categoryPage["category"];
+        public static function selectPageCategories($id) {
+            $tempCategoryPages = Database::selectElements("category_page", array("page" => $id), array("category" => "category"));
+            $categoryPages = array();
+            foreach ($tempCategoryPages as $category) {
+                $categoryPages[] = $category["category"];
+            }
+            return $categoryPages;
         }
 
         public static function selectPageHistory($id) {
             $order = array("by" => "date", "asc" => 0);
-            $versions = Database::selectElements("page_history", array("id" => $id), $order);
+            $versions = Database::selectElements("page_history", array("id" => $id), null, $order);
             return $versions;
         }
 
@@ -48,45 +57,53 @@
             return $result;
         }
 
-        public static function insertPage($title, $content, $description, $keywords, $module, $category) {
-            $page = array("title" => $title, "content" => $content, "description" => $description,
+        public static function insertPage($title, $content, $description, $keywords, $module, $categories) {
+            $name = strtolower(str_replace(" ", "-", $title));
+            $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                 "keywords" => $keywords, "module" => $module);
             $id = Database::insertElement(self::$table, $page);
 
-            $pageCategory = self::createPageCategory($id, $category);
-            Database::insertElement("category_page", $pageCategory);
+            foreach ($categories as $category) {
+                $pageCategory = self::createPageCategory($id, $category);
+                Database::insertElement("category_page", $pageCategory);
+            }
         }
 
         public static function insertPageToHistory($id) {
             $page = self::selectPage($id);
-            $page["category"] = self::selectPageCategory($id);
             $version = Database::selectMaxValue("page_history", "version", array("id" => $id));
             $version ? $page["version"] = ++$version : $page["version"] = 1;
             Database::insertElement("page_history", $page);
         }
 
-        public static function updatePage($id, $title, $content, $description, $keywords, $module, $category) {
+        public static function updatePage($id, $title, $content, $description, $keywords, $module, array $categories) {
             self::insertPageToHistory($id);
 
-            $page = array("title" => $title, "content" => $content, "description" => $description,
+            $name = strtolower(str_replace(" ", "-", $title));
+            $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                     "keywords" => $keywords, "module" => $module);
             Database::updateElements(self::$table, $page, array("id" => $id));
 
-            $oldPageCategory = Database::selectElement("category_page", array("page" => $id));
-            //If page did not have a category and it was assigned one
-            if (!$oldPageCategory && $category) {
-                $newPageCategory = createPageCategory($page, $category);
+            $oldPageCategories = self::selectPageCategories($id);
+
+            for($i = 0; $i < count($oldPageCategories); $i++) {
+                if($categories[$i] == 0) {
+                    Database::deleteElements("category_page", array("page" => $id, "category" => $oldPageCategories[$i]));
+                } else if($categories[$i] != $oldPageCategories[$i]) {
+                    $newPageCategory = self::createPageCategory($id, $categories[$i]);
+                    Database::updateElements("category_page", $newPageCategory, array("page" => $id, "category" => $oldPageCategories[$i]));
+                }
+            }
+
+            for($i = count($oldPageCategories); $i < count($categories); $i++) {
+                $newPageCategory = self::createPageCategory($id, $categories[$i]);
                 Database::insertElement("category_page", $newPageCategory);
             }
-            //If page had a category and it was unassigned
-            if (!$category && $oldPageCategory) {
-                Database::deleteElements("category_page", array("page" => $id));
-            }
-            //If page was assigned a new category
-            if (($category && $oldPageCategory) && ($category != $oldPageCategory)) {
-                $newPageCategory = createPageCategory($page, $category);
-                Database::updateElements("category_page", $newPageCategory, array("page" => $id));
-            }
+        }
+
+        public static function deletePageFromCategory($category, $page) {
+            $result = Database::deleteElements("category_page", array("page" => $page, "category" => $category));
+            return $result;
         }
 
         public static function deletePage($id) {
@@ -100,9 +117,9 @@
             return $pageCategory;
         }
 
-        private static function movePage($id, $up = true) {
+        private static function movePage($id, $category, $up = true) {
             $page = Database::selectElement("category_page", array("page" => $id));
-            $pages = Database::selectElements("category_page", array("category" => $page["category"]),
+            $pages = Database::selectElements("category_page", array("category" => $page["category"]), null,
                     array("by" => "position", "asc" => 1));
 
             if($up) {
@@ -112,17 +129,17 @@
             }
 
             Database::updateElements("category_page", array("position" => $pageToSwap["position"]),
-                    array("page" => $page["page"]));
+                    array("page" => $page["page"], "category" => $category));
             Database::updateElements("category_page", array("position" => $page["position"]),
-                    array("page" => $pageToSwap["page"]));
+                    array("page" => $pageToSwap["page"], "category" => $category));
         }
         
-        public static function movePageUp($id) {
-            self::movePage($id, true);
+        public static function movePageUp($page, $category) {
+            self::movePage($page, $category, true);
         }
         
-        public static function movePageDown($id) {
-            self::movePage($id, false);
+        public static function movePageDown($page, $category) {
+            self::movePage($page, $category, false);
         }
         
         private static function findPageAbove(array $pages, $thisPage) {
