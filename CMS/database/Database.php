@@ -118,14 +118,17 @@
                 return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public static function selectElementsWithLeftJoin(array $tableLeft, array $tableRight, $order = NULL) {
-            $query = "SELECT * FROM " . $tableLeft["table"] . " LEFT JOIN " . $tableRight["table"] . " ON ";
-            $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
-            $query .= $tableRight["key"] . " IS NULL";
+        public static function selectElementsWithLeftJoin(array $tableLeft, array $tablesRight, array $conditions, $order = NULL) {
+            $query = "SELECT * FROM " . $tableLeft["table"];
+            foreach ($tablesRight as $tableRight) {
+                $query .= " LEFT JOIN " . $tableRight["table"] . " ON ";
+                $query .= $tableLeft["key"] . " = " . $tableRight["key"];
+            }
+            $query .= " WHERE " . self::keysToString($conditions, " AND ", ":", "", true);
             if ($order) {
                 $query .= " ORDER BY " . $order;
             }
-            $result = self::executeQuery($query);
+            $result = self::executeQuery($query, self::createParametersArray(null, $conditions));
 
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }

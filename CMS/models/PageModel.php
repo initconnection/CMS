@@ -2,7 +2,7 @@
 
     class PageModel extends BaseModel {
 
-        private static $table = "page";
+        protected static $table = "page";
 
         public static function selectAllPages() {
             return Database::selectAllElements(self::$table);
@@ -22,12 +22,24 @@
             return $result;
         }
 
-        public static function selectPagesWithCategory($category) {
+        public static function selectPagesFromCategory($category) {
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
-            $result = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, array("category" => $category), "position");
+            $pages = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, array("category" => $category), "position");
+            $pagesWithSubpages = array();
+            foreach ($pages as $page) {
+                $page["subpages"] = PageModel::selectSubpages($page["id"]);
+                $pagesWithSubpages[] = $page;
+            }
+            return $pagesWithSubpages;
+        }
 
-            return $result;
+        public static function selectSubpages($page) {
+            $pageTable = array("table" => "page", "key" => "id");
+            $subpageTable = array("table" => "subpage", "key" => "page");
+            $subpages = Database::selectElemetsWithJoin($pageTable, $subpageTable, array("parent" => $page), "position");
+
+            return $subpages;
         }
 
         public static function selectPageCategories($id) {
@@ -47,13 +59,6 @@
 
         public static function selectPageVersion($id, $version) {
             $result = Database::selectElement("page_history", array("id" => $id, "version" => $version));
-            return $result;
-        }
-
-        public static function selectPagesWithoutCategory() {
-            $pageTable = array("table" => "page", "key" => "id");
-            $categoryPageTable = array("table" => "category_page", "key" => "page");
-            $result = Database::selectElementsWithLeftJoin($pageTable, $categoryPageTable);
             return $result;
         }
 

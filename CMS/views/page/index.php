@@ -12,6 +12,18 @@
                 <a href="<?=ABSOLUTE_PATH?>page/up/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-arrow-up"></i></a>
                 <a href="<?=ABSOLUTE_PATH?>page/down/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-arrow-down"></i></a>
                 <a href="<?=ABSOLUTE_PATH?>page/delete/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-remove"></i></a>
+                <a href="<?=ABSOLUTE_PATH?>subpage/create/<?=$page["id"]?>"><i class="icon-plus"></i></a>
+                <ul>
+                <?php foreach ($page["subpages"] as $subpage): ?>
+                    <li>
+                        <a href="<?=ABSOLUTE_PATH?>page/update/<?=$subpage["id"]?>"><?=$subpage["title"]?></a>
+                        <a href="<?=ABSOLUTE_PATH?>page/up/<?=$subpage["id"]?>/<?=$subpage["id"]?>"><i class="icon-arrow-up"></i></a>
+                        <a href="<?=ABSOLUTE_PATH?>page/down/<?=$subpage["id"]?>/<?=$subpage["id"]?>"><i class="icon-arrow-down"></i></a>
+                        <a href="<?=ABSOLUTE_PATH?>page/delete/<?=$subpage["id"]?>/<?=$subpage["id"]?>"><i class="icon-remove"></i></a>
+                        <a href="<?=ABSOLUTE_PATH?>subpage/create/<?=$subpage["id"]?>"><i class="icon-plus"></i></a>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
             </li>
             <?php endforeach; ?>
             <li class="create"><i class="icon-plus"></i><a href="<?=ABSOLUTE_PATH?>page/create/<?=$category["id"]?>"><?=_("New page")?></a></li>
