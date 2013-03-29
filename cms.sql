@@ -88,7 +88,7 @@ CREATE TABLE `page` (
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +104,8 @@ INSERT INTO `page` VALUES (4,'subpage2','subpage2','','','',1,'2013-03-29 01:45:
 INSERT INTO `page` VALUES (5,'Apie','apie','<p>Apie kazka</p>\r\n','','',1,'2013-03-29 01:49:46');
 INSERT INTO `page` VALUES (6,'Darbuotojai','darbuotojai','<p>Musu darbuotojai</p>\r\n','','',1,'2013-03-29 01:49:56');
 INSERT INTO `page` VALUES (7,'Vilma','vilma','<p>faefaf</p>\r\n','','',1,'2013-03-29 01:54:02');
+INSERT INTO `page` VALUES (8,'Veikla','veikla','<p>gsdgsdg</p>\r\n','','',1,'2013-03-29 02:33:34');
+INSERT INTO `page` VALUES (9,'Donatas','donatas','','','',1,'2013-03-29 02:34:03');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,6 +171,8 @@ INSERT INTO `subpage` VALUES (1,2,1);
 INSERT INTO `subpage` VALUES (1,4,2);
 INSERT INTO `subpage` VALUES (2,3,1);
 INSERT INTO `subpage` VALUES (5,6,1);
+INSERT INTO `subpage` VALUES (5,8,2);
+INSERT INTO `subpage` VALUES (6,9,1);
 /*!40000 ALTER TABLE `subpage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-29  4:16:02
+-- Dump completed on 2013-03-29  4:34:55

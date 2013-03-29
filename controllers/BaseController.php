@@ -3,16 +3,15 @@
     class BaseController {
 
         private $_action = "";
-        protected $urlValues = "";
         protected $url = array();
+        protected $urlArray = array();
         protected $template_dir = "views/";
         protected $vars = array();
-        //public $subPages = array();
 
         public function __construct($action, $urlValues) {
             $this->_action = $action;
-            $this->urlValues = $urlValues;
-            $this->url = explode("/", $urlValues["url"]);
+            $this->url = $urlValues["url"];
+            $this->urlArray = explode("/", $urlValues["url"]);
         }
 
         public function executeAction() {
