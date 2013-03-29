@@ -3,24 +3,25 @@
     class BaseController {
 
         private $_action = "";
-        public $urlValues = "";
-        
+        protected $url = array();
+        protected $urlArray = array();
         protected $template_dir = "views/";
         protected $vars = array();
-        
+
         public function __construct($action, $urlValues) {
             $this->_action = $action;
-            $this->urlValues = $urlValues;
+            $this->url = $urlValues["url"];
+            $this->urlArray = explode("/", $urlValues["url"]);
         }
-        
+
         public function executeAction() {
             return $this->{$this->_action}();
         }
-        
+
         public function checkAction($action) {
             return (($this->_action == $action) ? true : false);
         }
-        
+
         public function render($view_file) {
             $this->categories = CategoryModel::selectCategoriesAndPages();
             $this->view_file = $view_file;

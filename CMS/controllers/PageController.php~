@@ -6,8 +6,34 @@ class PageController extends BaseController {
         $this->title = "Pages";
         $this->categories = CategoryModel::selectCategoriesAndPages();
         $this->pages = PageModel::selectPagesWithoutCategory();
-
         $this->render("page/index.php");
+    }
+
+    public function create() {
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $title = $_POST["title"];
+            $content = $_POST["content"];
+            $description = $_POST["description"];
+            $keywords = $_POST["keywords"];
+            $module = $_POST["module"];
+            $category = $_POST["category"];
+            
+            PageModel::insert($title, $content, $description, $keywords,
+                    $module, $category);
+            
+            redirect("page/index");
+        }
+        else {
+            $this->title = "";
+            $this->content = "";
+            $this->description = "";
+            $this->keywords = "";
+            $this->module = "";
+            $this->categories = CategoryModel::selectCategories();
+            $this->category = $this->urlValues["id"];
+
+            $this->render("page/create.php");
+        }
     }
 
     public function show() {
@@ -18,41 +44,7 @@ class PageController extends BaseController {
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
-
         $this->render("page/show.php");
-    }
-
-    public function create() {
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $title = $_POST["title"];
-            $content = $_POST["content"];
-            $description = $_POST["description"];
-            $keywords = $_POST["keywords"];
-            $module = $_POST["module"];
-
-            $categories = array();
-            $i = 0;
-            while (isset($_POST["category" . $i])) {
-                $categories[] = $_POST["category" . $i];
-                $i++;
-            }
-            
-            PageModel::insertPage($title, $content, $description, $keywords,
-                    $module, $categories);
-            
-            redirect("page/index");
-        }
-        else {
-            $this->title = "";
-            $this->content = "";
-            $this->description = "";
-            $this->keywords = "";
-            $this->module = "";
-            $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
-            $this->categories = array($this->urlValues["id"]);
-
-            $this->render("page/create.php");
-        }
     }
 
     public function update() {
@@ -63,16 +55,9 @@ class PageController extends BaseController {
             $description = $_POST["description"];
             $keywords = $_POST["keywords"];
             $module = $_POST["module"];
+            $category = $_POST["category"];
 
-            $categories = array();
-            $i = 0;
-            while (isset($_POST["category" . $i])) {
-                $categories[] = $_POST["category" . $i];
-                $i++;
-            }
-
-            PageModel::updatePage($id, $title, $content, $description, $keywords, $module, $categories);
-
+            PageModel::update($id, $title, $content, $description, $keywords, $module, $category);
             redirect("page/index");
         }
         else {
@@ -84,44 +69,33 @@ class PageController extends BaseController {
             $this->description = $page["description"];
             $this->keywords = $page["keywords"];
             $this->module = $page["module"];
-            $this->categories = PageModel::selectPageCategories($id);
-            $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
-
+            $this->category = PageModel::selectCategory($id);
+            $this->categories = CategoryModel::selectCategories();
             $this->render("page/update.php");
         }
     }
 
     public function delete() {
-        $page = $this->urlValues["id"];
-        if($this->urlValues["subid"]) {
-            $category = $this->urlValues["subid"];
-            PageModel::deletePageFromCategory($category, $page);
-        } else {
-            PageModel::deletePage($page);
-        }
+        $id = $this->urlValues["id"];
+        PageModel::delete($id);
         redirect("page/index");
     }
 
     public function up() {
-        $page = $this->urlValues["id"];
-        $category = $this->urlValues["subid"];
-        PageModel::movePageUp($page, $category);
-
+        $id = $this->urlValues["id"];
+        PageModel::moveUp($id);
         redirect("page/index");
     }
 
     public function down() {
-        $page = $this->urlValues["id"];
-        $category = $this->urlValues["subid"];
-        PageModel::movePageDown($page, $category);
-
+        $id = $this->urlValues["id"];
+        PageModel::moveDown($id);
         redirect("page/index");
     }
 
     public function history() {
         $id = $this->urlValues["id"];
         $this->pages = PageModel::selectPageHistory($id);
-
         $this->render("page/history.php");
     }
 
@@ -135,9 +109,8 @@ class PageController extends BaseController {
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
-        $this->categories = PageModel::selectPageCategories($id);
-        $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
-
+        $this->category = $page["category"];
+        $this->categories = CategoryModel::selectCategories();
         $this->render("page/update.php");
     }
 

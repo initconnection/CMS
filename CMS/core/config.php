@@ -4,7 +4,7 @@
     define("CMS_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME);
     define("ABSOLUTE_PATH", "http://" . $_SERVER["SERVER_NAME"] . APP_NAME);
 
-    require_once(CMS_PATH . "database/database.class.php");
+    require_once(CMS_PATH . "database/Database.php");
     require_once(CMS_PATH . "core/helpers.php");
     require_once("localization.php");
 
