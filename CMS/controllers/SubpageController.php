@@ -11,7 +11,7 @@
                 $module = $_POST["module"];
                 $parent = $_POST["parent"];
 
-                SubpageModel::insertPage($title, $content, $description, $keywords,
+                SubpageModel::insertSubpage($title, $content, $description, $keywords,
                     $module, $parent);
 
                 redirect("page/index");

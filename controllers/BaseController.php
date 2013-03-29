@@ -4,6 +4,7 @@
 
         private $_action = "";
         protected $urlValues = "";
+        protected $url = array();
         protected $template_dir = "views/";
         protected $vars = array();
         //public $subPages = array();
@@ -11,7 +12,7 @@
         public function __construct($action, $urlValues) {
             $this->_action = $action;
             $this->urlValues = $urlValues;
-            //$this->subPages = explode("/", $urlValues["page"]);
+            $this->url = explode("/", $urlValues["url"]);
         }
 
         public function executeAction() {
