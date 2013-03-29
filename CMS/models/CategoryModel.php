@@ -26,17 +26,6 @@
             return $categoriesWithName;
         }
 
-        public static function selectPagesWithoutCategory() {
-            $pageTable = array("table" => "page", "key" => "page.id");
-            $tableRight = array();
-            $tableRight[] = array("table" => "category_page", "key" => "category_page.page");
-            $tableRight[] = array("table" => "subpage", "key" => "subpage.page");
-            $conditions = array("subpage.page" => "IS NULL", "category_page.page" => "IS NULL");
-
-            $result = Database::selectElementsWithLeftJoin($pageTable, $tableRight, $conditions);
-            return $result;
-        }
-
         public static function insertCategory($title) {
             $name = strtolower(str_replace(" ", "-", $title));
             $category = array("title" => $title, "name" => $name);

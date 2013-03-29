@@ -29,6 +29,10 @@
             require_once(CMS_PATH . $this->template_dir . $view_file);
         }
 
+        public function render_part($view_file, array $params) {
+            require(CMS_PATH . $this->template_dir . $view_file);
+        }
+
         public function __set($name, $value) {
             $this->vars[$name] = $value;
         }

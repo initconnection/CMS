@@ -124,8 +124,7 @@
                 $query .= " LEFT JOIN " . $tableRight["table"] . " ON ";
                 $query .= $tableLeft["key"] . " = " . $tableRight["key"];
             }
-            $query .= " WHERE " . self::keysToString($conditions, " AND ", ":", "_condition", true);
-            echo $query;
+            $query .= " WHERE " . self::assocArrayToString($conditions);
             if ($order) {
                 $query .= " ORDER BY " . $order;
             }
@@ -198,4 +197,18 @@
 			
 			return $string;
 		}
+
+        private static function assocArrayToString(array $data) {
+            $arrayKeys = array_keys($data);
+            $lastArrayKey = end($arrayKeys);
+            $string = "";
+            foreach ($arrayKeys as $key) {
+                $string .= $key;
+                $string .= " " . $data[$key];
+                if ($key != $lastArrayKey) {
+                    $string .= " AND ";
+                }
+            }
+            return $string;
+        }
     }

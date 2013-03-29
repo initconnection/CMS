@@ -27,4 +27,29 @@
                 $this->render("subpage/create.php");
             }
         }
+
+        public function delete() {
+            $subpage = $this->urlValues["id"];
+            $parent = $this->urlValues["subid"];
+            SubpageModel::deleteSubpage($subpage, $parent);
+
+            redirect("page/index");
+        }
+
+        public function up() {
+            $subpage = $this->urlValues["id"];
+            $parent = $this->urlValues["subid"];
+            SubpageModel::moveSubpageUp($subpage, $parent);
+
+            redirect("page/index");
+        }
+
+        public function down() {
+            $subpage = $this->urlValues["id"];
+            $parent = $this->urlValues["subid"];
+            SubpageModel::moveSubpageDown($subpage, $parent);
+
+            redirect("page/index");
+        }
+
     }

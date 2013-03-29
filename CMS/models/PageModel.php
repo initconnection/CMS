@@ -26,6 +26,7 @@
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
             $pages = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, array("category" => $category), "position");
+
             $pagesWithSubpages = array();
             foreach ($pages as $page) {
                 $page["subpages"] = PageModel::selectSubpages($page["id"]);
@@ -34,12 +35,34 @@
             return $pagesWithSubpages;
         }
 
-        public static function selectSubpages($page) {
+
+        public static function selectPagesWithoutCategory() {
+            $pageTable = array("table" => "page", "key" => "page.id");
+            $tableRight = array();
+            $tableRight[] = array("table" => "category_page", "key" => "category_page.page");
+            $tableRight[] = array("table" => "subpage", "key" => "subpage.page");
+            $conditions = array("subpage.page" => "IS NULL", "category_page.page" => "IS NULL");
+            $pages = Database::selectElementsWithLeftJoin($pageTable, $tableRight, $conditions);
+
+            $pagesWithSubpages = array();
+            foreach ($pages as $page) {
+                $page["subpages"] = PageModel::selectSubpages($page["id"]);
+                $pagesWithSubpages[] = $page;
+            }
+            return $pagesWithSubpages;
+        }
+
+        public static function selectSubpages($pageId) {
             $pageTable = array("table" => "page", "key" => "id");
             $subpageTable = array("table" => "subpage", "key" => "page");
-            $subpages = Database::selectElemetsWithJoin($pageTable, $subpageTable, array("parent" => $page), "position");
+            $subpages = Database::selectElemetsWithJoin($pageTable, $subpageTable, array("parent" => $pageId), "position");
+            $subpagesArray = array();
+            foreach ($subpages as $subpage) {
+                $subpage["subpages"] = self::selectSubpages($subpage["id"]);
+                $subpagesArray[] = $subpage;
+            }
 
-            return $subpages;
+            return $subpagesArray;
         }
 
         public static function selectPageCategories($id) {
