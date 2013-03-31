@@ -3,15 +3,20 @@
     class BaseController {
 
         private $_action = "";
-        protected $url = array();
+        protected $url = "";
         protected $urlArray = array();
         protected $template_dir = "views/";
         protected $vars = array();
 
         public function __construct($action, $urlValues) {
             $this->_action = $action;
-            $this->url = $urlValues["url"];
-            $this->urlArray = explode("/", $urlValues["url"]);
+
+            if(self::checkUrl($urlValues)) {
+                $this->url = $urlValues["url"];
+            } else {
+                $this->url = SiteModel::selectHomePageName();
+            }
+            $this->urlArray = explode("/", $this->url);
         }
 
         public function executeAction() {
@@ -20,6 +25,10 @@
 
         public function checkAction($action) {
             return (($this->_action == $action) ? true : false);
+        }
+
+        public function checkUrl($url) {
+            return ($url ? true : false);
         }
 
         public function render($view_file) {

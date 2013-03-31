@@ -37,8 +37,6 @@ CREATE TABLE `category` (
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` VALUES (7,'Main menu','main-menu');
-INSERT INTO `category` VALUES (10,'Top menu','top-menu');
-INSERT INTO `category` VALUES (11,'Bottom menu','bottom-menu');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,9 +64,63 @@ CREATE TABLE `category_page` (
 
 LOCK TABLES `category_page` WRITE;
 /*!40000 ALTER TABLE `category_page` DISABLE KEYS */;
-INSERT INTO `category_page` VALUES (7,1,1);
-INSERT INTO `category_page` VALUES (10,5,1);
+INSERT INTO `category_page` VALUES (7,11,1);
+INSERT INTO `category_page` VALUES (7,12,2);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `module`
+--
+
+DROP TABLE IF EXISTS `module`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `module`
+--
+
+LOCK TABLES `module` WRITE;
+/*!40000 ALTER TABLE `module` DISABLE KEYS */;
+INSERT INTO `module` VALUES (1,'page','Simple page');
+INSERT INTO `module` VALUES (2,'news','News');
+/*!40000 ALTER TABLE `module` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `heading` text NOT NULL,
+  `content` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `news`
+--
+
+LOCK TABLES `news` WRITE;
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+INSERT INTO `news` VALUES (2,'Nauja naujiena','<p>Akropolis</p>\r\n','2013-03-30 22:38:41');
+INSERT INTO `news` VALUES (3,'Nauja naujienaslox','<p>Akropolisas</p>\r\n','2013-03-30 22:50:55');
+INSERT INTO `news` VALUES (5,'Labas rytas ','<p>235235</p>\r\n','2013-03-31 00:05:03');
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -88,7 +140,7 @@ CREATE TABLE `page` (
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,15 +149,8 @@ CREATE TABLE `page` (
 
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
-INSERT INTO `page` VALUES (1,'main','main','','','',1,'2013-03-29 01:44:50');
-INSERT INTO `page` VALUES (2,'subpage1','subpage1','','','',1,'2013-03-29 01:44:56');
-INSERT INTO `page` VALUES (3,'subsubpage1','subsubpage1','','','',1,'2013-03-29 01:45:03');
-INSERT INTO `page` VALUES (4,'subpage2','subpage2','','','',1,'2013-03-29 01:45:08');
-INSERT INTO `page` VALUES (5,'Apie','apie','<p>Apie kazka</p>\r\n','','',1,'2013-03-29 01:49:46');
-INSERT INTO `page` VALUES (6,'Darbuotojai','darbuotojai','<p>Musu darbuotojai</p>\r\n','','',1,'2013-03-29 01:49:56');
-INSERT INTO `page` VALUES (7,'Vilma','vilma','<p>faefaf</p>\r\n','','',1,'2013-03-29 01:54:02');
-INSERT INTO `page` VALUES (8,'Veikla','veikla','<p>gsdgsdg</p>\r\n','','',1,'2013-03-29 02:33:34');
-INSERT INTO `page` VALUES (9,'Donatas','donatas','','','',1,'2013-03-29 02:34:03');
+INSERT INTO `page` VALUES (11,'Naujienos','naujienos','<p>Akropolis</p>\r\n','','',2,'2013-03-30 23:31:18');
+INSERT INTO `page` VALUES (12,'Naujas pag','naujas-pag','<p>turinys</p>\r\n','','',1,'2013-03-30 23:43:37');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,11 +181,44 @@ CREATE TABLE `page_history` (
 
 LOCK TABLES `page_history` WRITE;
 /*!40000 ALTER TABLE `page_history` DISABLE KEYS */;
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','','','',1,'2013-03-30 23:04:58',1);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','<p>Tai yra nauja naujiena</p>\r\n','','',1,'2013-03-30 23:06:58',2);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','<p>Tai yra nauja naujiena</p>\r\n','','',1,'2013-03-30 23:06:58',3);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','','','',1,'2013-03-30 23:21:51',4);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','','','',1,'2013-03-30 23:21:51',5);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','<p>Akropolis</p>\r\n','','',1,'2013-03-30 23:25:59',6);
+INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','<p>Akropolis</p>\r\n','','',1,'2013-03-30 23:25:59',7);
+INSERT INTO `page_history` VALUES (12,'Naujas pag','naujas-pag','<p>turinys</p>\r\n','','',1,'2013-03-30 23:43:37',1);
 INSERT INTO `page_history` VALUES (46,'Main page','','','','',1,'2013-03-26 21:51:47',1);
 INSERT INTO `page_history` VALUES (47,'Second oage','','','','',1,'2013-03-26 21:52:02',1);
 INSERT INTO `page_history` VALUES (47,'Second oage','','<p>gasgasgagasg</p>\r\n','','',1,'2013-03-26 22:51:27',2);
 INSERT INTO `page_history` VALUES (57,'fasf','fasf','<p>asfasf</p>\r\n','','',1,'2013-03-28 01:57:33',1);
 /*!40000 ALTER TABLE `page_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `site`
+--
+
+DROP TABLE IF EXISTS `site`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parameter` varchar(50) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site`
+--
+
+LOCK TABLES `site` WRITE;
+/*!40000 ALTER TABLE `site` DISABLE KEYS */;
+INSERT INTO `site` VALUES (4,'homePage','12');
+/*!40000 ALTER TABLE `site` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -167,13 +245,33 @@ CREATE TABLE `subpage` (
 
 LOCK TABLES `subpage` WRITE;
 /*!40000 ALTER TABLE `subpage` DISABLE KEYS */;
-INSERT INTO `subpage` VALUES (1,2,1);
-INSERT INTO `subpage` VALUES (1,4,2);
-INSERT INTO `subpage` VALUES (2,3,1);
-INSERT INTO `subpage` VALUES (5,6,1);
-INSERT INTO `subpage` VALUES (5,8,2);
-INSERT INTO `subpage` VALUES (6,9,1);
 /*!40000 ALTER TABLE `subpage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `upload`
+--
+
+DROP TABLE IF EXISTS `upload`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `upload` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `upload`
+--
+
+LOCK TABLES `upload` WRITE;
+/*!40000 ALTER TABLE `upload` DISABLE KEYS */;
+INSERT INTO `upload` VALUES (17,'name.jpg','');
+INSERT INTO `upload` VALUES (18,'name.rar','');
+/*!40000 ALTER TABLE `upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -211,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-29  4:34:55
+-- Dump completed on 2013-03-31  2:09:56

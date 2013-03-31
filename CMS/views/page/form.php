@@ -11,7 +11,9 @@
             <input name="keywords" id="keywords" value="<?=$this->keywords?>" /><br />
             <label for="module"><?=_("Module")?></label>
             <select name="module" id="module">
-                <option value="1">Module 1</option>
+            <?php foreach($this->allModules as $module): ?>
+                <option value="<?=$module["id"]?>"><?=$module["title"]?></option>
+             <?php endforeach ?>
             </select><br />
             <label for="category0"><?=_("Categories")?></label>
             <select name="category0" id="category0">
