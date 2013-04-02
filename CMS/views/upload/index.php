@@ -1,7 +1,7 @@
 <form action="<?=ABSOLUTE_PATH?>upload/index" enctype="multipart/form-data" method="post" xmlns="http://www.w3.org/1999/html">
 
     <label for="file"><?=_("File name")?></label>
-    <input type="file" name="file" id="file" value="">
+    <input type="file" name="file" id="file" value=""> <br/>
     <input type="submit" value="<?=_("Submit")?>" class="btn"/>
 
     <h3><?=_("Uploaded files")?></h3>

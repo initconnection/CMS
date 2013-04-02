@@ -35,7 +35,8 @@
         }
 
         public static function selectPageCategories($id) {
-            $tempCategoryPages = Database::selectElements("category_page", array("page" => $id), array("category" => "category"));
+            $tempCategoryPages = Database::selectElements("category_page", array("page" => $id),
+                    array("category" => "category"));
             $categoryPages = array();
             foreach ($tempCategoryPages as $category) {
                 $categoryPages[] = $category["category"];

@@ -1,18 +1,20 @@
 <?php
 
+/**
+ * kazkas cia parasytas
+ */
+
 require_once(CMS_PATH . "commons/class.upload.php");
 
 class UploadModel extends BaseModel {
 
     protected static $table = "upload";
 
-    public static function uploadImage($imageFile, $fileName) {
+    public static function uploadImage($imageFile) {
         $handle = new Upload($imageFile);
         if ($handle->uploaded) {
-            $handle->file_new_name_body = $fileName;
             $handle->process(SITE_PATH."upload/");
             if ($handle->processed) {
-                $handle->file_new_name_body = $fileName;
                 $handle->image_resize = true;
                 $handle->image_x = 100;
                 $handle->image_ratio_y = true;

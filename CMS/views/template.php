@@ -20,6 +20,7 @@
                 <li><a href="<?=ABSOLUTE_PATH?>site/index"><?=_("Options")?></a></li>
                 <li><a href="<?=ABSOLUTE_PATH?>upload/index"><?=_("Upload")?></a></li>
                 <li><a href="<?=ABSOLUTE_PATH?>news/index"><?=_("News")?></a></li>
+                <li><a href="<?=ABSOLUTE_PATH?>gallery/index"><?=_("Gallery")?></a></li>
             </ul>
         </div>
     </div>

@@ -10,4 +10,9 @@ $(document).ready(function() {
            insertAfter("#category" + (allSelects - 1)).before('<br />');
         return false;
     });
+    
+    $("#showPages").click(function() {
+        $("#pages").fadeToggle("slow");   
+        return false;
+    });
 });

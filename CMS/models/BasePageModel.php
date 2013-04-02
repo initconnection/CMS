@@ -107,4 +107,13 @@ class BasePageModel extends BaseModel {
         $module = self::selectModule($moduleId);
         return $module["name"];
     }
+    
+    public static function selectModuleId($moduleName) {
+        $module = Database::selectElement("module", array("name" => $moduleName));
+        return $module["id"];
+    }
+    
+    public static function selectAllModulePages($moduleId) {
+        return Database::selectElements(self::$table, array("module" => $moduleId));
+    }
 }

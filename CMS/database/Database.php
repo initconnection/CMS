@@ -12,8 +12,9 @@
 		*/
 		private static function initConnection() {
 			try {
-				$dbh = @new PDO('mysql:host=localhost;dbname=' . MYSQLDATABASE,
-					MYSQLUSER, MYSQLPASSWORD, array(PDO::ATTR_PERSISTENT => true));
+				$dbh = new PDO('mysql:host=localhost;dbname=' . MYSQLDATABASE,
+					MYSQLUSER, MYSQLPASSWORD, array(PDO::ATTR_PERSISTENT => true,
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 			} catch(PDOException $e) {
 				echo $e->getMessage();
 			}
@@ -160,7 +161,7 @@
 		private static function executeQuery($query, $parameters = null, &$dbh = NULL) {
 		    $dbh = self::initConnection();
 			$sth = $dbh->prepare($query);
-
+            
 			if($parameters) {
 				$parametersKeys = array_keys($parameters);
 			
@@ -168,7 +169,8 @@
 					$sth->bindParam(":" . $key, $parameters[$key]);
 				}
 			}
-			$sth->execute();
+            
+            $sth->execute();  
 			
 			return $sth;
 		}

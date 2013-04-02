@@ -1,27 +1,28 @@
 <?php
 
-    class NewsController extends BaseController {
+    class GalleryController extends BaseController {
 
     public function index() {
-        $this->news = NewsModel::selectAllNews();
-        $this->render("news/index.php");
+        //$this->images = GalleryModel::selectAllImages();
+        $this->render("gallery/index.php");
     }
-
     public function create() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $heading = $_POST["heading"];
-            $content = $_POST["content"];
-            $pages = $_POST["page"];
-            NewsModel::insertNews($heading, $content, $pages);
+            //$pages = $_POST["page"];
+            $file = $_FILES["file"];
+            $title = $_POST["title"];
+            $url = UploadModel::uploadImage($file);
+            GalleryModel::insertImage($url, $title);
             redirect("news");
         } else {
-            $this->pageId = $this->urlValues["id"];
-            $this->heading = "";
-            $this->content = "";
-            $this->newsPages = NewsModel::selectAllNewsPages();
-            $this->render("news/create.php");
+            //$this->pageId = $this->urlValues["id"];
+            $this->url = "";
+            $this->title = "";
+            //$this->newsPages = NewsModel::selectAllNewsPages();
+            $this->render("gallery/create.php");
         }
     }
+    /*
 
     public function update() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -46,5 +47,5 @@
         $this->id = $this->urlValues["id"];
         $this->news = NewsModel::selectNewsFromPage($this->id);
         $this->render("news/index.php");
-    }
+    }*/
 }
