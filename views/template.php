@@ -22,12 +22,12 @@
     <div class="container">
 
         <header id="navtop">
-            <a href="<?=ABSOLUTE_PATH?>home" class="logo fleft">
+            <a href="<?=ABSOLUTE_PATH?>" class="logo fleft">
                 <img src="<?=ABSOLUTE_PATH?>views/style/img/logo.png" alt="Designa Studio">
             </a>
 
             <nav class="fright">
-            <?php foreach (array_chunk($this->categories["top-menu"]["pages"], 2) as $col): ?>
+            <?php foreach (array_chunk($this->categories["main-menu"]["pages"], 2) as $col): ?>
                 <ul>
                 <?php foreach($col as $menuItem): ?>
                     <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"><?=$menuItem["title"]?></a></li>
@@ -62,14 +62,6 @@
                 <div class="up grid col-one-third ">
                     <a href="#navtop" title="Go back up">&uarr;</a>
                 </div>
-
-                <nav class="grid col-one-third ">
-                    <ul>
-                    <?php foreach ($this->categories["bottom-menu"]["pages"] as $menuItem): ?>
-                        <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"><?=$menuItem["title"]?></a></li>
-                    <?php endforeach ?>
-                    </ul>
-                </nav>
             </footer>
         </div>
 

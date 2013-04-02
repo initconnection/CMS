@@ -94,4 +94,17 @@ class BasePageModel extends BaseModel {
         }
         return $thisPage;
     }
+
+    public static function selectAllModules() {
+        return Database::selectAllElements("module");
+    }
+
+    public static function selectModule($moduleId) {
+        return Database::selectElement("module", array("id" => $moduleId));
+    }
+
+    public static function selectModuleName($moduleId) {
+        $module = self::selectModule($moduleId);
+        return $module["name"];
+    }
 }

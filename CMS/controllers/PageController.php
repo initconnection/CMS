@@ -11,13 +11,10 @@ class PageController extends BaseController {
     }
 
     public function show() {
-        $id = $this->urlValues["id"];
-        $page = PageModel::selectPage($id);
+        $this->id = $this->urlValues["id"];
+        $page = PageModel::selectPage($this->id);
         $this->title = $page["title"];
         $this->content = $page["content"];
-        $this->description = $page["description"];
-        $this->keywords = $page["keywords"];
-        $this->module = $page["module"];
 
         $this->render("page/show.php");
     }
@@ -50,6 +47,7 @@ class PageController extends BaseController {
             $this->module = "";
             $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
             $this->categories = array($this->urlValues["id"]);
+            $this->allModules = BasePageModel::selectAllModules();
 
             $this->render("page/create.php");
         }
@@ -86,6 +84,7 @@ class PageController extends BaseController {
             $this->module = $page["module"];
             $this->categories = PageModel::selectPageCategories($id);
             $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
+            $this->allModules = BasePageModel::selectAllModules();
 
             $this->render("page/update.php");
         }

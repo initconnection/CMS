@@ -12,6 +12,7 @@
             $pagesWithSubpages = array();
             foreach ($pages as $page) {
                 $page["subpages"] = PageModel::selectSubpages($page["id"]);
+                $page["moduleName"] = BasePageModel::selectModuleName($page["module"]);
                 $pagesWithSubpages[] = $page;
             }
             return $pagesWithSubpages;

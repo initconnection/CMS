@@ -1,8 +1,11 @@
 <?php
 
-    define("APP_NAME", "/CMS/CMS/");
+    define("APP_NAME", "CMS/CMS/");
+    define("SITE_NAME", "CMS/");
+    define("SITE_PATH", $_SERVER["DOCUMENT_ROOT"] . SITE_NAME);
     define("CMS_PATH", $_SERVER["DOCUMENT_ROOT"] . APP_NAME);
-    define("ABSOLUTE_PATH", "http://" . $_SERVER["SERVER_NAME"] . APP_NAME);
+    define("ABSOLUTE_PATH", "http://" . $_SERVER["SERVER_NAME"] . "/" . APP_NAME);
+    define("ABSOLUTE_SITE_PATH", "http://" . $_SERVER["SERVER_NAME"] . "/" . SITE_NAME);
 
     require_once(CMS_PATH . "database/Database.php");
     require_once(CMS_PATH . "core/helpers.php");

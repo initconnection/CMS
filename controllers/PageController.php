@@ -9,9 +9,15 @@ class PageController extends BaseController {
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];
         $this->module = $page["module"];
+        $moduleName = BasePageModel::selectModuleName($this->module);
         $this->subpages = PageModel::selectSubpages($page["id"]);
 
-        $this->render("page/show.php");
+        if($moduleName) {
+            $this->$moduleName = Database::selectAllElements($moduleName);
+            $this->render("page/".$moduleName.".php");
+        } else {
+            $this->render("page/page.php");
+        }
     }
 
 }
