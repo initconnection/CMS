@@ -15,6 +15,7 @@
     <link rel="shortcut icon" type="image/png" href="<?=ABSOLUTE_PATH?>views/style/img/favicon.png">
 
     <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/style.css">
+	<link rel="stylesheet" href="<?=ABSOLUTE_PATH?>lightbox/css/lightbox.css" type="text/css" media="screen" />
 
 </head>
 
@@ -76,6 +77,10 @@
 
     <script src="<?=ABSOLUTE_PATH?>views/style/js/jquery.flexslider-min.js"></script>
     <script src="<?=ABSOLUTE_PATH?>views/style/js/scripts.js"></script>
+    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery-1.7.2.min.js"></script>
+    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery.smooth-scroll.min.js"></script>
+    <script src="<?=ABSOLUTE_PATH?>lightbox/js/lightbox.js"></script>
 
 </body>
 

@@ -4,7 +4,7 @@ class UploadController extends BaseController {
 
     public function index() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            UploadModel::uploadImage($_FILES["file"], "name");
+            UploadModel::uploadImage($_FILES["file"], 100);
             redirect("upload");
         } else {
             $this->uploadedFiles = UploadModel::selectAllFiles();

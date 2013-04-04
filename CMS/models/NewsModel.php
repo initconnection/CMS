@@ -55,4 +55,9 @@ class NewsModel extends BaseModel {
         return Database::selectElemetsWithJoin($newsTable, $pageNewsTable, array("page" => $pageId));
     }
     
+    
+    public static function selectAllFromPage($pageId) {
+        return self::selectNewsFromPage($pageId);
+    }
+    
 }

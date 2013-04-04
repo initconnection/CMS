@@ -107,10 +107,13 @@
                 return $max[$field];
         }
 
-        public static function selectElemetsWithJoin(array $tableLeft, array $tableRight, array $conditions, $order = NULL) {
+        public static function selectElemetsWithJoin(array $tableLeft, array $tableRight, array $conditions = null, $order = NULL) {
                 $query = "SELECT * FROM " . $tableLeft["table"] . " JOIN " . $tableRight["table"] . " ON ";
-                $query .= $tableLeft["key"] . " = " . $tableRight["key"] . " WHERE ";
-                $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+                $query .= $tableLeft["key"] . " = " . $tableRight["key"];
+                if ($conditions) {
+                    $query .= " WHERE ";
+                    $query .= self::keysToString($conditions, " AND ", "= :", "_condition ", true);
+                }
                 if ($order) {
                     $query .= " ORDER BY " . $order;
                 }
@@ -119,11 +122,11 @@
                 return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public static function selectElementsWithLeftJoin(array $tableLeft, array $tablesRight, array $conditions, $order = NULL) {
-            $query = "SELECT * FROM " . $tableLeft["table"];
+        public static function selectElementsWithLeftJoin($tableLeft, array $tablesRight, array $conditions, $order = NULL) {
+            $query = "SELECT * FROM " . $tableLeft;
             foreach ($tablesRight as $tableRight) {
                 $query .= " LEFT JOIN " . $tableRight["table"] . " ON ";
-                $query .= $tableLeft["key"] . " = " . $tableRight["key"];
+                $query .= $tableRight["joinOn"];
             }
             $query .= " WHERE " . self::assocArrayToString($conditions);
             if ($order) {

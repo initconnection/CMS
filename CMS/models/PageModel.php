@@ -19,12 +19,11 @@
         }
 
         public static function selectPagesWithoutCategory() {
-            $pageTable = array("table" => "page", "key" => "page.id");
-            $tableRight = array();
-            $tableRight[] = array("table" => "category_page", "key" => "category_page.page");
-            $tableRight[] = array("table" => "subpage", "key" => "subpage.page");
+            $categoryPageTable = array("table" => "category_page", "joinOn" => "category_page.page = page.id");
+            $subpageTable = array("table" => "subpage", "joinOn" => "subpage.page = category_page.page"); 
+            $tables = array($categoryPageTable, $subpageTable);
             $conditions = array("subpage.page" => "IS NULL", "category_page.page" => "IS NULL");
-            $pages = Database::selectElementsWithLeftJoin($pageTable, $tableRight, $conditions);
+            $pages = Database::selectElementsWithLeftJoin("page", $tables, $conditions);
 
             $pagesWithSubpages = array();
             foreach ($pages as $page) {

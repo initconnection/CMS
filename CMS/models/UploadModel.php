@@ -10,27 +10,31 @@ class UploadModel extends BaseModel {
 
     protected static $table = "upload";
 
-    public static function uploadImage($imageFile) {
+    public static function uploadImage($imageFile, $title, $thumbSize) {
         $handle = new Upload($imageFile);
         if ($handle->uploaded) {
             $handle->process(SITE_PATH."upload/");
             if ($handle->processed) {
                 $handle->image_resize = true;
-                $handle->image_x = 100;
+                $handle->image_x = $thumbSize;
                 $handle->image_ratio_y = true;
                 $handle->process(SITE_PATH."upload/thumbnails");
-
-                Database::insertElement(self::$table, array("file" => $handle->file_dst_name));
-
+                $fileName = $handle->file_dst_name;
+                
+                $id = Database::insertElement(self::$table, array("file" => $fileName, 
+                        "title" => $title));
+                
                 $handle->clean();
+                
+                return $id;
             } else {
                 echo 'error : ' . $handle->error;
             }
         }
     }
 
-    public static function selectFile($id) {
-        return Database::selectElement(self::$table, array("id" => $id));
+    public static function selectFile($uploadId) {
+        return Database::selectElement(self::$table, array("id" => $uploadId));
     }
 
     public static function selectAllFiles() {

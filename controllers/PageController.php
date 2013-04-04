@@ -13,7 +13,8 @@ class PageController extends BaseController {
         $this->subpages = PageModel::selectSubpages($page["id"]);
 
         if($moduleName) {
-            $this->$moduleName = Database::selectAllElements($moduleName);
+            $model = $moduleName . "Model";
+            $this->$moduleName = $model::selectAllFromPage($page["id"]);
             $this->render("page/".$moduleName.".php");
         } else {
             $this->render("page/page.php");
