@@ -20,8 +20,9 @@ class NewsModel extends BaseModel {
     }
     
     public static function insertNews($heading, $content, array $pages = null) {
+        $name = titleToName($heading);
         $newsId = Database::insertElement(self::$table, array("heading" => $heading,
-            "content" => $content));
+            "content" => $content, "name" => $name));
         if($pages) {
             foreach (array_keys($pages) as $pageId) {
                 Database::insertElement("page_news", array("news" => $newsId, "page" => $pageId));
@@ -30,8 +31,9 @@ class NewsModel extends BaseModel {
     }
 
     public static function updateNews($id, $heading, $content, array $pages = null) {
+        $name = titleToName($heading);
         Database::updateElements(self::$table, array("heading" => $heading,
-            "content" => $content), array("id" => $id));
+            "content" => $content, "name" => $name), array("id" => $id));
         
         Database::deleteElements("page_news", array("news" => $id));
         

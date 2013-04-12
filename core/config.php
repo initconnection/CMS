@@ -7,6 +7,7 @@
 
     require_once(SITE_PATH . "CMS/database/Database.php");
     require_once(SITE_PATH . "core/helpers.php");
+    require_once(SITE_PATH . "helpers/ViewHelpers.php");
 
     function autoLoader($class) {
         $matches = array();

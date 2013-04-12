@@ -56,10 +56,14 @@ class BasePageModel extends BaseModel {
     public static function selectPageFromUrl(array $url) {
         $page = null;
         if (!empty($url)) {
-            $page = self::selectPageWithName($url[0]);
-            for ($i = 1; $i < count($url); $i++) {
-                $page = self::selectSubpageWithName($page["id"], $url[$i]);
+            $tempPage = self::selectPageWithName($url[0]);
+            $i = 1;
+            while($tempPage) {
+                $page = $tempPage;
+                $tempPage = self::selectSubpageWithName($page["id"], $url[$i]);
+                $i++;
             }
+            
         }
         return $page;
     }

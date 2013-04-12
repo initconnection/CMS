@@ -4,3 +4,4 @@
     <li><a href="<?=ABSOLUTE_PATH?>news/update/<?=$new["id"]?>"><?=$new["heading"]?></a></li>
     <?php endforeach ?>
 </ul>
+<a href="<?=ABSOLUTE_PATH?>page/update/<?=$this->id?>"><?=_("Edit page content")?></a>

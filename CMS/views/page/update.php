@@ -4,5 +4,3 @@
     <input type="submit" value="<?=_("Submit")?>" class="btn"/><br/>
 </form>
 <a href="<?=ABSOLUTE_PATH?>page/history/<?=$this->id?>"><?=_("History")?></a>
-
-<script src="<?=ABSOLUTE_PATH?>ckeditor/ckeditor.js"></script>

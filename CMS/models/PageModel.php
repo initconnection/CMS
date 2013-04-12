@@ -44,7 +44,7 @@
         }
 
         public static function insertPage($title, $content, $description, $keywords, $module, $categories) {
-            $name = strtolower(str_replace(" ", "-", $title));
+            $name = titleToName($title);
             $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                 "keywords" => $keywords, "module" => $module);
             $id = Database::insertElement(self::$table, $page);
@@ -58,7 +58,7 @@
         public static function updatePage($id, $title, $content, $description, $keywords, $module, array $categories) {
             self::insertPageToHistory($id);
 
-            $name = strtolower(str_replace(" ", "-", $title));
+            $name = titleToName($title);
             $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
                     "keywords" => $keywords, "module" => $module);
             Database::updateElements(self::$table, $page, array("id" => $id));

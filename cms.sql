@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.24, for Win64 (x86)
+-- MySQL dump 10.13  Distrib 5.5.24, for Win32 (x86)
 --
 -- Host: localhost    Database: cms
 -- ------------------------------------------------------
@@ -95,7 +95,6 @@ CREATE TABLE `gallery` (
 
 LOCK TABLES `gallery` WRITE;
 /*!40000 ALTER TABLE `gallery` DISABLE KEYS */;
-INSERT INTO `gallery` VALUES (34,51);
 /*!40000 ALTER TABLE `gallery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,11 +134,12 @@ DROP TABLE IF EXISTS `news`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
   `heading` text NOT NULL,
   `content` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,9 +148,8 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (22,'New','<p>Page</p>\r\n','2013-04-02 19:02:29');
-INSERT INTO `news` VALUES (23,'Kazkas','','2013-04-02 19:59:16');
-INSERT INTO `news` VALUES (24,'Veikia','<p>feafef</p>\r\n','2013-04-02 20:07:44');
+INSERT INTO `news` VALUES (25,'sed-ut-perspiciatis-unde','Sed ut perspiciatis unde','<p>Domnis iste natus error sit voluptam accusa doloremque</p>\r\n','2013-04-12 17:46:51');
+INSERT INTO `news` VALUES (26,'totam-rem-aperiam','Totam rem aperiam','<p>Eaqueipsa quae abillo inventoretis et quasi architecto beatae</p>\r\n','2013-04-12 17:45:35');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +179,7 @@ CREATE TABLE `page` (
 
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
-INSERT INTO `page` VALUES (15,'Home','home','<ol>\r\n	<li>hdfh</li>\r\n	<li>fjfgj</li>\r\n	<li>jdfj</li>\r\n	<li>fjkfg</li>\r\n	<li>kioi</li>\r\n</ol>\r\n','','',1,'2013-04-08 19:28:48');
+INSERT INTO `page` VALUES (15,'Home','home','<h2>Welcome to <span>Our Design Company!</span></h2>\r\n\r\n<p>Design Company is a free web template created by Te<span style=\"line-height: 1.6em;\">mplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</span></p>\r\n\r\n<p><img alt=\"\" src=\"http://localhost/CMS/upload/banner1.jpg\" style=\"opacity: 0.9; line-height: 1.6em; width: 566px; height: 117px;\" /></p>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',2,'2013-04-12 18:37:34');
 INSERT INTO `page` VALUES (16,'About','about','','','',1,'2013-04-08 19:13:13');
 INSERT INTO `page` VALUES (17,'Privacy','privacy','<p>gasgasg</p>\r\n','','',1,'2013-04-08 19:27:32');
 INSERT INTO `page` VALUES (18,'Gallery','gallery','','','',1,'2013-04-08 19:13:24');
@@ -250,6 +249,15 @@ INSERT INTO `page_history` VALUES (11,'Naujienos','naujienos','<p>Akropolis</p>\
 INSERT INTO `page_history` VALUES (12,'Naujas pag','naujas-pag','<p>turinys</p>\r\n','','',1,'2013-03-30 23:43:37',1);
 INSERT INTO `page_history` VALUES (12,'Naujas pag','naujas-pag','<p>turinys</p>\r\n','','',1,'2013-03-30 23:43:37',2);
 INSERT INTO `page_history` VALUES (15,'Home','home','','','',1,'2013-04-08 19:13:08',1);
+INSERT INTO `page_history` VALUES (15,'Home','home','<ol>\r\n	<li>hdfh</li>\r\n	<li>fjfgj</li>\r\n	<li>jdfj</li>\r\n	<li>fjkfg</li>\r\n	<li>kioi</li>\r\n</ol>\r\n','','',1,'2013-04-08 19:28:48',2);
+INSERT INTO `page_history` VALUES (15,'Home','home','<ol>\r\n	<li>hdfh</li>\r\n	<li>fjfgj</li>\r\n	<li>jdfj</li>\r\n	<li>fjkfg</li>\r\n	<li>kioi</li>\r\n</ol>\r\n','','',2,'2013-04-12 16:53:46',3);
+INSERT INTO `page_history` VALUES (15,'Welcome to Our Design Company!','welcome-to-our-design-company!','<p>&lt;p&gt;Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp;amp; CSS3 valid.&lt;/p&gt;<br />\r\n&lt;figure&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;images/banner1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/figure&gt;<br />\r\n&lt;p&gt;This website template has several pages: &lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;, &lt;a href=&quot;about.html&quot;&gt;About us&lt;/a&gt;, &lt;a href=&quot;privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;, &lt;a href=&quot;gallery.html&quot;&gt;Gallery&lt;/a&gt;, &lt;a href=&quot;contacts.html&quot;&gt;Contact us&lt;/a&gt; (note that contact us form &ndash; doesn&rsquo;t work), &lt;a href=&quot;sitemap&quot;&gt;Site Map&lt;/a&gt;.&lt;/p&gt;<br />\r\nThis website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.&nbsp;</p>\r\n','','',1,'2013-04-12 17:21:18',4);
+INSERT INTO `page_history` VALUES (15,'Home','home','<p>Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</p>\r\n              <figure><a href=\"#\"><img src=\"images/banner1.jpg\" alt=\"\"></a></figure>\r\n              <p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form â€“ doesnâ€™t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n              This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.\r\n','','',1,'2013-04-12 17:21:42',5);
+INSERT INTO `page_history` VALUES (15,'Home','home','<p>Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</p>\r\n\r\n<figure><a href=\"#\"><img alt=\"\" src=\"images/banner1.jpg\" /></a></figure>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',2,'2013-04-12 17:22:12',6);
+INSERT INTO `page_history` VALUES (15,'Home','home','<h2>Welcome to <span>Our Design Company!</span></h2>\r\n\r\n<p>Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</p>\r\n\r\n<figure><a href=\"#\"><img alt=\"\" src=\"images/banner1.jpg\" /></a></figure>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',1,'2013-04-12 17:26:52',7);
+INSERT INTO `page_history` VALUES (15,'Home','home','<h2>Welcome to <span>Our Design Company!</span></h2>\r\n\r\n<p>Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</p>\r\n\r\n<figure><a href=\"#\"><img alt=\"\" src=\"images/banner1.jpg\" /></a></figure>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',2,'2013-04-12 17:27:10',8);
+INSERT INTO `page_history` VALUES (15,'Home','home','<h2>Welcome to <span>Our Design Company!</span></h2>\r\n\r\n<p>Design Company is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</p>\r\n\r\n<p><img alt=\"\" src=\"http://localhost/CMS/upload/banner1.jpg\" style=\"width: 566px; height: 117px;\" /></p>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',2,'2013-04-12 17:38:11',9);
+INSERT INTO `page_history` VALUES (15,'Home','home','<h2>Welcome to <span>Our Design Company!</span></h2>\r\n\r\n<p>Design Company is a free web template created by Te<img alt=\"\" src=\"http://localhost/CMS/upload/banner1.jpg\" style=\"line-height: 1.6em; opacity: 0.9; width: 566px; height: 117px;\" /><span style=\"line-height: 1.6em;\">mplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also HTML5 &amp; CSS3 valid.</span></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>This website template has several pages: <a href=\"index.html\">Home</a>, <a href=\"about.html\">About us</a>, <a href=\"privacy.html\">Privacy Policy</a>, <a href=\"gallery.html\">Gallery</a>, <a href=\"contacts.html\">Contact us</a> (note that contact us form &ndash; doesn&rsquo;t work), <a href=\"sitemap\">Site Map</a>.</p>\r\n\r\n<p>This website template can be delivered in two packages - with PSD source files included and without them. If you need PSD source files, please go to the template download page at TemplateMonster to leave the e-mail address that you want the template ZIP package to be delivered to.</p>\r\n','','',2,'2013-04-12 18:37:00',10);
 INSERT INTO `page_history` VALUES (17,'Privacy','privacy','','','',1,'2013-04-08 19:13:18',1);
 INSERT INTO `page_history` VALUES (46,'Main page','','','','',1,'2013-03-26 21:51:47',1);
 INSERT INTO `page_history` VALUES (47,'Second oage','','','','',1,'2013-03-26 21:52:02',1);
@@ -281,6 +289,8 @@ CREATE TABLE `page_news` (
 
 LOCK TABLES `page_news` WRITE;
 /*!40000 ALTER TABLE `page_news` DISABLE KEYS */;
+INSERT INTO `page_news` VALUES (15,25);
+INSERT INTO `page_news` VALUES (15,26);
 /*!40000 ALTER TABLE `page_news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,6 +317,36 @@ LOCK TABLES `site` WRITE;
 /*!40000 ALTER TABLE `site` DISABLE KEYS */;
 INSERT INTO `site` VALUES (4,'homePage','11');
 /*!40000 ALTER TABLE `site` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `slides`
+--
+
+DROP TABLE IF EXISTS `slides`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `slides` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `upload_id` int(11) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `slides`
+--
+
+LOCK TABLES `slides` WRITE;
+/*!40000 ALTER TABLE `slides` DISABLE KEYS */;
+INSERT INTO `slides` VALUES (6,58,'http://google.com','Slide 1');
+INSERT INTO `slides` VALUES (7,59,'http://facebook.com','Slide 2');
+INSERT INTO `slides` VALUES (8,60,'http://demo.puslapiai.eu/tg/Tarifai','Slide 3');
+INSERT INTO `slides` VALUES (9,61,'http://donatas.com','Slide 4');
+INSERT INTO `slides` VALUES (10,62,'http://nea.c','Slide 5');
+/*!40000 ALTER TABLE `slides` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -346,9 +386,8 @@ DROP TABLE IF EXISTS `upload`;
 CREATE TABLE `upload` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,7 +396,15 @@ CREATE TABLE `upload` (
 
 LOCK TABLES `upload` WRITE;
 /*!40000 ALTER TABLE `upload` DISABLE KEYS */;
-INSERT INTO `upload` VALUES (51,'ads.jpg','');
+INSERT INTO `upload` VALUES (58,'slide1.jpg');
+INSERT INTO `upload` VALUES (59,'slide2.jpg');
+INSERT INTO `upload` VALUES (60,'slide3.jpg');
+INSERT INTO `upload` VALUES (61,'slide4.jpg');
+INSERT INTO `upload` VALUES (62,'slide5.jpg');
+INSERT INTO `upload` VALUES (63,'guitar.jpg');
+INSERT INTO `upload` VALUES (64,'guitar_1.jpg');
+INSERT INTO `upload` VALUES (65,'guitar_2.jpg');
+INSERT INTO `upload` VALUES (67,'banner1.jpg');
 /*!40000 ALTER TABLE `upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,4 +443,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-12 18:20:42
+-- Dump completed on 2013-04-12 22:12:19

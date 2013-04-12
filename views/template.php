@@ -30,7 +30,7 @@
         <nav>
             <ul>
             <?php foreach ($this->categories["main-menu"]["pages"] as $menuItem): ?>
-                <li><a href="<?=$menuItem["name"]?>"
+                <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"
                 <?=($menuItem["name"] == $this->currentPage) ? ' class="current"' : ''?>>
                 <?=$menuItem["title"]?></a></li>
             <?php endforeach ?>
@@ -42,11 +42,9 @@
 <section id="gallery">
     <div class="container">
         <ul id="myRoundabout">
-            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide3.jpg" alt=""></li>
-            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide2.jpg" alt=""></li>
-            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide5.jpg" alt=""></li>
-            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide1.jpg" alt=""></li>
-            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide4.jpg" alt=""></li>
+            <?php foreach($this->slides as $slide): ?>
+            <li><a href="<?=$slide["link"]?>"><img src="<?=ABSOLUTE_PATH?>upload/<?=$slide["file"]?>" alt="<?=$slide["title"]?>" /></a></li>
+            <?php endforeach ?>
         </ul>
     </div>
 </section>

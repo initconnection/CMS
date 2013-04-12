@@ -19,3 +19,7 @@
     function redirect($location) {
          header("Location: " .  ABSOLUTE_PATH . $location);
     }
+
+    function titleToName($title) {
+         return strtolower(str_replace(" ", "-", trim($title)));
+    }

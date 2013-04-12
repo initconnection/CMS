@@ -7,6 +7,7 @@
         protected $urlArray = array();
         protected $template_dir = "views/";
         protected $vars = array();
+        protected $idArray= array();
 
         public function __construct($action, $urlValues) {
             $this->_action = $action;
@@ -34,6 +35,7 @@
         public function render($view_file) {
             $this->currentPage = $this->url;
             $this->categories = CategoryModel::selectCategoriesAndPages();
+            $this->slides = SlidesModel::selectAllSlides();
             $this->view_file = $view_file;
             self::render_view("template.php");
         }

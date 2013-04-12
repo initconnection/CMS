@@ -1,6 +1,12 @@
     <label for="title"><?=_("Title")?></label>
     <input type="text" id="title" name="title" value="<?=$this->title?>" /> <br/>
-    <textarea class="ckeditor" name="content"><?=$this->content?></textarea>
+    <textarea id="content" name="content"><?=$this->content?></textarea>
+    <script>
+        var editor = CKEDITOR.replace('content', 
+        {
+            width: '620'
+        });
+    </script>
     <button id="showOptional" class="btn"><?=_("Options")?></button>
     <div id="pageOptions">
         <h2><?=_("Page setup")?></h2>
@@ -12,7 +18,9 @@
             <label for="module"><?=_("Module")?></label>
             <select name="module" id="module">
             <?php foreach($this->allModules as $module): ?>
-                <option value="<?=$module["id"]?>"><?=$module["title"]?></option>
+                <option value="<?=$module["id"]?>"
+                    <?=($module["id"] == $this->module) ? "selected" : NULL?> >       
+                <?=$module["title"]?></option>
              <?php endforeach ?>
             </select><br />
             <label for="category0"><?=_("Categories")?></label>
@@ -24,7 +32,7 @@
                     <?php endif; ?> >
                         <?=$category["title"]?>
                     </option>
-                <?php endforeach; ?>
+                <?php endforeach ?>
             </select> <br />
             <?php for ($i = 1; $i < count($this->categories); $i++): ?>
             <select name="category<?=$i?>" id="category<?=$i?>">
@@ -33,7 +41,7 @@
                         <?=($category["id"] == $this->categories[$i]) ? "selected" : NULL?>>
                         <?=$category["title"]?>
                     </option>
-                <?php endforeach; ?>
+                <?php endforeach ?>
             </select> <br />
             <?php endfor; ?>
             <button id="addCategory" class="btn"><?=_("Add category")?></button>

@@ -10,9 +10,14 @@ class UploadModel extends BaseModel {
 
     protected static $table = "upload";
 
-    public static function uploadImage($imageFile, $title, $thumbSize) {
+    public static function uploadImage($imageFile, $thumbSize, $sizeX = null, $sizeY = null) {
         $handle = new Upload($imageFile);
         if ($handle->uploaded) {
+            if($sizeX || $sizeY) {
+                $handle->image_resize = true;
+                $sizeX ? $handle->image_x = $sizeX : null;
+                $sizeY ? $handle->image_y = $sizeY : null;
+            }
             $handle->process(SITE_PATH."upload/");
             if ($handle->processed) {
                 $handle->image_resize = true;
@@ -21,8 +26,7 @@ class UploadModel extends BaseModel {
                 $handle->process(SITE_PATH."upload/thumbnails");
                 $fileName = $handle->file_dst_name;
                 
-                $id = Database::insertElement(self::$table, array("file" => $fileName, 
-                        "title" => $title));
+                $id = Database::insertElement(self::$table, array("file" => $fileName));
                 
                 $handle->clean();
                 
