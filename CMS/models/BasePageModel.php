@@ -116,4 +116,8 @@ class BasePageModel extends BaseModel {
     public static function selectAllModulePages($moduleId) {
         return Database::selectElements(self::$table, array("module" => $moduleId));
     }
+
+    public static function selectAllFromPage($pageId) {
+        return self::selectPage($pageId);
+    }
 }

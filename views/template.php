@@ -1,90 +1,74 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-
-    <meta name="description" content="Designa Studio, a HTML5 / CSS3 template.">
-    <meta name="author" content="Sylvain Lafitte, Web Designer, sylvainlafitte.com">
-
-    <title>Example Website</title>
-
-    <link rel="shortcut icon" type="image/x-icon" href="<?=ABSOLUTE_PATH?>views/style/img/favicon.ico">
-    <link rel="shortcut icon" type="image/png" href="<?=ABSOLUTE_PATH?>views/style/img/favicon.png">
-
-    <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/style.css">
-	<link rel="stylesheet" href="<?=ABSOLUTE_PATH?>lightbox/css/lightbox.css" type="text/css" media="screen" />
-
+    <title>Home - Home Page | Design Company - Free Website Template from Templatemonster.com</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/reset.css" type="text/css" media="all">
+    <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/style.css" type="text/css" media="all">
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/jquery-1.4.2.min.js" ></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/cufon-yui.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/Humanst521_BT_400.font.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/Humanst521_Lt_BT_400.font.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/roundabout.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/roundabout_shapes.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/gallery_init.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/cufon-replace.js"></script>
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/ie/ie6.css" type="text/css" media="all">
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/html5.js"></script>
+    <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/IE9.js"></script>
+    <![endif]-->
 </head>
 
-    <body>
+<body>
+<!-- header -->
+<header>
     <div class="container">
-
-        <header id="navtop">
-            <a href="<?=ABSOLUTE_PATH?>" class="logo fleft">
-                <img src="<?=ABSOLUTE_PATH?>views/style/img/logo.png" alt="Designa Studio">
-            </a>
-
-            <nav class="fright">
-            <?php foreach (array_chunk($this->categories["main-menu"]["pages"], 2) as $col): ?>
-                <ul>
-                <?php foreach($col as $menuItem): ?>
-                    <li><a href="<?=ABSOLUTE_PATH?><?=$menuItem["name"]?>"><?=$menuItem["title"]?></a></li>
-                <?php endforeach ?>
-                </ul>
+        <h1><a href="home">Design Company</a></h1>
+        <nav>
+            <ul>
+            <?php foreach ($this->categories["main-menu"]["pages"] as $menuItem): ?>
+                <li><a href="<?=$menuItem["name"]?>"
+                <?=($menuItem["name"] == $this->currentPage) ? ' class="current"' : ''?>>
+                <?=$menuItem["title"]?></a></li>
             <?php endforeach ?>
-            </nav>
-        </header>
-
-
-        <div class="home-page main">
-            <section class="grid-wrap" >
-                <header class="grid col-full">
-                    <hr>
-                </header>
-
-                <div class="grid col-one-half mq2-col-full">
-                    <?php $this->render_view($this->view_file) ?>
-                </div>
-            </section>
-
-        <div class="divide-top">
-            <footer class="grid-wrap">
-                <ul class="grid col-one-third social">
-                    <li><a href="#">RSS</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Google+</a></li>
-                    <li><a href="#">Flickr</a></li>
-                </ul>
-
-                <div class="up grid col-one-third ">
-                    <a href="#navtop" title="Go back up">&uarr;</a>
-                </div>
-            </footer>
-        </div>
-
+            </ul>
+        </nav>
     </div>
-    <!-- Javascript - jQuery -->
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-
-    <!--[if (gte IE 6)&(lte IE 8)]>
-    <script src="<?=ABSOLUTE_PATH?>views/style/js/selectivizr.js"></script>
-    <![endif]-->
-
-    <script src="<?=ABSOLUTE_PATH?>views/style/js/jquery.flexslider-min.js"></script>
-    <script src="<?=ABSOLUTE_PATH?>views/style/js/scripts.js"></script>
-    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery-1.7.2.min.js"></script>
-    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery-ui-1.8.18.custom.min.js"></script>
-    <script src="<?=ABSOLUTE_PATH?>lightbox/js/jquery.smooth-scroll.min.js"></script>
-    <script src="<?=ABSOLUTE_PATH?>lightbox/js/lightbox.js"></script>
-
+</header>
+<!-- #gallery -->
+<section id="gallery">
+    <div class="container">
+        <ul id="myRoundabout">
+            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide3.jpg" alt=""></li>
+            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide2.jpg" alt=""></li>
+            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide5.jpg" alt=""></li>
+            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide1.jpg" alt=""></li>
+            <li><img src="<?=ABSOLUTE_PATH?>views/style/images/slide4.jpg" alt=""></li>
+        </ul>
+    </div>
+</section>
+<!-- /#gallery -->
+<div class="main-box">
+    <div class="container">
+        <div class="inside">
+            <div class="wrapper">
+                <?php $this->render_view($this->view_file) ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<footer>
+    <div class="container">
+        <div class="wrapper">
+            <div class="fleft">Copyright - Type in your name here</div>
+            <div class="fright"><!--<a rel="nofollow" href="http://www.templatemonster.com/" target="_blank">Website template</a> designed by TemplateMonster.com&nbsp; &nbsp; |&nbsp; &nbsp; <a href="http://templates.com/product/3d-models/" target="_blank">3D Models</a> provided by Templates.com--></div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript"> Cufon.now(); </script>
 </body>
-
 </html>
-
-
-

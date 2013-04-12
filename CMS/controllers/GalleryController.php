@@ -22,6 +22,7 @@
             $this->url = "";
             $this->title = "";
             $this->galleryPages = GalleryModel::selectAllGalleryPages();
+
             $this->render("gallery/create.php");
         }
     }

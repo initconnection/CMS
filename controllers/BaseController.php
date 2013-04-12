@@ -32,6 +32,7 @@
         }
 
         public function render($view_file) {
+            $this->currentPage = $this->url;
             $this->categories = CategoryModel::selectCategoriesAndPages();
             $this->view_file = $view_file;
             self::render_view("template.php");
