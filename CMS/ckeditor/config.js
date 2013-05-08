@@ -30,5 +30,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
     config.forcePasteAsPlainText = true;
-	
+	config.contentsCss = '../../../views/style/css/styles_noBg.css';
 };

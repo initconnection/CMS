@@ -4,7 +4,7 @@ class PageController extends BaseController {
 
     public function show() {
         $page = PageModel::selectPageFromUrl($this->urlArray);
-        $this->title = $page["title"];
+        $this->title = $page["title"] . " - " . SiteModel::selectSiteTitle();
         $this->content = $page["content"];
         $this->description = $page["description"];
         $this->keywords = $page["keywords"];

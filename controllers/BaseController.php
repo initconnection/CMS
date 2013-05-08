@@ -11,11 +11,14 @@
 
         public function __construct($action, $urlValues) {
             $this->_action = $action;
-
+			
+			$homePageName = SiteModel::selectHomePageName();
+			
             if(self::checkUrl($urlValues)) {
                 $this->url = $urlValues["url"];
             } else {
-                $this->url = SiteModel::selectHomePageName();
+                $this->url = $homePageName;
+				$this->isHomePage = true;
             }
             $this->urlArray = explode("/", $this->url);
         }

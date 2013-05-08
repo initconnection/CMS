@@ -21,6 +21,10 @@ class SiteModel extends BaseModel {
     public static function selectHomePage() {
         return self::selectParameter("homePage");
     }
+    
+    public static function selectSiteTitle() {
+        return self::selectParameter("siteTitle");
+    }
 
     public function selectHomePageName() {
         $homePageId = self::selectHomePage();

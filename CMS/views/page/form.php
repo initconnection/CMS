@@ -4,7 +4,8 @@
     <script>
         var editor = CKEDITOR.replace('content', 
         {
-            width: '620'
+            width: 572 + 50,
+			height: 400,
         });
     </script>
     <button id="showOptional" class="btn"><?=_("Options")?></button>

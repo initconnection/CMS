@@ -12,6 +12,6 @@
         if(isAuthorized() || $controller->checkAction("login")) {
             $controller->executeAction();  
         } else {
-            redirect("home/login");
+            redirect("main/login");
         }       
     }

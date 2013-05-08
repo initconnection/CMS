@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home - Home Page | Design Company - Free Website Template from Templatemonster.com</title>
-    <meta charset="utf-8">
+    <title><?=$this->title?></title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="<?=$this->keywords?>" />
+    <meta name="description" content="<?=$this->description?>" />
     <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/reset.css" type="text/css" media="all">
     <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/style.css" type="text/css" media="all">
     <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/jquery-1.4.2.min.js" ></script>
@@ -13,6 +15,8 @@
     <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/roundabout_shapes.js"></script>
     <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/gallery_init.js"></script>
     <script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/cufon-replace.js"></script>
+	<script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+	<script type="text/javascript" src="<?=ABSOLUTE_PATH?>views/style/js/script.js"></script>
     <!--[if lt IE 7]>
     <link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/ie/ie6.css" type="text/css" media="all">
     <![endif]-->
@@ -49,7 +53,7 @@
     </div>
 </section>
 <!-- /#gallery -->
-<div class="main-box">
+<div id="mainContent" class="main-box">
     <div class="container">
         <div class="inside">
             <div class="wrapper">
@@ -68,5 +72,12 @@
     </div>
 </footer>
 <script type="text/javascript"> Cufon.now(); </script>
+<?php if(!$this->isHomePage): ?>
+<script>
+	$(document).ready(function() {
+		$.scrollTo("#mainContent", 500);
+	});
+</script>
+<?php endif ?>
 </body>
 </html>

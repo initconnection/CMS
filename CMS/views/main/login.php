@@ -1,4 +1,4 @@
-<form action="<?=ABSOLUTE_PATH?>home/login" method="POST">
+<form action="<?=ABSOLUTE_PATH?>main/login" method="POST">
     <label for="username"><?=_("Username")?>:</label>
     <input type="text" name="username" id="username" /><br />
     <label for="password"><?=_("Password")?>:</label>

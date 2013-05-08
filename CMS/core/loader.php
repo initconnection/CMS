@@ -9,7 +9,7 @@
             $this->_urlValues = $urlValues;
 
             if ($this->_urlValues["controller"] == "") {
-                $this->_controller = "HomeController";
+                $this->_controller = "MainController";
             } else {
                 $this->_controller = ucfirst($this->_urlValues["controller"]) . "Controller";
             }

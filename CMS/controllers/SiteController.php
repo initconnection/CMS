@@ -12,6 +12,7 @@ class SiteController extends BaseController {
         else {
             $this->pages = PageModel::selectAllPages();
             $this->homePage = SiteModel::selectHomePage();
+			$this->siteTitle = SiteModel::selectSiteTitle();
             $this->render("site/index.php");
         }
     }
