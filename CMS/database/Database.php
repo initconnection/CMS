@@ -73,6 +73,15 @@
 
             return $result ? $result[0] : null;
         }
+        
+        public static function selectFirstElement($table) {
+            $query = "SELECT * FROM " . $table;
+            
+			$result = self::executeQuery($query);
+
+			$elements = $result->fetchAll(PDO::FETCH_ASSOC);
+            return $elements[0];
+        }
 
 		/*
 		** Updates elements which meet specified conditions with the new data

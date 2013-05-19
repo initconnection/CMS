@@ -20,8 +20,7 @@
                 <li><a href="<?=ABSOLUTE_PATH?>page/index">Pages</a></li>
                 <li><a href="<?=ABSOLUTE_PATH?>site/index"><?=_("Options")?></a></li>
                 <li><a href="<?=ABSOLUTE_PATH?>upload/index"><?=_("Upload")?></a></li>
-                <li><a href="<?=ABSOLUTE_PATH?>slides/index"><?=_("Slides")?></a></li>
-                <li><a href="<?=ABSOLUTE_PATH?>news/index"><?=_("News")?></a></li>
+                <li><a href="<?=ABSOLUTE_PATH?>home/index"><?=_("Home page")?></a></li>
             </ul>
         </div>
     </div>

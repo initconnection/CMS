@@ -38,7 +38,6 @@
         public function render($view_file) {
             $this->currentPage = $this->url;
             $this->categories = CategoryModel::selectCategoriesAndPages();
-            $this->slides = SlidesModel::selectAllSlides();
             $this->view_file = $view_file;
             self::render_view("template.php");
         }

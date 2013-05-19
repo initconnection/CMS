@@ -1,6 +1,6 @@
-<form action="<?=ABSOLUTE_PATH?>home/create" method="post" xmlns="http://www.w3.org/1999/html">
+<form action="<?=ABSOLUTE_PATH?>home/update" method="post" xmlns="http://www.w3.org/1999/html">
     <?php $this->render_view("home/form.php") ?>
-    <input type="hidden" name="pageId" value="<?=$this->pageId?>"/>
+    <input type="hidden" name="homeId" value="<?=$this->homeId?>" />
     <input type="submit" value="<?=_("Submit")?>" class="btn"/>
 </form>
 
