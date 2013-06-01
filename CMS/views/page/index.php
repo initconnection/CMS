@@ -8,7 +8,7 @@
         <ul class="category unstyled">
             <?php foreach ($category["pages"] as $page): ?>
             <li>
-                <a href="<?=ABSOLUTE_PATH?><?=$page["moduleName"]?>/show/<?=$page["id"]?>"><?=$page["title"]?></a>
+                <a href="<?=ABSOLUTE_PATH?><?=$page["moduleName"]?>/update/<?=$page["id"]?>"><?=$page["title"]?></a>
                 <a href="<?=ABSOLUTE_PATH?>page/up/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-arrow-up"></i></a>
                 <a href="<?=ABSOLUTE_PATH?>page/down/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-arrow-down"></i></a>
                 <a href="<?=ABSOLUTE_PATH?>page/delete/<?=$page["id"]?>/<?=$category["id"]?>"><i class="icon-remove"></i></a>

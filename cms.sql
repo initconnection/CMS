@@ -64,10 +64,6 @@ CREATE TABLE `category_page` (
 
 LOCK TABLES `category_page` WRITE;
 /*!40000 ALTER TABLE `category_page` DISABLE KEYS */;
-INSERT INTO `category_page` VALUES (9,21,1);
-INSERT INTO `category_page` VALUES (9,22,2);
-INSERT INTO `category_page` VALUES (9,23,3);
-INSERT INTO `category_page` VALUES (9,24,4);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,10 +144,10 @@ CREATE TABLE `page` (
 
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
-INSERT INTO `page` VALUES (21,'Apie mus','apie-mus','','','',1,'2013-05-19 16:21:43');
-INSERT INTO `page` VALUES (22,'Darbai','darbai','','','',5,'2013-05-19 18:09:15');
-INSERT INTO `page` VALUES (23,'Paslaugos','paslaugos','','','',1,'2013-05-19 16:22:01');
-INSERT INTO `page` VALUES (24,'Kontaktai','kontaktai','','','',1,'2013-05-19 16:22:06');
+INSERT INTO `page` VALUES (21,'<p>Apigsgsrggehd<br />\nhjhsdgsdg</p>\n','apie-mus','<p>Veikia!!!!f awfa wf</p>\n','','',1,'2013-06-01 14:13:18');
+INSERT INTO `page` VALUES (22,'Darbai','darbai','','','',1,'2013-06-01 11:49:30');
+INSERT INTO `page` VALUES (23,'\n		<p>Bandymukas</p>\n	','paslaugos','<p>sagasgasgsagsa hdfsagsagsagsagsasasaghkyfefeafkkygy ygfefkgyfasffasfkg wafawfkopakwf egegegeg</p>\n','','',1,'2013-06-01 14:32:55');
+INSERT INTO `page` VALUES (24,'dalius','dalius','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																			','fasfas','fwqfqw',1,'2013-06-01 14:56:14');
 INSERT INTO `page` VALUES (25,'Home','home','<p>Sveiki!</p>\r\n','','',5,'2013-05-19 16:56:35');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -174,7 +170,7 @@ CREATE TABLE `page_history` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +179,15 @@ CREATE TABLE `page_history` (
 
 LOCK TABLES `page_history` WRITE;
 /*!40000 ALTER TABLE `page_history` DISABLE KEYS */;
+INSERT INTO `page_history` VALUES (21,'Apie mus','apie-mus','','','',1,'2013-05-19 16:21:43',1);
 INSERT INTO `page_history` VALUES (22,'Darbai','darbai','','','',1,'2013-05-19 16:21:56',1);
+INSERT INTO `page_history` VALUES (22,'Darbai','darbai','','','',1,'2013-06-01 11:49:30',2);
+INSERT INTO `page_history` VALUES (24,'kontafsfs','kontaktai','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n														','','',1,'2013-06-01 14:48:22',1);
+INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n															','','',0,'2013-06-01 14:51:17',2);
+INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																','','',0,'2013-06-01 14:51:36',3);
+INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																	','','',0,'2013-06-01 14:53:15',4);
+INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																		','','',0,'2013-06-01 14:53:49',5);
+INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																		','','',0,'2013-06-01 14:53:49',6);
 INSERT INTO `page_history` VALUES (25,'Home','home','','','',1,'2013-05-19 16:44:20',1);
 INSERT INTO `page_history` VALUES (25,'Home','home','','','',1,'2013-05-19 16:44:20',2);
 INSERT INTO `page_history` VALUES (25,'Home','home','<p>Sveiki!</p>\r\n','','',1,'2013-05-19 16:45:04',3);
@@ -254,7 +258,7 @@ CREATE TABLE `upload` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +282,7 @@ CREATE TABLE `user` (
   `username` varchar(20) CHARACTER SET latin1 NOT NULL,
   `password` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-19 22:08:34
+-- Dump completed on 2013-06-01 17:57:53

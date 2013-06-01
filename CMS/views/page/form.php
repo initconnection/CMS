@@ -12,11 +12,7 @@
     <div id="pageOptions">
         <h2><?=_("Page setup")?></h2>
         <p>
-            <label for="description"><?=_("Description")?></label>
-            <textarea name="description" id="description" cols="50" rows="2"><?=$this->description?></textarea><br />
-            <label for="keywords"><?=_("Keywords")?></label>
-            <input name="keywords" id="keywords" value="<?=$this->keywords?>" /><br />
-            <label for="module"><?=_("Module")?></label>
+			<label for="module"><?=_("Module")?></label>
             <select name="module" id="module">
             <?php foreach($this->allModules as $module): ?>
                 <option value="<?=$module["id"]?>"
@@ -24,6 +20,11 @@
                 <?=$module["title"]?></option>
              <?php endforeach ?>
             </select><br />
+            <label for="description"><?=_("Description")?></label>
+            <textarea name="description" id="description" cols="50" rows="2"><?=$this->description?></textarea><br />
+            <label for="keywords"><?=_("Keywords")?></label>
+            <input name="keywords" id="keywords" value="<?=$this->keywords?>" /><br />
+            
             <label for="category0"><?=_("Categories")?></label>
             <select name="category0" id="category0">
                 <?php foreach($this->allCategories as $category): ?>
