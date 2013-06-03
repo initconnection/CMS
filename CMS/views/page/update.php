@@ -11,7 +11,6 @@
 	<textarea name="description" id="description" cols="50" rows="2"><?=$this->description?></textarea><br />
 	<label for="keywords"><?=_("Keywords")?></label>
 	<input name="keywords" id="keywords" value="<?=$this->keywords?>" /><br />
-	
 	<label for="category0"><?=_("Categories")?></label>
 	<select name="category0" id="category0">
 		<?php foreach($this->allCategories as $category): ?>
@@ -57,7 +56,12 @@
 		var module = $("#module").val();
 		var description = $("#description").val();
 		var keywords = $("#keywords").val();
-		//!!!!! DAMUSTI
+		var categoriesArray = new Array();
+		var categories = $('select[id^="category"]');
+		categories.each(function() {
+			categoriesArray.push(this.value);
+		});
+
 		$("#loading").show();
 		
 		setTimeout(function(){
@@ -66,13 +70,14 @@
 				url: "<?=ABSOLUTE_PATH?>page/update",
 				data: "id=<?=$this->id?>&title=" + title + "&content=" + content +
 					"&module=" + module + "&description=" + description + 
-					"&keywords=" + keywords ,
+					"&keywords=" + keywords + "&categories=" + categoriesArray,
 				success: function(msg) {
 					$("#loading").hide();
 					$("#saved").fadeIn("slow").delay(1000).fadeOut("slow");
 				}
+				
 			});
-		}, 500);
+		}, 250);
 	});
 	
 	CKEDITOR.inline('title', {

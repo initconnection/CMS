@@ -26,16 +26,10 @@ class PageController extends BaseController {
             $description = $_POST["description"];
             $keywords = $_POST["keywords"];
             $module = $_POST["module"];
-
-            $categories = array();
-            $i = 0;
-            while (isset($_POST["category" . $i])) {
-                $categories[] = $_POST["category" . $i];
-                $i++;
-            }
+			$categories = $_POST["categories"];
+			$categoriesArray = explode(", ", $categories);
             
-            PageModel::insertPage($title, $content, $description, $keywords,
-                    $module, $categories);
+            PageModel::insertPage($title, $content, $description, $keywords, $module, $categoriesArray);
             
             redirect("page/index");
         }
@@ -61,15 +55,10 @@ class PageController extends BaseController {
             $description = $_POST["description"];
             $keywords = $_POST["keywords"];
             $module = $_POST["module"];
-
-            $categories = array();
-            $i = 0;
-            while (isset($_POST["category" . $i])) {
-                $categories[] = $_POST["category" . $i];
-                $i++;
-            }
-
-            PageModel::updatePage($id, $title, $content, $description, $keywords, $module, $categories);
+            $categories = $_POST["categories"];
+			$categoriesArray = explode(", ", $categories);
+			
+            PageModel::updatePage($id, $title, $content, $description, $keywords, $module, $categoriesArray);
 
             redirect("page/index");
         }

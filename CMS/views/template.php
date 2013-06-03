@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="<?=ABSOLUTE_PATH?>views/style/css/bootstrap.css" type="text/css" media="all" />
 	<script src="<?=ABSOLUTE_PATH?>views/style/js/jquery-1.9.1.js"></script>
 	<script src="<?=ABSOLUTE_PATH?>ckeditor/ckeditor.js"></script>
+	<script src="<?=ABSOLUTE_PATH?>views/style/js/main.js"></script>
 </head>
 <body>
 	<div id="loading">
@@ -25,7 +26,9 @@
 			<div class="clear"></div>
 		</ul>
 	</div>
-    <?php $this->render_view($this->view_file) ?>
+	<div id="main">
+		<?php $this->render_view($this->view_file) ?>
+	</div>
 	<div id="saved">
 		OK, išsaugota
 	</div>

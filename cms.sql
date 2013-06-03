@@ -64,6 +64,9 @@ CREATE TABLE `category_page` (
 
 LOCK TABLES `category_page` WRITE;
 /*!40000 ALTER TABLE `category_page` DISABLE KEYS */;
+INSERT INTO `category_page` VALUES (9,26,2);
+INSERT INTO `category_page` VALUES (9,27,4);
+INSERT INTO `category_page` VALUES (9,28,5);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,8 +137,9 @@ CREATE TABLE `page` (
   `keywords` varchar(200) NOT NULL,
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lang` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,11 +148,9 @@ CREATE TABLE `page` (
 
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
-INSERT INTO `page` VALUES (21,'<p>Apigsgsrggehd<br />\nhjhsdgsdg</p>\n','apie-mus','<p>Veikia!!!!f awfa wf</p>\n','','',1,'2013-06-01 14:13:18');
-INSERT INTO `page` VALUES (22,'Darbai','darbai','','','',1,'2013-06-01 11:49:30');
-INSERT INTO `page` VALUES (23,'\n		<p>Bandymukas</p>\n	','paslaugos','<p>sagasgasgsagsa hdfsagsagsagsagsasasaghkyfefeafkkygy ygfefkgyfasffasfkg wafawfkopakwf egegegeg</p>\n','','',1,'2013-06-01 14:32:55');
-INSERT INTO `page` VALUES (24,'dalius','dalius','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																			','fasfas','fwqfqw',1,'2013-06-01 14:56:14');
-INSERT INTO `page` VALUES (25,'Home','home','<p>Sveiki!</p>\r\n','','',5,'2013-05-19 16:56:35');
+INSERT INTO `page` VALUES (26,'gykdsghsdhsyk','gykdsghsdhsyk','\n		\n		\n		\n		\n		<p>gykgk</p>\n					','','fasfaf',1,'2013-06-03 16:17:08','lt');
+INSERT INTO `page` VALUES (27,'New Page','new-page','\n		<p>saggggggaag</p>\n	','','s',1,'2013-06-03 16:17:08','lt');
+INSERT INTO `page` VALUES (28,'Pavadinimasasss','pavadinimasasss','\n		\n		Contentbdfbd','','',1,'2013-06-03 16:17:08','lt');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +172,7 @@ CREATE TABLE `page_history` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,8 +182,12 @@ CREATE TABLE `page_history` (
 LOCK TABLES `page_history` WRITE;
 /*!40000 ALTER TABLE `page_history` DISABLE KEYS */;
 INSERT INTO `page_history` VALUES (21,'Apie mus','apie-mus','','','',1,'2013-05-19 16:21:43',1);
+INSERT INTO `page_history` VALUES (21,'<p>Apigsgsrggehd<br />\nhjhsdgsdg</p>\n','apie-mus','<p>Veikia!!!!f awfa wf</p>\n','','',1,'2013-06-01 14:13:18',2);
+INSERT INTO `page_history` VALUES (21,'<p>Apigsgsrggehd<br>hjhsddeddgsdg</p>','<p>apigsgsrggehd<br>hjhsddeddgsdg</p>','\n		<p>Veikia!!!!f awfa wf</p>\n	','','',1,'2013-06-03 14:44:42',3);
+INSERT INTO `page_history` VALUES (21,'<p>Apigsgsrggehd<br>hjhsddeddgsdg</p>','<p>apigsgsrggehd<br>hjhsddeddgsdg</p>','\n		\n		<p>Veikia!!!!f awfa wfgs egkso edgse[p kgspokg posekpog sepo gskepog kspoeg poskepog skepo gkspe kgpsek gposekpog ksepog kspeo kgposke pogksepo kgspoekpg oskepo gsepo gkspoe kgpse kopgsk pegk sopeg s[egsegeg</p>\n		','','',1,'2013-06-03 15:00:46',4);
 INSERT INTO `page_history` VALUES (22,'Darbai','darbai','','','',1,'2013-05-19 16:21:56',1);
 INSERT INTO `page_history` VALUES (22,'Darbai','darbai','','','',1,'2013-06-01 11:49:30',2);
+INSERT INTO `page_history` VALUES (23,'\n		<p>Bandymukas</p>\n	','paslaugos','<p>sagasgasgsagsa hdfsagsagsagsagsasasaghkyfefeafkkygy ygfefkgyfasffasfkg wafawfkopakwf egegegeg</p>\n','','',1,'2013-06-01 14:32:55',1);
 INSERT INTO `page_history` VALUES (24,'kontafsfs','kontaktai','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n														','','',1,'2013-06-01 14:48:22',1);
 INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n															','','',0,'2013-06-01 14:51:17',2);
 INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		<p>daliusffsagfsefsef</p>\n																','','',0,'2013-06-01 14:51:36',3);
@@ -191,6 +197,18 @@ INSERT INTO `page_history` VALUES (24,'kontafsfsfefef','kontafsfsfefef','\n		\n	
 INSERT INTO `page_history` VALUES (25,'Home','home','','','',1,'2013-05-19 16:44:20',1);
 INSERT INTO `page_history` VALUES (25,'Home','home','','','',1,'2013-05-19 16:44:20',2);
 INSERT INTO `page_history` VALUES (25,'Home','home','<p>Sveiki!</p>\r\n','','',1,'2013-05-19 16:45:04',3);
+INSERT INTO `page_history` VALUES (26,'gykyk','gykyk','<p>gykgk</p>\r\n','','',1,'2013-06-03 15:05:00',1);
+INSERT INTO `page_history` VALUES (26,'gykyk','gykyk','\n		<p>gykgk</p>\n	','','',1,'2013-06-03 15:05:51',2);
+INSERT INTO `page_history` VALUES (26,'gykyk','gykyk','\n		\n		<p>gykgk</p>\n		','','undefined',1,'2013-06-03 15:45:41',3);
+INSERT INTO `page_history` VALUES (26,'gykyk','gykyk','\n		\n		\n		<p>gykgk</p>\n			','','undefined',1,'2013-06-03 15:56:26',4);
+INSERT INTO `page_history` VALUES (26,'gykyk','gykyk','\n		\n		\n		\n		<p>gykgk</p>\n				','','fasfaf',1,'2013-06-03 15:56:49',5);
+INSERT INTO `page_history` VALUES (27,'New Page','new-page','<p>sagaag</p>\r\n','','',1,'2013-06-03 15:58:27',1);
+INSERT INTO `page_history` VALUES (28,'','','','','',0,'2013-06-03 16:06:35',1);
+INSERT INTO `page_history` VALUES (28,'Pavadinimasasss','pavadinimasasss','\n		Content	','','',1,'2013-06-03 16:09:41',2);
+INSERT INTO `page_history` VALUES (29,'','','','','',0,'2013-06-03 16:07:24',1);
+INSERT INTO `page_history` VALUES (30,'','','','','',0,'2013-06-03 16:07:30',1);
+INSERT INTO `page_history` VALUES (31,'','','','','',0,'2013-06-03 16:08:38',1);
+INSERT INTO `page_history` VALUES (32,'','','','','',0,'2013-06-03 16:08:48',1);
 /*!40000 ALTER TABLE `page_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +233,7 @@ CREATE TABLE `site` (
 
 LOCK TABLES `site` WRITE;
 /*!40000 ALTER TABLE `site` DISABLE KEYS */;
-INSERT INTO `site` VALUES (4,'homePage','25');
+INSERT INTO `site` VALUES (4,'homePage','23');
 INSERT INTO `site` VALUES (6,'siteTitle','Mandola');
 /*!40000 ALTER TABLE `site` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -304,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-01 17:57:53
+-- Dump completed on 2013-06-03 19:19:51

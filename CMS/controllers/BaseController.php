@@ -6,6 +6,7 @@
         public $urlValues = "";
         protected $template_dir = "views/";
         protected $vars = array();
+		public $lang = "lt";
 	   
         public function __construct($action, $urlValues) {
             $this->_action = $action;
