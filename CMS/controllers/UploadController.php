@@ -5,7 +5,7 @@ class UploadController extends BaseController {
     public function index() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             UploadModel::uploadImage($_FILES["file"], 100);
-            redirect("upload");
+            redirect($this->lang . "/upload");
         } else {
             $this->uploadedFiles = UploadModel::selectAllFiles();
             $this->render("upload/index.php");
@@ -14,6 +14,6 @@ class UploadController extends BaseController {
 
     public function delete() {
         UploadModel::deleteFile($this->urlValues["id"]);
-        redirect("upload");
+        redirect($this->lang . "/upload");
     }
 }

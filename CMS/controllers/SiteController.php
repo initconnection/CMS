@@ -7,7 +7,7 @@ class SiteController extends BaseController {
             foreach ($_POST as $key => $value) {
                 SiteModel::insertParameter($key, $value);
             }
-            redirect("site/index");
+            redirect($this->lang ."/site/index");
         }
         else {
             $this->pages = PageModel::selectAllPages();

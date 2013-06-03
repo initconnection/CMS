@@ -67,6 +67,7 @@ LOCK TABLES `category_page` WRITE;
 INSERT INTO `category_page` VALUES (9,26,2);
 INSERT INTO `category_page` VALUES (9,27,4);
 INSERT INTO `category_page` VALUES (9,28,5);
+INSERT INTO `category_page` VALUES (9,31,6);
 /*!40000 ALTER TABLE `category_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,9 +138,9 @@ CREATE TABLE `page` (
   `keywords` varchar(200) NOT NULL,
   `module` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `lang` varchar(2) NOT NULL,
+  `lang` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,8 +150,9 @@ CREATE TABLE `page` (
 LOCK TABLES `page` WRITE;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
 INSERT INTO `page` VALUES (26,'gykdsghsdhsyk','gykdsghsdhsyk','\n		\n		\n		\n		\n		<p>gykgk</p>\n					','','fasfaf',1,'2013-06-03 16:17:08','lt');
-INSERT INTO `page` VALUES (27,'New Page','new-page','\n		<p>saggggggaag</p>\n	','','s',1,'2013-06-03 16:17:08','lt');
-INSERT INTO `page` VALUES (28,'Pavadinimasasss','pavadinimasasss','\n		\n		Contentbdfbd','','',1,'2013-06-03 16:17:08','lt');
+INSERT INTO `page` VALUES (27,'New Pagssse','new-pagssse','\n		\n		<p>saggggggaag</p>\n		','','s',1,'2013-06-03 16:48:41','lt');
+INSERT INTO `page` VALUES (28,'Pavadinimasasss','pavadinimasasss','\n		\n		Contentbdfbd','','',1,'2013-06-03 16:41:51','en');
+INSERT INTO `page` VALUES (31,'Pavggadinimas','pavggadinimas','\n		Consstent	','','',1,'2013-06-03 17:05:14','en');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +235,7 @@ CREATE TABLE `site` (
 
 LOCK TABLES `site` WRITE;
 /*!40000 ALTER TABLE `site` DISABLE KEYS */;
-INSERT INTO `site` VALUES (4,'homePage','23');
+INSERT INTO `site` VALUES (4,'homePage','26');
 INSERT INTO `site` VALUES (6,'siteTitle','Mandola');
 /*!40000 ALTER TABLE `site` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -322,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-03 19:19:51
+-- Dump completed on 2013-06-03 20:10:10

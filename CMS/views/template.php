@@ -19,10 +19,10 @@
 		<div id="logo">
 		</div>
 		<ul id="menu">
-			<li><a href="<?=ABSOLUTE_PATH?>page/index">Pages</a></li>
-            <li><a href="<?=ABSOLUTE_PATH?>site/index"><?=_("Options")?></a></li>
-            <li><a href="<?=ABSOLUTE_PATH?>upload/index"><?=_("Upload")?></a></li>
-            <li><a href="<?=ABSOLUTE_PATH?>home/index"><?=_("Home page")?></a></li>
+			<li><a href="<?=ABSOLUTE_PATH?><?=$this->lang?>/page/index">Pages</a></li>
+            <li><a href="<?=ABSOLUTE_PATH?><?=$this->lang?>/site/index"><?=_("Options")?></a></li>
+            <li><a href="<?=ABSOLUTE_PATH?><?=$this->lang?>/upload/index"><?=_("Upload")?></a></li>
+            <li><a href="<?=ABSOLUTE_PATH?><?=$this->lang?>/home/index"><?=_("Home page")?></a></li>
 			<div class="clear"></div>
 		</ul>
 	</div>

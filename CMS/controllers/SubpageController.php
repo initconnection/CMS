@@ -14,7 +14,7 @@
                 SubpageModel::insertSubpage($title, $content, $description, $keywords,
                     $module, $parent);
 
-                redirect("page/index");
+                redirect($this->lang . "/page/index");
             }
             else {
                 $this->title = "";
@@ -33,7 +33,7 @@
             $parent = $this->urlValues["subid"];
             SubpageModel::deleteSubpage($subpage, $parent);
 
-            redirect("page/index");
+            redirect($this->lang . "/page/index");
         }
 
         public function up() {
@@ -41,7 +41,7 @@
             $parent = $this->urlValues["subid"];
             SubpageModel::moveSubpageUp($subpage, $parent);
 
-            redirect("page/index");
+            redirect($this->lang . "/page/index");
         }
 
         public function down() {
@@ -49,7 +49,7 @@
             $parent = $this->urlValues["subid"];
             SubpageModel::moveSubpageDown($subpage, $parent);
 
-            redirect("page/index");
+            redirect($this->lang . "/page/index");
         }
 
     }

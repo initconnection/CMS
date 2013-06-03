@@ -68,7 +68,7 @@
 		setTimeout(function(){
 			$.ajax({
 				type: "POST",
-				url: "<?=ABSOLUTE_PATH?>page/create",
+				url: "<?=ABSOLUTE_PATH?><?=$this->lang?>/page/create",
 				data: "title=" + title + "&content=" + content +
 					"&module=" + module + "&description=" + description + 
 					"&keywords=" + keywords + "&categories=" + categoriesArray,

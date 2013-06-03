@@ -14,13 +14,13 @@
             return $categories;
         }
 
-        public static function selectCategoriesAndPages() {
+        public static function selectCategoriesAndPages($lang) {
             $categories = self::selectAllCategories();
             $categoriesWithName = array();
             foreach ($categories as $category) {
                 $name = $category["name"];
                 $categoriesWithName[$name] = $category;
-                $pages = PageModel::selectPagesFromCategory($category["id"]);
+                $pages = PageModel::selectPagesFromCategory($category["id"], $lang);
                 $categoriesWithName[$name]["pages"] = $pages;
             }
             return $categoriesWithName;

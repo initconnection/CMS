@@ -11,6 +11,7 @@
         public function __construct($action, $urlValues) {
             $this->_action = $action;
             $this->urlValues = $urlValues;
+			$this->lang = $urlValues["lang"];
         }
         
         public function executeAction() {

@@ -4,7 +4,7 @@
 
         public function index()
         {
-            redirect("page");
+            redirect($this->lang . "/page");
         }
         
         public function logIn()
@@ -13,9 +13,9 @@
                 $username = $_POST["username"];
                 $password = $_POST["password"];
                 if (authorize($username, $password)) {
-                    redirect("main/index");
+                    redirect($this->lang . "/main/index");
                 } else {
-                    redirect("main/login");
+                    redirect($this->lang . "/main/login");
                 }
             }
             else {

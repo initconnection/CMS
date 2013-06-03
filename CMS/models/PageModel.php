@@ -4,10 +4,11 @@
 
         protected static $table = "page";
 
-        public static function selectPagesFromCategory($category) {
+        public static function selectPagesFromCategory($category, $lang) {
             $pageTable = array("table" => "page", "key" => "id");
             $categoryPageTable = array("table" => "category_page", "key" => "page");
-            $pages = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, array("category" => $category), "position");
+            $pages = Database::selectElemetsWithJoin($pageTable, $categoryPageTable, 
+					array("category" => $category, "lang" => $lang), "position");
 
             $pagesWithSubpages = array();
             foreach ($pages as $page) {
@@ -43,10 +44,10 @@
             return $categoryPages;
         }
 
-        public static function insertPage($title, $content, $description, $keywords, $module, $categories) {
+        public static function insertPage($title, $content, $description, $keywords, $module, $categories, $lang) {
             $name = titleToName($title);
             $page = array("title" => $title, "name" => $name, "content" => $content, "description" => $description,
-                "keywords" => $keywords, "module" => $module);
+                "keywords" => $keywords, "module" => $module, "lang" => $lang);
             $id = Database::insertElement(self::$table, $page);
 
             foreach ($categories as $category) {

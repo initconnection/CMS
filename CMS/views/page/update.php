@@ -67,7 +67,7 @@
 		setTimeout(function(){
 			$.ajax({
 				type: "POST",
-				url: "<?=ABSOLUTE_PATH?>page/update",
+				url: "<?=ABSOLUTE_PATH?><?=$this->lang?>/page/update",
 				data: "id=<?=$this->id?>&title=" + title + "&content=" + content +
 					"&module=" + module + "&description=" + description + 
 					"&keywords=" + keywords + "&categories=" + categoriesArray,

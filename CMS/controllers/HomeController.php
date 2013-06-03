@@ -4,7 +4,7 @@ class HomeController extends BaseController {
 
     
     public function index() {
-         redirect("home/update");
+         redirect($this->lang . "/home/update");
     }
 
     public function create() {
@@ -12,7 +12,7 @@ class HomeController extends BaseController {
             $buttonTitle = $_POST["buttonTitle"];
             $buttonUrl = $_POST["buttonUrl"];
             HomeModel::insertHomePage($buttonTitle, $buttonUrl);
-            redirect("home");
+            redirect($this->lang . "/home");
         } else {
             $this->buttonTitle = "";
             $this->buttonUrl = "";
@@ -26,7 +26,7 @@ class HomeController extends BaseController {
             $buttonTitle = $_POST["buttonTitle"];
             $buttonUrl = $_POST["buttonUrl"];
             HomeModel::updateHomePage($homeId, $buttonTitle, $buttonUrl);
-            redirect("home");
+            redirect($this->lang . "/home");
         } else {
             $homePage = HomeModel::selectHomePage();
             $this->homeId = $homePage["id"];
@@ -37,7 +37,7 @@ class HomeController extends BaseController {
     }
 
     public function show() {
-        redirect("home/update");
+        redirect($this->lang . "/home/update");
     }
     
 }

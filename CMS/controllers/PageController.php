@@ -4,7 +4,7 @@ class PageController extends BaseController {
     
     public function index() {
         $this->title = "Pages";
-        $this->categories = CategoryModel::selectCategoriesAndPages();
+        $this->categories = CategoryModel::selectCategoriesAndPages($this->lang);
         $this->pages = PageModel::selectPagesWithoutCategory();
 
         $this->render("page/index.php");
@@ -29,9 +29,9 @@ class PageController extends BaseController {
 			$categories = $_POST["categories"];
 			$categoriesArray = explode(", ", $categories);
             
-            PageModel::insertPage($title, $content, $description, $keywords, $module, $categoriesArray);
+            PageModel::insertPage($title, $content, $description, $keywords, $module, $categoriesArray, $this->lang);
             
-            redirect("page/index");
+            redirect($this->lang . "/page/index");
         }
         else {
             $this->title = "";
@@ -39,7 +39,7 @@ class PageController extends BaseController {
             $this->description = "";
             $this->keywords = "";
             $this->module = "";
-            $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
+            $this->allCategories = CategoryModel::selectAllCategoriesAndNone($this->lang);
             $this->categories = array($this->urlValues["id"]);
             $this->allModules = BasePageModel::selectAllModules();
 
@@ -60,7 +60,7 @@ class PageController extends BaseController {
 			
             PageModel::updatePage($id, $title, $content, $description, $keywords, $module, $categoriesArray);
 
-            redirect("page/index");
+            redirect($this->lang . "/page/index");
         }
         else {
             $id = $this->urlValues["id"];
@@ -72,7 +72,7 @@ class PageController extends BaseController {
             $this->keywords = $page["keywords"];
             $this->module = $page["module"];
             $this->categories = PageModel::selectPageCategories($id);
-            $this->allCategories = CategoryModel::selectAllCategoriesAndNone();
+            $this->allCategories = CategoryModel::selectAllCategoriesAndNone($this->lang);
             $this->allModules = BasePageModel::selectAllModules();
 
             $this->render("page/update.php");
@@ -87,7 +87,7 @@ class PageController extends BaseController {
         } else {
             PageModel::deletePage($page);
         }
-        redirect("page/index");
+        redirect($this->lang . "/page/index");
     }
 
     public function up() {
@@ -95,7 +95,7 @@ class PageController extends BaseController {
         $category = $this->urlValues["subid"];
         PageModel::movePageUp($page, $category);
 
-        redirect("page/index");
+        redirect($this->lang . "/page/index");
     }
 
     public function down() {
@@ -103,7 +103,7 @@ class PageController extends BaseController {
         $category = $this->urlValues["subid"];
         PageModel::movePageDown($page, $category);
 
-        redirect("page/index");
+        redirect($this->lang . "/page/index");
     }
 
     public function history() {

@@ -1,4 +1,4 @@
-<form action="<?=ABSOLUTE_PATH?>site/index" method="post" xmlns="http://www.w3.org/1999/html">
+<form action="<?=ABSOLUTE_PATH?><?=$this->lang?>/site/index" method="post" xmlns="http://www.w3.org/1999/html">
 
 	<label for="siteTitle"><?=_("Site title")?></label>
 	<input type="text" id="siteTitle" name="siteTitle" value="<?=$this->siteTitle?>" />

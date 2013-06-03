@@ -12,7 +12,7 @@ class CategoryController extends BaseController {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $title = $_POST["title"];
             CategoryModel::insertCategory($title);
-            redirect("page/index");
+            redirect($this->lang ."page/index");
         }
         else {
             $this->title = "";
@@ -23,7 +23,7 @@ class CategoryController extends BaseController {
     public function delete() {
         $id = $this->urlValues["id"];
         CategoryModel::deleteCategory($id);
-        redirect("page/index");
+        redirect($this->lang ."page/index");
     }
     
 }
